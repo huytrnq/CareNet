@@ -10,15 +10,16 @@
 <body>
 <div class="container">
 	<div class="form-container register-container">
-		<form action="register.do" method="post">
-			<h1>Register</h1>
-			<p>Register now to connect with top medical professionals</p>
+		<!-- <form action="register" method="post">
 			<button class="signup" type="submit">Sign Up</button>
-		</form>
+		</form> -->
+		<h1>Register</h1>
+		<p>Register now to connect with top medical professionals</p>
+		<button class="signup" onclick="location.href='register.jsp'">Sign Up</button>
 		<img src="css/images/doctor-illustration.png" alt="Illustration" class="illustration">
 	</div>
 	<div class="form-container login-container">
-		<form action="login.do" method="post">
+		<form action="login" method="post">
 			<h1>Login</h1>
 			<div class="input-group">
 				<input type="text" placeholder="Enter Username" name="username" required>
