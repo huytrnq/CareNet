@@ -13,7 +13,6 @@ body {
     display: flex;
     width: 90%;
     height: 90%;
-    /* max-width: 1200px; */
     background-color: #fff;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     border-radius: 10px;
@@ -37,10 +36,10 @@ body {
 }
 
 .register-container .illustration {
-    width: 350px; /* Adjust width as needed */
+    width: 350px;
     height: auto;
-    margin-top: 20px; /* Add some space between the button and the image */
-    opacity: 1; /* Make the image fully visible */
+    margin-top: 20px;
+    opacity: 1;
 }
 
 .login-container {
@@ -52,16 +51,12 @@ h1 {
     font-size: 24px;
     margin-bottom: 20px;
     color: #333;
-    z-index: 1;
-    position: relative;
 }
 
 p {
     font-size: 16px;
-    margin-bottom: 20px;
+    margin-bottom: 10px;
     color: #777;
-    z-index: 1;
-    position: relative;
 }
 
 button {
@@ -73,15 +68,13 @@ button {
     border-radius: 10px;
     cursor: pointer;
     margin-bottom: 20px;
-    z-index: 1;
-    position: relative;
 }
 
 button:hover {
     background-color: #218838;
 }
 
-.signup{
+.signup {
     padding: 10px 20px;
     font-size: 16px;
     color: #28a745;
@@ -90,8 +83,6 @@ button:hover {
     border-radius: 15px;
     cursor: pointer;
     margin-bottom: 20px;
-    z-index: 1;
-    position: relative;
 }
 
 .signup:hover {
@@ -102,28 +93,22 @@ button:hover {
 .input-group {
     width: 100%;
     margin-bottom: 20px;
-    z-index: 1;
-    position: relative;
+    display: flex;
+    align-items: center;
 }
 
-.input-group input {
-    width: 250px;
+.inline-group p {
+    margin: 0;
+    margin-right: 10px;
+    font-size: 16px;
+    width: 150px; /* Adjust width as needed */
+}
+
+.inline-input {
+    flex: 1;
     padding: 10px;
     border: 1px solid #ddd;
     border-radius: 5px;
     font-size: 14px;
     color: #333;
-}
-
-.social-icons {
-    display: flex;
-    justify-content: center;
-    gap: 10px;
-    z-index: 1;
-    position: relative;
-}
-
-.social-icons a img {
-    width: 24px;
-    height: 24px;
 }

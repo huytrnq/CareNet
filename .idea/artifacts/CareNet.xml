@@ -1,7 +1,7 @@
 <component name="ArtifactManager">
-  <artifact type="exploded-war" name="CareNet:war exploded">
-    <output-path>$PROJECT_DIR$/out/artifacts/CareNet_war_exploded</output-path>
-    <root id="root">
+  <artifact type="war" name="CareNet">
+    <output-path>$PROJECT_DIR$/out/artifacts/CareNet</output-path>
+    <root id="archive" name="CareNet.war">
       <element id="directory" name="WEB-INF">
         <element id="directory" name="classes">
           <element id="module-output" name="CareNet" />

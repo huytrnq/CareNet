@@ -61,5 +61,3 @@ CareNet
 - [ ] Responsive Design - Need to make the application responsive
 - [ ] Doctor's page - Need to add a page for doctors
 - [ ] Patient's page - Need to add a page for patients
-
-
