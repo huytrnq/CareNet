@@ -5,18 +5,37 @@
         "http://struts.apache.org/dtds/struts-2.3.dtd">
 <struts>
     <package name="default" namespace="/" extends="struts-default,json-default">
+        <!-- Interceptor -->
+        <interceptors>
+            <interceptor name="loginInterceptor" class="it.unicas.interceptor.LoginInterceptor"/>
+            <interceptor-stack name="authStack">
+                <interceptor-ref name="loginInterceptor"/>
+                <interceptor-ref name="defaultStack"/>
+            </interceptor-stack>
+        </interceptors>
+
+        <default-interceptor-ref name="authStack"/>
+        <!-- Register Action -->
         <action name="register" class="it.unicas.action.RegisterAction" method="execute">
             <result name="success">success.jsp</result>
             <result name="error">error.jsp</result>
         </action>
+        <!-- Login Action -->
         <action name="login" class="it.unicas.action.LoginAction" method="execute">
             <result name="success" type="redirect">welcomeAction</result>
             <result name="'error">error.jsp</result>
-            <result name="input">login.jsp</result>
+            <result name="login">login.jsp</result>
         </action>
+        <!-- Welcome Action -->
         <action name="welcomeAction" class="it.unicas.action.WelcomeAction" method="execute">
             <result name="success">success.jsp</result>
-            <result name="input">login.jsp</result>
+            <result name="login">login.jsp</result>
+        </action>
+        <!-- Secure Action -->
+        <action name="secureAction" class="it.unicas.action.SecureAction" method="execute">
+            <interceptor-ref name="authStack"/>
+            <result name="success">secure.jsp</result>
+            <result name="login">login.jsp</result>
         </action>
     </package>
 </struts>

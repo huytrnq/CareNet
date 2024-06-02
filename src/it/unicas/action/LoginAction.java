@@ -1,12 +1,14 @@
 package it.unicas.action;
-
-import com.opensymphony.xwork2.ActionSupport;
-
 import it.unicas.dao.LoginDAO;
 
-public class LoginAction extends ActionSupport {
+import com.opensymphony.xwork2.ActionSupport;
+import org.apache.struts2.interceptor.SessionAware;
+import java.util.Map;
+
+public class LoginAction extends ActionSupport implements SessionAware{
     private String username;
     private String password;
+    private Map<String, Object> session;
 
     // Getters and setters for username and password
     public String getUsername() {
@@ -29,8 +31,16 @@ public class LoginAction extends ActionSupport {
     public String execute() {
         boolean status = LoginDAO.validate(username, password);
         if (!status) {
-            return INPUT;
+            session.put("error", "Invalid username or password");
+            return LOGIN;
+        } else {
+            session.put("username", username);
+            return SUCCESS;
         }
-        return SUCCESS;
+    }
+
+    @Override
+    public void setSession(Map<String, Object> session) {
+        this.session = session;
     }
 }

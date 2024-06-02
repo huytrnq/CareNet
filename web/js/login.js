@@ -1,7 +1,7 @@
 function showRegisterForm() {
   document.getElementById('form-content').innerHTML = `
         <form action="register">
-            <h1>Register</h1>
+            <h1>Sign up</h1>
             <p>Welcome! Please fill in the form to create an account.</p>
             <div class="input-group inline-group">
                 <input type="text" placeholder="Enter First Name" name="firstname" class="inline-input">
@@ -37,7 +37,7 @@ function showRegisterForm() {
                     <option value="doctor">Doctor</option>
                 </select>
             </div>
-            <button type="submit">Register</button>
+            <button type="submit">Sign up</button>
             <p>Already have an account? <a href="#" onclick="showLoginForm()">Login</a></p>
         </form>
     `;

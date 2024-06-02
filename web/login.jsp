@@ -1,4 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib uri="/struts-tags" prefix="s" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -25,8 +26,20 @@
 			<div class="input-group inline-group">
 				<input type="password" id="password" name="password" placeholder="Enter Password" class="inline-input">
 			</div>
+			<div class="input-group inline-group error hidden" id="error-message">
+				<s:property value="%{#session.error}"/>
+			</div>
 			<button type="submit">Login</button>
 		</form>
+		<p>Forgot your password? <a href="#">Click here</a></p>
+
+		<!-- Display error message if login fails  -->
+		<s:if test="#session.error != null">
+			<script>
+				document.getElementById("error-message").classList.remove("hidden");
+				document.getElementById("error-message").style.color = 'red';
+			</script>
+		</s:if>
 	</div>
 </div>
 </body>
