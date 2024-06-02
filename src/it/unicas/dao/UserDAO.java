@@ -11,39 +11,51 @@ import java.util.Optional;
 
 public class UserDAO {
 
-    public void save(User user) {
-        String sql = "INSERT INTO users (username, password, role, created_at, updated_at) VALUES (?, ?, ?, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP)";
+    public static void addUser(User user) {
+        String sql = "INSERT INTO user (username, firstname, lastname, role, gender, phone, email, address, password) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
         try (Connection conn = DBUtil.getConnection();
-             PreparedStatement stmt = conn.prepareStatement(sql)) {
+            PreparedStatement stmt = conn.prepareStatement(sql)) {
 
             stmt.setString(1, user.getUsername());
-            stmt.setString(2, user.getPassword());
-            stmt.setString(3, user.getRole().name());
+            stmt.setString(2, user.getFirstname());
+            stmt.setString(3, user.getLastname());
+            stmt.setString(4, user.getRole());
+            stmt.setString(5, user.getGender());
+            stmt.setString(6, user.getPhone());
+            stmt.setString(7, user.getEmail());
+            stmt.setString(8, user.getAddress());
+            stmt.setString(9, user.getPassword());
+
             stmt.executeUpdate();
+
+            System.out.println("User " + user.getUsername() + " added successfully");
 
         } catch (SQLException e) {
             e.printStackTrace();
         }
     }
 
-    public Optional<User> findByUsername(String username) {
-        String sql = "SELECT * FROM users WHERE username = ?";
+    public static Optional<User> findByUsername(String username) {
+        String sql = "SELECT * FROM user WHERE username = ?";
 
         try (Connection conn = DBUtil.getConnection();
-             PreparedStatement stmt = conn.prepareStatement(sql)) {
+            PreparedStatement stmt = conn.prepareStatement(sql)) {
 
             stmt.setString(1, username);
             ResultSet rs = stmt.executeQuery();
 
             if (rs.next()) {
                 User user = new User();
-                user.setDoctorId(rs.getLong("doctor_id"));
                 user.setUsername(rs.getString("username"));
+                user.setFirstname(rs.getString("firstname"));
+                user.setLastname(rs.getString("lastname"));
+                user.setRole(rs.getString("role"));
+                user.setGender(rs.getString("gender"));
+                user.setPhone(rs.getString("phone"));
+                user.setEmail(rs.getString("email"));
+                user.setAddress(rs.getString("address"));
                 user.setPassword(rs.getString("password"));
-                user.setRole(User.Role.valueOf(rs.getString("role")));
-                user.setCreatedAt(rs.getTimestamp("created_at"));
-                user.setUpdatedAt(rs.getTimestamp("updated_at"));
                 return Optional.of(user);
             }
 

@@ -1,44 +1,33 @@
-CREATE TABLE `doctor` (
-	`id` INT NOT NULL AUTO_INCREMENT UNIQUE,
-	`username` VARCHAR(255) UNIQUE,
-	`firstname` VARCHAR(255),
-	`lastname` VARCHAR(255),
-	`role` ENUM("doctor", "patient"),
-	`gender` ENUM("male", "female", "other"),
-	`phone` VARCHAR(255),
-	`email` VARCHAR(255),
-	`address` TEXT(65535),
-	`password` VARCHAR(255),
-	PRIMARY KEY(`id`)
+USE CareNet;
+
+-- Combined user table
+CREATE TABLE `user` (
+    `id` INT NOT NULL AUTO_INCREMENT,
+    `username` VARCHAR(255) UNIQUE,
+    `firstname` VARCHAR(255),
+    `lastname` VARCHAR(255),
+    `role` ENUM('doctor', 'patient'),
+    `gender` ENUM('male', 'female', 'other'),
+    `phone` VARCHAR(255),
+    `email` VARCHAR(255) UNIQUE,
+    `address` TEXT,
+    `password` VARCHAR(255),
+    PRIMARY KEY (`id`)
 );
 
-CREATE TABLE `patient` (
-	`id` INT NOT NULL AUTO_INCREMENT UNIQUE,
-	`username` VARCHAR(255) UNIQUE,
-	`firstname` VARCHAR(255),
-	`lastname` VARCHAR(255),
-	`role` ENUM("doctor", "patient"),
-	`gender` ENUM("male", "female", "other"),
-	`phone` VARCHAR(255),
-	`email` VARCHAR(255) UNIQUE,
-	`addres` VARCHAR(255),
-	`password` VARCHAR(255),
-	PRIMARY KEY(`id`)
-);
-
+-- Appointment table
 CREATE TABLE `appointment` (
-	`id` INT NOT NULL AUTO_INCREMENT UNIQUE,
-	`doctor_id` INT,
-	`patient_id` INT,
-	`date` DATE,
-	`time` TIME,
-	`status` ENUM("scheduled", "completed", "cancelled"),
-	PRIMARY KEY(`id`, `doctor_id`, `patient_id`)
+    `id` INT NOT NULL AUTO_INCREMENT,
+    `doctor_id` INT NOT NULL,
+    `patient_id` INT NOT NULL,
+    `date` DATE,
+    `time` TIME,
+    `status` ENUM('scheduled', 'completed', 'cancelled'),
+    PRIMARY KEY (`id`),
+    INDEX (`doctor_id`),
+    INDEX (`patient_id`),
+    FOREIGN KEY (`doctor_id`) REFERENCES `user` (`id`)
+        ON UPDATE NO ACTION ON DELETE NO ACTION,
+    FOREIGN KEY (`patient_id`) REFERENCES `user` (`id`)
+        ON UPDATE NO ACTION ON DELETE NO ACTION
 );
-
-ALTER TABLE `doctor`
-ADD FOREIGN KEY(`id`) REFERENCES `appointment`(`doctor_id`)
-ON UPDATE NO ACTION ON DELETE NO ACTION;
-ALTER TABLE `patient`
-ADD FOREIGN KEY(`id`) REFERENCES `appointment`(`patient_id`)
-ON UPDATE NO ACTION ON DELETE NO ACTION;

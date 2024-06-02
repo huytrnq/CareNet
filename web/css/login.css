@@ -105,10 +105,35 @@ button:hover {
 }
 
 .inline-input {
-    flex: 1;
+    width: 100%;
     padding: 10px;
     border: 1px solid #ddd;
     border-radius: 5px;
     font-size: 14px;
     color: #333;
+}
+
+/* Add this to style the select element */
+.inline-input {
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background-color: #fff;
+    background-image: url('data:image/svg+xml;charset=US-ASCII,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" stroke="%23333" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-down"><path d="M4 6l4 4 4-4"/></svg>');
+    background-repeat: no-repeat;
+    background-position: right 10px center;
+    background-size: 16px 16px;
+    padding-right: 30px; /* Adjust this based on the background image size */
+}
+
+/* Additional styling for better appearance */
+select.inline-input:focus {
+    border-color: #28a745;
+    outline: none;
+}
+
+select.inline-input option {
+    color: #333;
+    background-color: #fff;
+    padding: 10px;
 }

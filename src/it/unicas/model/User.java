@@ -1,27 +1,35 @@
 package it.unicas.model;
 
-import java.sql.Timestamp;
-
 public class User {
-    private Long doctorId;
     private String username;
+    private String firstname;
+    private String lastname;
+    private String role;
+    private String gender;
+    private String phone;
+    private String email;
+    private String address;
     private String password;
-    private Role role;
-    private Timestamp createdAt;
-    private Timestamp updatedAt;
-
-    // Getters and Setters
 
     public enum Role {
-        ADMIN, DOCTOR, PATIENT
+        DOCTOR, PATIENT
     }
 
-    public Long getDoctorId() {
-        return doctorId;
+    public User(){
+        // Auto generated construction - Empty now. Filled if needed
     }
 
-    public void setDoctorId(Long doctorId) {
-        this.doctorId = doctorId;
+    public User(String username, String firstname, String lastname, String role, String gender, String phone, String email, String address, String password) {
+        super();
+        this.username = username;
+        this.firstname = firstname;
+        this.lastname = lastname;
+        this.role = role;
+        this.gender = gender;
+        this.phone = phone;
+        this.email = email;
+        this.address = address;
+        this.password = password;
     }
 
     public String getUsername() {
@@ -32,35 +40,67 @@ public class User {
         this.username = username;
     }
 
-    public String getPassword() {
-        return password;
+    public String getFirstname() {
+        return firstname;
     }
 
-    public void setPassword(String password) {
-        this.password = password;
+    public void setFirstname(String firstname) {
+        this.firstname = firstname;
     }
 
-    public Role getRole() {
+    public String getLastname() {
+        return lastname;
+    }
+
+    public void setLastname(String lastname) {
+        this.lastname = lastname;
+    }
+
+    public String getGender() {
+        return gender;
+    }
+
+    public void setGender(String gender){
+        this.gender = gender;
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone){
+        this.phone = phone;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email){
+        this.email = email;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address){
+        this.address = address;
+    }
+
+    public String getRole() {
         return role;
     }
 
-    public void setRole(Role role) {
+    public void setRole(String role) {
         this.role = role;
     }
 
-    public Timestamp getCreatedAt() {
-        return createdAt;
+    public String getPassword() {
+        return password;
     }
-
-    public void setCreatedAt(Timestamp createdAt) {
-        this.createdAt = createdAt;
-    }
-
-    public Timestamp getUpdatedAt() {
-        return updatedAt;
-    }
-
-    public void setUpdatedAt(Timestamp updatedAt) {
-        this.updatedAt = updatedAt;
+    
+    public void setPassword(String password) {
+        this.password = password;
     }
 }

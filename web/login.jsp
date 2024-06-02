@@ -1,3 +1,4 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -17,14 +18,15 @@
 	</div>
 	<div class="form-container login-container" id="form-content">
 		<h1>Login</h1>
-		<div class="input-group inline-group">
-			<input type="text" placeholder="Enter Username" class="inline-input">
-		</div>
-		<div class="input-group inline-group">
-			<p class="inline-label">Password</p>
-			<input type="password" placeholder="Enter Password" class="inline-input">
-		</div>
-		<button onclick="login()">Login</button>
+		<form action="login">
+			<div class="input-group inline-group">
+				<input type="text" id="username" name="username" placeholder="Enter Username" class="inline-input">
+			</div>
+			<div class="input-group inline-group">
+				<input type="password" id="password" name="password" placeholder="Enter Password" class="inline-input">
+			</div>
+			<button type="submit">Login</button>
+		</form>
 	</div>
 </div>
 </body>

@@ -1,14 +1,12 @@
 package it.unicas.action;
 
 import com.opensymphony.xwork2.ActionSupport;
-import it.unicas.dao.UserDAO;
-import it.unicas.model.User;
+
+import it.unicas.dao.LoginDAO;
 
 public class LoginAction extends ActionSupport {
     private String username;
     private String password;
-    private User user;
-    private UserDAO userDAO;
 
     // Getters and setters for username and password
     public String getUsername() {
@@ -29,14 +27,10 @@ public class LoginAction extends ActionSupport {
 
     @Override
     public String execute() {
-        // Add login logic here (e.g., validate credentials)
-//        Optional<User> existingUser = userDAO.findByUsername(user.getUsername());
-//        if (existingUser.isPresent() && existingUser.get().getPassword().equals(user.getPassword())) {
-//            return SUCCESS;
-//        }
-//        addActionError("Invalid username or password");
-//        return ERROR;    }
-        System.out.println("Login action started");
+        boolean status = LoginDAO.validate(username, password);
+        if (!status) {
+            return INPUT;
+        }
         return SUCCESS;
     }
 }

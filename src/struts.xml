@@ -5,30 +5,18 @@
         "http://struts.apache.org/dtds/struts-2.3.dtd">
 <struts>
     <package name="default" namespace="/" extends="struts-default,json-default">
-<!--        <action name="listAction" class="it.unicas.amici.Tabella" method="list">-->
-<!--            <result type="json"/>-->
-<!--        </action>-->
-<!--        <action name="createAction" class="it.unicas.amici.Tabella" method="create">-->
-<!--            <result type="json"/>-->
-<!--        </action>-->
-<!--        <action name="deleteAction" class="it.unicas.amici.Tabella" method="delete">-->
-<!--            <result type="json"/>-->
-<!--        </action>-->
-<!--        <action name="updateAction" class="it.unicas.amici.Tabella" method="update">-->
-<!--            <result type="json"/>-->
-<!--        </action>-->
-<!--        <action name="insertAction" class="it.unicas.comments.Comments" method="insert">-->
-<!--          <result name="success">insertForm.jsp</result>-->
-<!--        </action>-->
-<!--        <action name="myAction" class="it.unicas.MyAction">-->
-<!--            <result type="json"/>-->
-<!--        </action>-->
-<!--        <action name="mySecondAction" class="it.unicas.MyAction">-->
-<!--            <result name="success">myActionView.jsp</result>-->
-<!--        </action>-->
         <action name="register" class="it.unicas.action.RegisterAction" method="execute">
-            <result name="success">/index.jsp</result>
-            <result name="error">/register.jsp</result>
+            <result name="success">success.jsp</result>
+            <result name="error">error.jsp</result>
+        </action>
+        <action name="login" class="it.unicas.action.LoginAction" method="execute">
+            <result name="success" type="redirect">welcomeAction</result>
+            <result name="'error">error.jsp</result>
+            <result name="input">login.jsp</result>
+        </action>
+        <action name="welcomeAction" class="it.unicas.action.WelcomeAction" method="execute">
+            <result name="success">success.jsp</result>
+            <result name="input">login.jsp</result>
         </action>
     </package>
 </struts>

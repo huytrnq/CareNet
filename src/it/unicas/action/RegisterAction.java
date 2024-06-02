@@ -1,19 +1,43 @@
 package it.unicas.action;
 
 import com.opensymphony.xwork2.ActionSupport;
+import it.unicas.model.User;
+import it.unicas.dao.UserDAO;
 
+import java.util.Optional;
 
 public class RegisterAction extends ActionSupport{
     private String username;
-    private String password;
+    private String firstname;
+    private String lastname;
     private String role;
+    private String phone;
+    private String gender;
+    private String email;
+    private String address;
+    private String password;
 
     public String execute() throws Exception {
         // Check if user data is correctly set
-        System.out.println("Registering user with the following data:");
-        // System.out.println("Username: " + username);
-        // System.out.println("Password: " + password);
-        // System.out.println("Role: " + role);
+        User user = new User(username, firstname, lastname, role, gender, phone, email, address, password);
+        System.out.println("============ Registering user: " + user.toString() + " ============");
+        System.out.println("Username: " + username);
+        System.out.println("Firstname: " + firstname);
+        System.out.println("Lastname: " + lastname);
+        System.out.println("Role: " + role);
+        System.out.println("Phone: " + phone);
+        System.out.println("Gender: " + gender);
+        System.out.println("Email: " + email);
+        System.out.println("Address: " + address); 
+        System.out.println("Password: " + password);
+        
+        Optional<User> existingUser = UserDAO.findByUsername(username);
+        if (existingUser.isPresent()) {
+            System.out.println("User " + username + " already exists");
+            return ERROR;
+        }else{
+            UserDAO.addUser(user);
+        }
 
         return SUCCESS;
     }
@@ -27,19 +51,67 @@ public class RegisterAction extends ActionSupport{
         this.username = username;
     }
 
-    public String getPassword() {
-        return password;
+    public String getFirstname(String firstname) {
+        return firstname; 
     }
 
-    public void setPassword(String password) {
-        this.password = password;
+    public void setFirstname(String firstname) {
+        this.firstname = firstname;
     }
 
-    public String getRole() {
-        return role;
+    public String getLastname(String lastname) {
+        return lastname; 
+    }
+
+    public void setLastname(String lastname) {
+        this.lastname = lastname;
+    }
+
+    public String getRole(String role) {
+        return role; 
     }
 
     public void setRole(String role) {
         this.role = role;
+    }
+
+    public String getPhone(String phone) {
+        return phone; 
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
+
+    public String getGender() {
+        return gender;
+    }
+    
+    public void setGender(String gender) {
+        this.gender = gender;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+    
+    public String getPassword() {
+        return password;
+    }
+    
+    public void setPassword(String password) {
+        this.password = password;
     }
 }
