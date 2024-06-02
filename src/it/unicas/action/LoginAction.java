@@ -3,6 +3,7 @@ import it.unicas.dao.LoginDAO;
 
 import com.opensymphony.xwork2.ActionSupport;
 import org.apache.struts2.interceptor.SessionAware;
+
 import java.util.Map;
 
 public class LoginAction extends ActionSupport implements SessionAware{
@@ -34,6 +35,7 @@ public class LoginAction extends ActionSupport implements SessionAware{
             session.put("error", "Invalid username or password");
             return LOGIN;
         } else {
+            session.remove("error");
             session.put("username", username);
             return SUCCESS;
         }

@@ -1,6 +1,6 @@
 function showRegisterForm() {
   document.getElementById('form-content').innerHTML = `
-        <form action="register" method="post">
+        <form action="register">
             <h1>Sign up</h1>
             <p>Please fill in the form to create an account.</p>
             <div class="input-group inline-group">

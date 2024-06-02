@@ -39,10 +39,14 @@ public class RegisterAction extends ActionSupport implements SessionAware{
         if (existingUser.isPresent()) {
             System.out.println("User " + username + " already exists");
             session.put("error", "User " + username + " already exists");
-            return NONE;
+            return ERROR;
         }else{
-            // String hashedPassword = BCrypt.hashpw(password, BCrypt.gensalt());
-            // user.setPassword(hashedPassword);
+            if(user.getUsername() == null || user.getUsername().isEmpty()){
+                return SUCCESS;
+            }
+            session.remove("error");
+            String hashedPassword = BCrypt.hashpw(password, BCrypt.gensalt());
+            user.setPassword(hashedPassword);
             UserDAO.addUser(user);
             return SUCCESS;
         }

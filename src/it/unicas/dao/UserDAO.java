@@ -58,11 +58,34 @@ public class UserDAO {
                 user.setPassword(rs.getString("password"));
                 return Optional.of(user);
             }
-
         } catch (SQLException e) {
             e.printStackTrace();
         }
 
         return Optional.empty();
+    }
+
+    public String getPasswordHash(String username) throws SQLException {
+        Connection conn = null;
+        PreparedStatement stmt = null;
+        ResultSet rs = null;
+        try {
+            conn = DBUtil.getConnection();
+            String sql = "SELECT password FROM user WHERE username = ?";
+            stmt = conn.prepareStatement(sql);
+            stmt.setString(1, username);
+            rs = stmt.executeQuery();
+            if (rs.next()) {
+                return rs.getString("password");
+            } else {
+                return null;
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return null;
+        } finally {
+            assert conn != null;
+            conn.close();
+        }
     }
 }
