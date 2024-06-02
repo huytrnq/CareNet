@@ -7,6 +7,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>Login</title>
 	<link rel="stylesheet" href="css/login.css">
+	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 	<script src="js/login.js" defer></script>
 </head>
 <body>
@@ -18,28 +19,28 @@
 		<img src="css/images/doctor-illustration.png" alt="Illustration" class="illustration">
 	</div>
 	<div class="form-container login-container" id="form-content">
-		<h1>Login</h1>
 		<form action="login">
+			<h1>Login</h1>
 			<div class="input-group inline-group">
 				<input type="text" id="username" name="username" placeholder="Enter Username" class="inline-input">
 			</div>
 			<div class="input-group inline-group">
 				<input type="password" id="password" name="password" placeholder="Enter Password" class="inline-input">
 			</div>
-			<div class="input-group inline-group error hidden" id="error-message">
+			<button type="submit">Login</button>
+			<div class="error hidden" id="error-message">
 				<s:property value="%{#session.error}"/>
 			</div>
-			<button type="submit">Login</button>
-		</form>
-		<p>Forgot your password? <a href="#">Click here</a></p>
+			<p>Forgot your password? <a href="#">Click here</a></p>
 
-		<!-- Display error message if login fails  -->
-		<s:if test="#session.error != null">
-			<script>
-				document.getElementById("error-message").classList.remove("hidden");
-				document.getElementById("error-message").style.color = 'red';
-			</script>
-		</s:if>
+			<!-- Display error message if login fails  -->
+			<s:if test="#session.error != null">
+				<script>
+					document.getElementById("error-message").classList.remove("hidden");
+					document.getElementById("error-message").style.color = 'red';
+				</script>
+			</s:if>
+		</form>
 	</div>
 </div>
 </body>

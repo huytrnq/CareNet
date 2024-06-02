@@ -116,3 +116,10 @@ button:hover {
 .hidden {
     display: none;
 }
+
+#username-error {
+    color: red;
+    font-size: smaller;
+    display: block;
+    margin-bottom: 0.2em; /* Adjust as needed for spacing */
+}

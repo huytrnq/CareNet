@@ -18,7 +18,7 @@
         <!-- Register Action -->
         <action name="register" class="it.unicas.action.RegisterAction" method="execute">
             <result name="success">success.jsp</result>
-            <result name="error">error.jsp</result>
+            <result name="error" type="redirect">login</result>
         </action>
         <!-- Login Action -->
         <action name="login" class="it.unicas.action.LoginAction" method="execute">
@@ -36,6 +36,10 @@
             <interceptor-ref name="authStack"/>
             <result name="success">secure.jsp</result>
             <result name="login">login.jsp</result>
+        </action>
+        <!-- Action to check if user exists -->
+        <action name="checkUserExists" class="it.unicas.action.CheckUserAction">
+            <result type="json"/>
         </action>
     </package>
 </struts>

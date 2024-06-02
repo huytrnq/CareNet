@@ -1,12 +1,15 @@
 package it.unicas.action;
 
 import com.opensymphony.xwork2.ActionSupport;
+import org.apache.struts2.interceptor.SessionAware;
 import it.unicas.model.User;
 import it.unicas.dao.UserDAO;
+import org.mindrot.jbcrypt.BCrypt;
 
 import java.util.Optional;
+import java.util.Map;
 
-public class RegisterAction extends ActionSupport{
+public class RegisterAction extends ActionSupport implements SessionAware{
     private String username;
     private String firstname;
     private String lastname;
@@ -16,6 +19,7 @@ public class RegisterAction extends ActionSupport{
     private String email;
     private String address;
     private String password;
+    private Map<String, Object> session;
 
     public String execute() throws Exception {
         // Check if user data is correctly set
@@ -34,12 +38,19 @@ public class RegisterAction extends ActionSupport{
         Optional<User> existingUser = UserDAO.findByUsername(username);
         if (existingUser.isPresent()) {
             System.out.println("User " + username + " already exists");
-            return ERROR;
+            session.put("error", "User " + username + " already exists");
+            return NONE;
         }else{
+            // String hashedPassword = BCrypt.hashpw(password, BCrypt.gensalt());
+            // user.setPassword(hashedPassword);
             UserDAO.addUser(user);
+            return SUCCESS;
         }
+    }
 
-        return SUCCESS;
+    @Override
+    public void setSession(Map<String, Object> session) {
+        this.session = session;
     }
 
     // Getters and Setters for username, password, and role
