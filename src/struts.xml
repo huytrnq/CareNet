@@ -25,6 +25,10 @@
             <result name="'error">error.jsp</result>
             <result name="login">login.jsp</result>
         </action>
+        <!-- Logout Action -->
+        <action name="logout" class="it.unicas.action.LogoutAction">
+            <result>login.jsp</result>
+        </action>
         <!-- Welcome Action -->
         <action name="welcomeAction" class="it.unicas.action.WelcomeAction">
             <result name="success">success.jsp</result>
