@@ -91,3 +91,7 @@ main {
     background-color: #c82333;
 }
 
+.no-underline {
+    text-decoration: none;
+    color: white;
+}

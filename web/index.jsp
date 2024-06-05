@@ -8,11 +8,17 @@
     <title>CareNet</title>
     <link rel="stylesheet" href="css/index.css">
 </head>
+<style>
+    a {
+        text-decoration: none;
+        color: white;
+    }
+</style>
 <body>
 <header>
     <nav>
         <ul>
-            <li><a href="#">About</a></li>
+            <li><a href="aboutPage.html">About</a></li>
             <li><a href="#">Services</a></li>
             <li><a href="#">Products</a></li>
             <li><a href="#">Contact</a></li>
@@ -24,7 +30,8 @@
         <div class="content">
             <h1>CareNet</h1>
             <p>Create a network of care for your family</p>
-            <button onclick="window.location.href='login.jsp'">Get Started</button>
+            <button><a class="no-underline" href="<s:url action='start'/>">Get Started</a></button>
+        <%--            <button onclick="window.location.href='login.jsp'">Get Started</button>--%>
         </div>
     </section>
 </main>

@@ -21,7 +21,7 @@
         </action>
         <!-- Login Action -->
         <action name="login" class="it.unicas.action.LoginAction">
-            <result name="success" type="redirect">welcomeAction</result>
+            <result name="success" type="redirect">patient</result>
             <result name="'error">error.jsp</result>
             <result name="login">login.jsp</result>
         </action>
@@ -29,7 +29,7 @@
         <action name="logout" class="it.unicas.action.LogoutAction">
             <result>login.jsp</result>
         </action>
-        <!-- Welcome Action -->
+        <!-- Welcome to Action -->
         <action name="welcomeAction" class="it.unicas.action.WelcomeAction">
             <result name="success">success.jsp</result>
             <result name="login">login.jsp</result>
@@ -43,6 +43,18 @@
         <!-- Action to check if user exists -->
         <action name="checkUserExists" class="it.unicas.action.CheckUserAction">
             <result type="json"/>
+        </action>
+        <!-- Patient Action -->
+        <action name="patient" class="it.unicas.action.PatientAction">
+            <interceptor-ref name="authStack"/>
+            <result name="success">Patient.jsp</result>
+            <result name="login">login.jsp</result>
+        </action>
+        <!-- Start Action -->
+        <action name="start" class="it.unicas.action.StartAction">
+            <interceptor-ref name="authStack"/>
+            <result name="login">login.jsp</result>
+            <result name="patient" type="redirect">patient</result>
         </action>
     </package>
 </struts>
