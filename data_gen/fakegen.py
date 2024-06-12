@@ -81,15 +81,8 @@ for _ in range(20):  # Insert 5 doctors
     """, user_data)
     doctor_id = cursor.lastrowid
     doctor_ids.append(doctor_id)
-    
-    # Add medical info for doctors
-    medical_info_data = create_fake_medical_info(doctor_id)
-    cursor.execute("""
-        INSERT INTO `medical_info` (user_id, heart, blood_pressure, pulse, abdomen, risk_factor, xray_path, ultrasound_path)
-        VALUES (%s, %s, %s, %s, %s, %s, %s, %s)
-    """, medical_info_data)
 
-for _ in range(100):  # Insert 10 patients
+for _ in range(300):  # Insert 10 patients
     user_data = create_fake_user('patient')
     cursor.execute("""
         INSERT INTO `user` (username, firstname, lastname, role, gender, phone, email, address, password,
@@ -99,6 +92,13 @@ for _ in range(100):  # Insert 10 patients
     """, user_data)
     patient_id = cursor.lastrowid
     patient_ids.append(patient_id)
+    
+    # Add medical info for doctors
+    medical_info_data = create_fake_medical_info(patient_id)
+    cursor.execute("""
+        INSERT INTO `medical_info` (user_id, heart, blood_pressure, pulse, abdomen, risk_factor, xray_path, ultrasound_path)
+        VALUES (%s, %s, %s, %s, %s, %s, %s, %s)
+    """, medical_info_data)
 
 # Insert fake appointments
 for _ in range(100):  # Insert 20 appointments
