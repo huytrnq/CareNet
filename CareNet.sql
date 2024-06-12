@@ -12,7 +12,37 @@ CREATE TABLE `user` (
     `email` VARCHAR(255) UNIQUE,
     `address` TEXT,
     `password` VARCHAR(255),
+    `weight` DECIMAL(5,2),            -- Weight in kg
+    `height` DECIMAL(4,2),            -- Height in meters
+    `occupation` VARCHAR(255),        -- Occupation
+    `allergies` TEXT,                 -- Allergies
+    `current_medication` TEXT,        -- Current medication
+    `genetic_conditions` TEXT,        -- Genetic conditions
+    `last_surgery` TEXT,              -- Last surgery
+    `emergency_contact` VARCHAR(255), -- Emergency contact
+    `insurance` VARCHAR(255),         -- Insurance
+    `license_number` VARCHAR(255),    -- Licence number
+    `expiry_date` DATE,               -- Expiry date
+    `date_of_birth` DATE,             -- Date of birth
+    `affiliations` VARCHAR(255),      -- Affiliations
+    `profile_path` VARCHAR(255),      -- Path to profile picture
     PRIMARY KEY (`id`)
+);
+
+-- Medical information table
+CREATE TABLE `medical_info` (
+    `id` INT NOT NULL AUTO_INCREMENT,
+    `user_id` INT NOT NULL,
+    `heart` VARCHAR(255),             -- Heart information
+    `blood_pressure` VARCHAR(255),    -- Blood pressure
+    `pulse` VARCHAR(255),             -- Pulse
+    `abdomen` VARCHAR(255),           -- Abdomen information
+    `risk_factor` INT,                -- Risk factor
+    `xray_path` VARCHAR(255),         -- Path to X-ray image
+    `ultrasound_path` VARCHAR(255),   -- Path to ultrasound image
+    PRIMARY KEY (`id`),
+    FOREIGN KEY (`user_id`) REFERENCES `user` (`id`)
+        ON UPDATE NO ACTION ON DELETE CASCADE
 );
 
 -- Appointment table

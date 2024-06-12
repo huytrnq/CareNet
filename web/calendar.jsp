@@ -1,11 +1,12 @@
+<%@ taglib uri="/struts-tags" prefix="s" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Calendar - Patient Schedule</title>
-    <link rel="stylesheet" href="css/docuserPage.css">
-    <link rel="stylesheet" href="css/calendarPage.css">
+    <link rel="stylesheet" href="css/doctor.css">
+    <link rel="stylesheet" href="css/calendar.css">
     <link href='https://cdn.jsdelivr.net/npm/fullcalendar@5.9.0/main.min.css' rel='stylesheet' />
     <script src='https://cdn.jsdelivr.net/npm/fullcalendar@5.9.0/main.min.js'></script>
 </head>
@@ -18,12 +19,12 @@
                 <input type="text" placeholder="Search Appointments, Staffs, etc">
             </div>
             <div class="list-items">
-                <div class="overview"><a href="docuserPage.html">OVERVIEW</a></div>
-                <div class="calendar"><a href="calendarPage.html">CALENDAR</a></div>
+                <div class="overview"><a href="<s:url action='doctor'/>">OVERVIEW</a></div>
+                <div class="calendar"><a href="<s:url action='calendar'/>">CALENDAR</a></div>
                 <div class="user-name-container">
-                    <div class="user-name">Dr. Audrey Graham</div>
+                    <div class="user-name"><s:property value="%{#session.user.firstname}"/> <s:property value="%{#session.user.lastname}"/></div>
                     <div class="dropdown-content">
-                        <a href="index.html">Log Out</a>
+                        <a href="<s:url action='logout'/>">Log Out</a>
                     </div>
                 </div>
             </div>
@@ -34,6 +35,6 @@
         </section>
     </main>
 </div>
-<script src="../js/calendarPage.js"></script>
+<script src="js/calendar.js"></script>
 </body>
 </html>

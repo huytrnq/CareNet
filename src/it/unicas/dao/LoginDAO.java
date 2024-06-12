@@ -15,13 +15,30 @@ public class LoginDAO {
             Statement stmt = con.createStatement();
             ResultSet rs = stmt.executeQuery("select * from user where username = '" + username + "'");
             if (rs.next()) {
-                String hashedPassword = rs.getString("password");
-                status = BCrypt.checkpw(password, hashedPassword);
+                // String hashedPassword = rs.getString("password");
+                // status = BCrypt.checkpw(password, hashedPassword);
+                status = password.equals(rs.getString("password"));
             }
             con.close();
         } catch (Exception e) {
             System.out.println(e);
         }
         return status;
+    }
+
+    public static String getRole(String username) {
+        String role = "patient";
+        try {
+            Connection con = DBUtil.getConnection();
+            Statement stmt = con.createStatement();
+            ResultSet rs = stmt.executeQuery("select role from user where username = '" + username + "'");
+            if (rs.next()) {
+                role = rs.getString("role");
+            }
+            con.close();
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+        return role;
     }
 }

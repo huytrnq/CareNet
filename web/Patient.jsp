@@ -6,7 +6,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Carenet: Profile</title>
     <link rel="stylesheet" href="css/Patient.css">
+    <script src="./js/patient.js"></script>
 </head>
+<style>
+    a {
+        text-decoration: none;
+        color: white;
+    }
+</style>
 <body>
 <div class="container">
     <main class="main-content">
@@ -35,51 +42,20 @@
                 <div class="profile-header">
                     <img src="<s:url value='/IMG/huy_user.jpg'/>" alt="Profile Picture">
                     <div class="profile-info">
-                        <h2><s:property value="%{#session.username}"/></h2>
+                        <h2><s:property value="%{#session.user.firstname}"/> <s:property value="%{#session.user.lastname}"/></h2>
                         <p>Patient Profile</p>
                     </div>
                 </div>
                 <div class="contact-info">
-                    <p>Age: 26</p>
-                    <p>Weight: 64 kg</p>
-                    <p>Height: 1.72 m</p>
-                    <p>Occupation: Software Developer</p>
+                    <p>Weight: <s:property value="%{#session.user.weight}"/> kg</p>
+                    <p>Height: <s:property value="%{#session.user.height}"/> m</p>
+                    <p>Occupation: <s:property value="%{#session.user.occupation}"/></p>
                 </div>
-                <!-- <div class="edit-info">
-                    <button>Edit information</button>
-                </div> -->
             </div>
             <div class="patient-info">
                 <h3>Calendar</h3>
                 <table>
-                    <tr>
-                        <td>Patient Name</td>
-                        <td>Patient ID</td>
-                    </tr>
-                    <tr>
-                        <td>Mr. Lorem Ipsum</td>
-                        <td>AHDUHIWSJFCD</td>
-                    </tr>
-                    <tr>
-                        <td>Mr. Lorem Ipsum</td>
-                        <td>AHDUHIWSJFCD</td>
-                    </tr>
-                    <tr>
-                        <td>Mr. Lorem Ipsum</td>
-                        <td>AHDUHIWSJFCD</td>
-                    </tr>
-                    <tr>
-                        <td>Mr. Lorem Ipsum</td>
-                        <td>AHDUHIWSJFCD</td>
-                    </tr>
-                    <tr>
-                        <td>Mr. Lorem Ipsum</td>
-                        <td>AHDUHIWSJFCD</td>
-                    </tr>
-                    <tr>
-                        <td>Mr. Lorem Ipsum</td>
-                        <td>AHDUHIWSJFCD</td>
-                    </tr>
+
                 </table>
             </div>
         </section>
@@ -90,47 +66,56 @@
                 <table>
                     <tr>
                         <td>Allergies</td>
-                        <td>Pollen</td>
+                        <td><s:property value="%{#session.user.allergies}"/></td>
                     </tr>
                     <tr>
                         <td>Current Medication</td>
-                        <td>None</td>
+                        <td><s:property value="%{#session.user.currentMedication}"/></td>
                     </tr>
                     <tr>
                         <td>Genetic Conditions</td>
-                        <td>Asthma</td>
+                        <td><s:property value="%{#session.user.geneticConditions}"/></td>
                     </tr>
                     <tr>
                         <td>Last surgery (if applicable)</td>
-                        <td>None</td>
+                        <td id="last-surgery"><s:property value="%{#session.user.lastSurgery}"/></td>
                     </tr>
                 </table>
             </div>
             <div class="medical-img">
                 <h3>Medical Images</h3>
-                <div class="no-img">
-                    <p>No images added</p>
-                    <button>Add diagnosis</button>
-                </div>
+                <!-- <s:if test="#session.user.images_path == null"> -->
+                    <<form action="upload">
+                        <input type="file" name="file" id="file" accept="image/*">
+                        <button type="submit">Upload</button>
+                    </form>
+                <!-- </s:if>
+                <s:else>
+                    <img src="<s:url value='%{#session.user.images_path}'/>" alt="Medical Image">
+                </s:else> -->
             </div>
             <div class="add-info">
                 <h3>Additional information</h3>
                 <table>
                     <tr>
                         <td>Emergency Contact</td>
-                        <td>+35 785 7845</td>
+                        <td><s:property value="%{#session.user.emergencyContact}"/></td>
                     </tr>
                     <tr>
                         <td>Address</td>
-                        <td>Via Luca Girodonio numero 7</td>
+                        <td><s:property value="%{#session.user.address}"/></td>
                     </tr>
                     <tr>
                         <td>Insurance</td>
-                        <td>Maladie Health Insurance</td>
+                        <td><s:property value="%{#session.user.insurance}"/></td>
                     </tr>
                 </table>
             </div>
         </section>
+        <s:form action="uploadImage" method="post" enctype="multipart/form-data">
+            <s:file label="Select an Image" name="uploadFile"/>
+            <s:submit value="Upload"/>
+        </s:form>
     </main>
 </div>
 </body>

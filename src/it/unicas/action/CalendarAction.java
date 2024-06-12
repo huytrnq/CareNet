@@ -10,7 +10,7 @@ import org.apache.struts2.interceptor.SessionAware;
 import java.util.Optional;
 import java.util.Map;
 
-public class PatientAction extends ActionSupport implements SessionAware {
+public class CalendarAction extends ActionSupport implements SessionAware {
     private Map<String, Object> session;
     private Optional<User> user;
 
@@ -21,9 +21,6 @@ public class PatientAction extends ActionSupport implements SessionAware {
             String username = (String) session.get("username");
             user = UserDAO.findByUsername(username);
             if (user.isPresent()) {
-                if (!session.containsKey("user")) {
-                    session.put("user", user.get());
-                }
                 return SUCCESS;
             } else {
                 return LOGIN;

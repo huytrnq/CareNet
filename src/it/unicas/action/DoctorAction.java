@@ -10,7 +10,7 @@ import org.apache.struts2.interceptor.SessionAware;
 import java.util.Optional;
 import java.util.Map;
 
-public class PatientAction extends ActionSupport implements SessionAware {
+public class DoctorAction extends ActionSupport implements SessionAware {
     private Map<String, Object> session;
     private Optional<User> user;
 

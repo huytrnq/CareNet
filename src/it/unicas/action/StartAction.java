@@ -14,11 +14,12 @@ public class StartAction extends ActionSupport implements SessionAware {
         if(session == null) {
             return LOGIN;
         }
-        String username = (String) session.get("username");
-        if (username == null){
+        // String username = (String) session.get("username");
+        String role = (String) session.get("role");
+        if (role == null){
             return LOGIN;
         }else{
-            return "patient";
+            return role;
         }
     }
 

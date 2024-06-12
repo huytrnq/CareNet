@@ -12,7 +12,11 @@ public class CheckUserAction extends ActionSupport {
     @Override
     public String execute() {
         userExists = UserDAO.findByUsername(username).isPresent();
-        return SUCCESS;
+        if (userExists) {
+            return SUCCESS;
+        } else {
+            return LOGIN;
+        }
     }
 
     @JSON

@@ -1,4 +1,4 @@
-package com.carenet.action;
+package it.unicas.action;
 
 import com.opensymphony.xwork2.ActionSupport;
 import org.apache.struts2.interceptor.SessionAware;
@@ -43,28 +43,30 @@ public class UploadImageAction extends ActionSupport implements SessionAware {
     public String execute() {
         if (uploadFile == null) {
             addActionError("No file uploaded");
+            System.out.println("No file uploaded");
             return ERROR;
         }
 
         // Define the path where the uploaded file will be saved
-        String filePath = "your/upload/directory/";
+        String filePath = "/Users/huytrq/Workspace/unicas/DistributedProgramming/CareNet/images/";
         File fileToCreate = new File(filePath, this.uploadFileFileName);
 
         try {
+            System.out.println("File to create: " + fileToCreate);
             // Copy the uploaded file to the specified location
             FileUtils.copyFile(this.uploadFile, fileToCreate);
 
             // Set the image path for the session
-            this.imagePath = "uploads/" + this.uploadFileFileName;
+            // this.imagePath = "uploads/" + this.uploadFileFileName;
 
-            // Save the image path to the session
-            session.put("user.images_path", this.imagePath);
+            // // Save the image path to the session
+            // session.put("user.images_path", this.imagePath);
         } catch (IOException e) {
             e.printStackTrace();
             return ERROR;
         }
 
-        return SUCCESS;
+        return "patient";
     }
 
     @Override

@@ -90,7 +90,6 @@ function checkUsername() {
                 console.log(response);
                 if (response.userExists) {
                     console.log("User already exists!");
-                    console.log(response.userExists);
                     $('#username-error').text('Username is already taken');
                 } else {
                     $('#username-error').text('');

@@ -31,7 +31,6 @@
             <h1>CareNet</h1>
             <p>Create a network of care for your family</p>
             <button><a class="no-underline" href="<s:url action='start'/>">Get Started</a></button>
-        <%--            <button onclick="window.location.href='login.jsp'">Get Started</button>--%>
         </div>
     </section>
 </main>

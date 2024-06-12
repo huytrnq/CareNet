@@ -1,0 +1,386 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    background-color: #E8F9FF;
+}
+
+.container {
+    display: flex;
+    width: 100%;
+}
+
+.main-content {
+    flex: 1;
+    padding: 20px;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.logo {
+    font-size: 40px;
+    font-weight: bold;
+    align-items: center;
+    color: #007BFF;
+}
+
+.search-bar input {
+    width: 500px;
+    padding: 10px;
+    border: 1px solid #020202;
+    border-radius: 5px;
+}
+
+.list-items {
+    display: flex;
+    align-items: center;
+}
+
+.list-items .overview, .list-items .calendar {
+    font-weight: bold;
+    padding: 10px;
+    cursor: pointer;
+}
+
+.list-items a {
+    text-decoration: none; /* Remove underline */
+    color: inherit; /* Inherit color from parent */
+}
+
+.list-items a:hover {
+    color: #ffffff; /* Change text color to white on hover */
+    text-decoration: none; /* Ensure no underline on hover */
+}
+
+.list-items .overview:hover, .list-items .calendar:hover {
+    color: #ffffff;
+    background-color: #007BFF;
+    border-radius: 10px;
+}
+
+.list-items .user-name-container {
+    position: relative;
+}
+
+.list-items .user-name {
+    font-weight: bold;
+    padding: 10px;
+    cursor: pointer;
+    color: #007BFF;
+}
+
+.list-items .user-name-container:hover .dropdown-content {
+    display: block;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #fff;
+    min-width: 160px;
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+    z-index: 1;
+    border-radius: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    top: 100%;
+    transition: all 0.5s ease 3s;
+}
+
+.dropdown-content a {
+    color: black;
+    font-weight: bold;
+    padding: 10px 10px;
+    text-decoration: none;
+    display: block;
+    text-align: center;
+}
+
+.dropdown-content a:hover {
+    background-color: #ff0000;
+    border-radius: 10px;
+    color: white;
+}
+
+.profile {
+    display: flex;
+    gap: 20px;
+}
+
+.doctor-profile {
+    width: 29%; /* Increase width */
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+    border-left: 5px solid #007BFF;
+}
+
+.patient-info {
+    flex: 1;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+    border-left: 5px solid #007BFF;
+}
+
+.profile-header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px; /* Add space below profile header */
+}
+
+.profile-header img {
+    width: 180px;
+    height: 130px;
+    border-radius: 50%;
+    margin-right: 20px;
+}
+
+.profile-info h2,
+.profile-info p,
+.contact-info p {
+    margin: 0;
+    margin-bottom: 10px; /* Add space below each profile info item */
+}
+
+.profile-info h2[contenteditable="true"],
+.profile-info p[contenteditable="true"],
+.contact-info p[contenteditable="true"] {
+    outline: 2px dashed #007BFF;
+    padding: 2px;
+}
+
+.profile-details {
+    margin-left: auto;
+    text-align: right;
+}
+
+.contact-info {
+    margin-top: 20px;
+}
+
+.initiate-visit {
+    margin-top: 20px; /* Add space between buttons and text */
+}
+
+.initiate-visit button {
+    background-color: #007BFF;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-right: 10px; /* Add space between buttons */
+}
+
+.table-container {
+    max-height: 300px;
+    overflow-y: auto;
+}
+
+.patient-info table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.patient-info th, .patient-info td {
+    padding: 10px;
+    border-bottom: 1px solid #f0f0f0;
+    text-align: left;
+    white-space: nowrap; /* Ensure text doesn't wrap */
+    overflow: hidden; /* Ensure text doesn't overflow */
+    text-overflow: ellipsis; /* Add ellipsis for overflowed text */
+}
+
+/* Specific column widths */
+.patient-info th:nth-child(1),
+.patient-info td:nth-child(1) {
+    width: 30%; /* Patient Name */
+}
+
+.patient-info th:nth-child(2),
+.patient-info td:nth-child(2) {
+    width: 20%; /* Patient ID */
+}
+
+.patient-info th:nth-child(3),
+.patient-info td:nth-child(3) {
+    width: 30%; /* Insurance Number */
+}
+
+.patient-info th:nth-child(4),
+.patient-info td:nth-child(4) {
+    width: 10%; /* Age */
+}
+
+.dashboard {
+    display: flex;
+    gap: 20px;
+    align-items: stretch; /* Ensure all children have equal height */
+}
+
+.physical-exam, .imaging, .risk-factor {
+    flex: 1; /* Ensure these sections take equal space */
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+    border-left: 5px solid #007BFF;
+}
+
+#risk-factor-list {
+    list-style-type: disc;
+    padding-left: 20px;
+}
+
+#risk-factor-list.hidden {
+    display: none;
+}
+
+.risk-factor .no-risk {
+    text-align: left;
+}
+
+.risk-factor .no-risk button {
+    background-color: #007BFF;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.physical-exam table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.physical-exam table td {
+    padding: 10px 0;
+    border-bottom: 1px solid #f0f0f0;
+}
+
+.imaging .imaging-details p {
+    margin: 10px 0;
+}
+
+.imaging .imaging-details p span {
+    cursor: pointer;
+    color: #007BFF;
+    text-decoration: underline;
+}
+
+.upload-imaging {
+    margin-top: 20px;
+}
+
+.upload-imaging h4 {
+    margin-bottom: 10px;
+}
+
+.upload-imaging form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.upload-imaging form label {
+    font-weight: bold;
+}
+
+.upload-imaging form input[type="text"],
+.upload-imaging form input[type="file"],
+.upload-imaging form button {
+    padding: 5px;
+    border-radius: 5px;
+}
+
+.upload-imaging form button {
+    background-color: #007BFF;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+.upload-imaging form button:hover {
+    background-color: #0056b3;
+}
+
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.9); /* Black w/ opacity */
+}
+
+.modal-content {
+    margin: auto;
+    display: block;
+    width: 80%;
+    max-width: 700px;
+}
+
+.modal-content, #caption {
+    animation-name: zoom;
+    animation-duration: 0.6s;
+}
+
+@keyframes zoom {
+    from {transform:scale(0)}
+    to {transform:scale(1)}
+}
+
+.close {
+    position: absolute;
+    top: 15px;
+    right: 35px;
+    color: #fff;
+    font-size: 40px;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+.close:hover,
+.close:focus {
+    color: #bbb;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+#caption {
+    margin: auto;
+    display: block;
+    width: 80%;
+    max-width: 700px;
+    text-align: center;
+    color: #ccc;
+    padding: 10px 0;
+    height: 150px;
+}
+
+/* Add styles for hover effect */
+.patient-row {
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.patient-row:hover {
+    background-color: #f1f1f1;
+}

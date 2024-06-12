@@ -37,7 +37,12 @@ public class LoginAction extends ActionSupport implements SessionAware{
         } else {
             session.remove("error");
             session.put("username", username);
-            return SUCCESS;
+            String role = LoginDAO.getRole(username);
+            session.put("role", role);
+            if (role == null) {
+                return "error";
+            }
+            return role;
         }
     }
 

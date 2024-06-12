@@ -23,7 +23,7 @@ public class RegisterAction extends ActionSupport implements SessionAware{
 
     public String execute() throws Exception {
         // Check if user data is correctly set
-        User user = new User(username, firstname, lastname, role, gender, phone, email, address, password);
+        User user = new User(username, firstname, lastname, role, gender, phone, email, address, password);   
         System.out.println("============ Registering user: " + user.toString() + " ============");
         System.out.println("Username: " + username);
         System.out.println("Firstname: " + firstname);
@@ -33,7 +33,7 @@ public class RegisterAction extends ActionSupport implements SessionAware{
         System.out.println("Gender: " + gender);
         System.out.println("Email: " + email);
         System.out.println("Address: " + address); 
-        System.out.println("Password: " + password);
+
         
         Optional<User> existingUser = UserDAO.findByUsername(username);
         if (existingUser.isPresent()) {
@@ -45,8 +45,8 @@ public class RegisterAction extends ActionSupport implements SessionAware{
                 return SUCCESS;
             }
             session.remove("error");
-            String hashedPassword = BCrypt.hashpw(password, BCrypt.gensalt());
-            user.setPassword(hashedPassword);
+            // String hashedPassword = BCrypt.hashpw(password, BCrypt.gensalt());
+            user.setPassword(password);
             UserDAO.addUser(user);
             return SUCCESS;
         }
@@ -129,4 +129,5 @@ public class RegisterAction extends ActionSupport implements SessionAware{
     public void setPassword(String password) {
         this.password = password;
     }
+    
 }
