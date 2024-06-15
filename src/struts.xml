@@ -90,7 +90,17 @@
         <action name="uploadImage" class="it.unicas.action.UploadImageAction">
             <interceptor-ref name="authStack"/>
             <result name="patient" type="redirect">patient</result>
+            <result name="doctor" type="redirect">doctor</result>
             <result name="error">/error.jsp</result>
         </action>
+
+        <!-- ImageAction -->
+        <action name="getImage" class="it.unicas.action.ImageAction">
+            <result type="stream">
+                <param name="contentType">image/jpeg</param>
+                <param name="inputName">imageStream</param>
+            </result>
+        </action>
+
     </package>
 </struts>

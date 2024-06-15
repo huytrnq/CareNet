@@ -17,6 +17,7 @@
       <root url="jar://$PROJECT_DIR$/lib/commons-lang3-3.4.jar!/" />
       <root url="jar://$PROJECT_DIR$/lib/xwork-core-2.3.37.jar!/" />
       <root url="jar://$PROJECT_DIR$/lib/JSON Java 20240303.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/javax.servlet-api 3.1.0.jar!/" />
     </CLASSES>
     <JAVADOC />
     <SOURCES />

@@ -1,5 +1,7 @@
 package it.unicas.model;
 
+
+// id, user_id, heart, blood_pressure, pulse, abdomen, risk_factor, xray_path, ultrasound_path
 public class Appointment {
     private int doctorID;
     private int patientID;

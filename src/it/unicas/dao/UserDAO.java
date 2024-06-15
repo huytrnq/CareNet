@@ -104,6 +104,51 @@ public class UserDAO {
         return Optional.empty();
     }
 
+    public static Optional<User> findByUserId(int user_id) {
+        String sql = "SELECT * FROM user WHERE id = ?";
+        try (Connection conn = DBUtil.getConnection();
+                PreparedStatement stmt = conn.prepareStatement(sql)) {
+
+            stmt.setInt(1, user_id);
+            ResultSet rs = stmt.executeQuery();
+            if (rs.next()) {
+                if (rs.next()) {
+                    User user = new User();
+                    user.setUsername(rs.getString("username"));
+                    user.setFirstname(rs.getString("firstname"));
+                    user.setLastname(rs.getString("lastname"));
+                    user.setRole(rs.getString("role"));
+                    user.setGender(rs.getString("gender"));
+                    user.setPhone(rs.getString("phone"));
+                    user.setEmail(rs.getString("email"));
+                    user.setAddress(rs.getString("address"));
+                    user.setWeight(rs.getDouble("weight"));
+                    user.setHeight(rs.getDouble("height"));
+                    user.setOccupation(rs.getString("occupation"));
+                    user.setAllergies(rs.getString("allergies"));
+                    user.setCurrentMedication(rs.getString("current_medication"));
+                    user.setGeneticConditions(rs.getString("genetic_conditions"));
+                    user.setLastSurgery(rs.getString("last_surgery"));
+                    user.setEmergencyContact(rs.getString("emergency_contact"));
+                    user.setInsurance(rs.getString("insurance"));
+                    user.setLicenseNumber(rs.getString("license_number"));
+                    user.setExpiryDate(rs.getDate("expiry_date"));
+                    user.setAffiliations(rs.getString("affiliations"));
+                    user.setProfilePath(rs.getString("profile_path"));
+                    user.setDateOfBirth(rs.getDate("date_of_birth"));
+    
+                    System.out.println("User " + user_id + " found");
+                    return Optional.of(user);
+                }
+                System.out.println("User " + user_id + " not found");
+            }
+        }
+        catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return Optional.empty();
+    }
+
     public String getPasswordHash(String username) throws SQLException {
         Connection conn = null;
         PreparedStatement stmt = null;
@@ -173,4 +218,19 @@ public class UserDAO {
             return null; // or handle differently based on your application's requirements
         }
     }
+
+    public static String getProfilePath(String username){
+        return findByUsername(username).get().getProfilePath();
+    }
+    
+    // public static void UserWithMeicalInfo(String username){
+    //     String sql = "SELECT * FROM user WHERE username = ?";
+    //     try (Connection conn = DBUtil.getConnection();
+    //             PreparedStatement stmt = conn.prepareStatement(sql)) {
+
+    //     }
+    //     catch (SQLException e) {
+    //         e.printStackTrace();
+    //     }
+    // }
 }

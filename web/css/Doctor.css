@@ -121,6 +121,7 @@ body {
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     margin-bottom: 20px;
     border-left: 5px solid #007BFF;
+    position: relative; /* Add this to position the menu correctly */
 }
 
 .patient-info {
@@ -144,6 +145,18 @@ body {
     height: 130px;
     border-radius: 50%;
     margin-right: 20px;
+    cursor: pointer; /* Add cursor pointer */
+}
+
+.profile-pic-menu {
+    display: none;
+    position: absolute;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 5px;
+    padding: 10px;
+    z-index: 1000;
 }
 
 .profile-info h2,
@@ -169,6 +182,29 @@ body {
     margin-top: 20px;
 }
 
+#profile-pic-form {
+    margin-top: 10px; /* Add space above the form */
+}
+
+#profile-pic-form input[type="file"] {
+    padding: 5px;
+    border-radius: 5px;
+    margin-bottom: 10px; /* Add space below the file input */
+}
+
+#profile-pic-form button {
+    background-color: #007BFF;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+#profile-pic-form button:hover {
+    background-color: #0056b3;
+}
+
 .initiate-visit {
     margin-top: 20px; /* Add space between buttons and text */
 }
@@ -183,9 +219,13 @@ body {
     margin-right: 10px; /* Add space between buttons */
 }
 
+.initiate-visit button:hover {
+    background-color: #0056b3;
+}
+
 .table-container {
     max-height: 300px;
-    overflow-y: auto;
+    overflow-y: auto; /* Enable vertical scrolling */
 }
 
 .patient-info table {
@@ -196,7 +236,7 @@ body {
 .patient-info th, .patient-info td {
     padding: 10px;
     border-bottom: 1px solid #f0f0f0;
-    text-align: left;
+    text-align: center; /* Center-align table content */
     white-space: nowrap; /* Ensure text doesn't wrap */
     overflow: hidden; /* Ensure text doesn't overflow */
     text-overflow: ellipsis; /* Add ellipsis for overflowed text */
@@ -237,6 +277,23 @@ body {
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     margin-bottom: 20px;
     border-left: 5px solid #007BFF;
+    position: relative;
+}
+
+.physical-exam update-button {
+    position: absolute;
+    top: 30px;
+    right: 20px;
+    background-color: #007BFF;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.physical-exam update-button:hover {
+    background-color: #0056b3;
 }
 
 #risk-factor-list {
@@ -259,6 +316,10 @@ body {
     border: none;
     border-radius: 5px;
     cursor: pointer;
+}
+
+.risk-factor .no-risk button:hover {
+    background-color: #0056b3;
 }
 
 .physical-exam table {
@@ -287,6 +348,19 @@ body {
 
 .upload-imaging h4 {
     margin-bottom: 10px;
+}
+
+.upload-imaging button {
+    background-color: #007BFF;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.upload-imaging button:hover {
+    background-color: #0056b3;
 }
 
 .upload-imaging form {
@@ -375,12 +449,13 @@ body {
     height: 150px;
 }
 
-/* Add styles for hover effect */
-.patient-row {
+/* Hover effect for patient names */
+.patient-name {
     cursor: pointer;
-    transition: background-color 0.3s;
+    transition: color 0.3s, font-weight 0.3s;
 }
 
-.patient-row:hover {
-    background-color: #f1f1f1;
+.patient-name:hover {
+    color: #007BFF;
+    font-weight: bold;
 }

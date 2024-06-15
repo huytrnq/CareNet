@@ -7,6 +7,7 @@ import org.apache.commons.io.FileUtils;
 import java.io.File;
 import java.io.IOException;
 import java.util.Map;
+import it.unicas.dao.UserDAO;
 
 public class UploadImageAction extends ActionSupport implements SessionAware {
     private File uploadFile;
@@ -47,26 +48,26 @@ public class UploadImageAction extends ActionSupport implements SessionAware {
             return ERROR;
         }
 
+        String username = (String) session.get("username");
+        String role = (String) session.get("role");
+
         // Define the path where the uploaded file will be saved
         String filePath = "/Users/huytrq/Workspace/unicas/DistributedProgramming/CareNet/images/";
-        File fileToCreate = new File(filePath, this.uploadFileFileName);
+        String new_file_name = username + "_profile_pic.png";
+        File fileToCreate = new File(filePath, new_file_name);
 
         try {
             System.out.println("File to create: " + fileToCreate);
             // Copy the uploaded file to the specified location
             FileUtils.copyFile(this.uploadFile, fileToCreate);
 
-            // Set the image path for the session
-            // this.imagePath = "uploads/" + this.uploadFileFileName;
-
-            // // Save the image path to the session
-            // session.put("user.images_path", this.imagePath);
+            UserDAO.updateFields(username, new String[] {"profile_path"}, new String[] {new_file_name});
         } catch (IOException e) {
             e.printStackTrace();
             return ERROR;
         }
 
-        return "patient";
+        return role;
     }
 
     @Override
