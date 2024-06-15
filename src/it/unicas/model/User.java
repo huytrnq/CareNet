@@ -13,12 +13,6 @@ public class User {
     private double weight;
     private double height;
     private String occupation;
-    private String allergies;
-    private String currentMedication;
-    private String geneticConditions;
-    private String lastSurgery;
-    private String emergencyContact;
-    private String insurance;
     private String licenseNumber;
     private java.sql.Date expiryDate;
     private java.sql.Date dateOfBirth;
@@ -43,8 +37,7 @@ public class User {
 
 
     public User(String username, String firstname, String lastname, String role, String gender, String phone, String email, String address, String password,
-                double weight, double height, String occupation, String allergies, String currentMedication, String geneticConditions, String lastSurgery,
-                String emergencyContact, String insurance, String licenseNumber, java.sql.Date expiryDate, java.sql.Date dateOfBirth, String affiliations, String profilePath) {
+                String licenseNumber, java.sql.Date expiryDate, java.sql.Date dateOfBirth, String affiliations, String profilePath) {
         super();
         this.username = username;
         this.firstname = firstname;
@@ -55,15 +48,6 @@ public class User {
         this.email = email;
         this.password = password;
         this.address = address;
-        this.weight = weight;
-        this.height = height;
-        this.occupation = occupation;
-        this.allergies = allergies;
-        this.currentMedication = currentMedication;
-        this.geneticConditions = geneticConditions;
-        this.lastSurgery = lastSurgery;
-        this.emergencyContact = emergencyContact;
-        this.insurance = insurance;
         this.licenseNumber = licenseNumber;
         this.expiryDate = expiryDate;
         this.dateOfBirth = dateOfBirth;
@@ -166,54 +150,6 @@ public class User {
 
     public void setOccupation(String occupation) {
         this.occupation = occupation;
-    }
-
-    public String getAllergies() {
-        return allergies;
-    }
-
-    public void setAllergies(String allergies) {
-        this.allergies = allergies;
-    }
-
-    public String getCurrentMedication() {
-        return currentMedication;
-    }
-
-    public void setCurrentMedication(String currentMedication) {
-        this.currentMedication = currentMedication;
-    }
-
-    public String getGeneticConditions() {
-        return geneticConditions;
-    }
-
-    public void setGeneticConditions(String geneticConditions) {
-        this.geneticConditions = geneticConditions;
-    }
-
-    public String getLastSurgery() {
-        return lastSurgery;
-    }
-
-    public void setLastSurgery(String lastSurgery) {
-        this.lastSurgery = lastSurgery;
-    }
-
-    public String getEmergencyContact() {
-        return emergencyContact;
-    }
-
-    public void setEmergencyContact(String emergencyContact) {
-        this.emergencyContact = emergencyContact;
-    }
-
-    public String getInsurance() {
-        return insurance;
-    }
-
-    public void setInsurance(String insurance) {
-        this.insurance = insurance;
     }
 
     public String getLicenseNumber() {

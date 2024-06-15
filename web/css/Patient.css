@@ -10,6 +10,7 @@ body {
     display: flex;
     width: 100%;
 }
+
 .main-content {
     flex: 1;
     padding: 20px;
@@ -22,142 +23,11 @@ body {
     margin-bottom: 20px;
 }
 
-
-/* .sidebar {
-    width: 250px;
-    background-color: #008b9da8;
-    padding: 20px;
-} */
-
-.logo-container {
-    display: flex;
-    align-items: center;
-}
-
 .logo {
     font-size: 40px;
     font-weight: bold;
     align-items: center;
     color: #007BFF;
-    margin-right: 10px;
-}
-
-.small-logo {
-    width: 40px;
-    height: 40px;
-}
-
-.list-items {
-    display: flex;
-    align-items: center;
-}
-
-.list-items .menu {
-    font-weight: bold;
-    padding: 10px;
-    cursor: pointer;
-}
-
-.list-items .menu:hover {
-    background-color: #007BFF;
-    border-radius: 10px;
-    color: #ffffff;
-}
-
-.list-items .menu a {
-    text-decoration: none;
-    color: inherit;
-}
-
-.list-items .menu a:visited,
-.list-items .menu a:focus,
-.list-items .menu a:active {
-    text-decoration: none;
-    color: inherit;
-}
-
-.menu-item a:hover {
-    background-color: #007BFF;
-    border-radius: 10px;
-    color: #ffffff;
-    padding: 10px 15px;
-}
-
-.list-items .options-container {
-    position: relative;
-}
-
-.list-items .options {
-    font-weight: bold;
-    padding: 10px;
-    cursor: pointer;
-    color: #007BFF;
-}
-
-.dropdown-content {
-    display: none;
-    position: absolute;
-    background-color: #fff;
-    min-width: 120px;
-    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
-    z-index: 1;
-    border-radius: 10px;
-    left: 50%;
-    transform: translateX(-50%);
-    top: 100%;
-    transition: all 0.5s ease 3s;
-}
-
-.dropdown-content .edit {
-    color: black;
-    font-weight: bold;
-    padding: 10px 10px;
-    text-decoration: none;
-    display: block;
-    text-align: center;
-}
-
-.dropdown-content .edit:hover {
-    background-color: #007BFF;
-    border-radius: 10px;
-    color: white;
-}
-.dropdown-content .log {
-    color: black;
-    font-weight: bold;
-    padding: 10px 10px;
-    text-decoration: none;
-    display: block;
-    text-align: center;
-}
-
-.dropdown-content .log:hover {
-    background-color: #ff0000;
-    border-radius: 10px;
-    color: white;
-}
-
-.list-items .options-container:hover .dropdown-content {
-    display: block;
-}
-
-/* .nav ul {
-    list-style: none;
-    padding: 0;
-}
-
-.nav ul li {
-    padding: 10px 0;
-    cursor: pointer;
-}
-
-.nav ul li.active {
-    font-weight: bold;
-    color: #007BFF;
-} */
-
-.settings {
-    margin-top: 20px;
 }
 
 .search-bar input {
@@ -167,47 +37,140 @@ body {
     border-radius: 5px;
 }
 
-.profile {
+.list-items {
     display: flex;
-    gap: 20px;
+    align-items: center;
 }
 
-.patient-profile{
-    flex: 1;
-    max-width: 25%;
+.list-items .overview, .list-items .calendar {
+    font-weight: bold;
+    padding: 10px;
+    cursor: pointer;
+}
+
+.list-items a {
+    text-decoration: none; /* Remove underline */
+    color: inherit; /* Inherit color from parent */
+}
+
+.list-items a:hover {
+    color: #ffffff; /* Change text color to white on hover */
+    text-decoration: none; /* Ensure no underline on hover */
+}
+
+.list-items .overview:hover, .list-items .calendar:hover {
+    color: #ffffff;
+    background-color: #007BFF;
+    border-radius: 10px;
+}
+
+.list-items .user-name-container {
+    position: relative;
+}
+
+.list-items .user-name {
+    font-weight: bold;
+    padding: 10px;
+    cursor: pointer;
+    color: #007BFF;
+}
+
+.list-items .user-name-container:hover .dropdown-content {
+    display: block;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #fff;
+    min-width: 160px;
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+    z-index: 1;
+    border-radius: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    top: 100%;
+    transition: all 0.5s ease 3s;
+}
+
+.dropdown-content a {
+    color: black;
+    font-weight: bold;
+    padding: 10px 10px;
+    text-decoration: none;
+    display: block;
+    text-align: center;
+}
+
+.dropdown-content a:hover {
+    background-color: #ff0000;
+    border-radius: 10px;
+    color: white;
+}
+
+.profile {
+    display: flex;
+    gap: 30px;
+}
+
+.patient-profile {
+    width: 20%; /* Increase width */
     background-color: #fff;
     padding: 20px;
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     margin-bottom: 20px;
+    border-left: 5px solid #007BFF;
+    position: relative; /* Add this to position the menu correctly */
+}
+
+.doctor-info {
+    flex: 1;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+    border-left: 5px solid #007BFF;
 }
 
 .profile-header {
     display: flex;
     align-items: center;
+    margin-bottom: 10px; /* Add space below profile header */
 }
 
 .profile-header img {
-    width: 150px;
+    width: 180px;
     height: 150px;
     border-radius: 50%;
     margin-right: 20px;
+    cursor: pointer; /* Add cursor pointer */
 }
 
-.profile-info h2 {
-    margin: 0;
-    font-size: 24px;
-}
-
-.patient-info {
-    flex: 1;
-    max-width: 75%;
+.profile-pic-menu {
+    display: none;
+    position: absolute;
     background-color: #fff;
-    padding: 20px;
-    border-radius: 10px;
+    border: 1px solid #ddd;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    margin-bottom: 20px;
+    border-radius: 5px;
+    padding: 10px;
+    z-index: 1000;
+}
 
+.profile-info h2,
+.profile-info p,
+.contact-info p {
+    margin: 0;
+    margin-bottom: 10px; /* Add space below each profile info item */
+}
+
+.profile-info h2[contenteditable="true"],
+.profile-info p[contenteditable="true"],
+.contact-info p[contenteditable="true"] {
+    outline: 2px dashed #007BFF;
+    padding: 2px;
 }
 
 .profile-details {
@@ -219,53 +182,225 @@ body {
     margin-top: 20px;
 }
 
-/* .edit-info button {
+.contact-info table{
+    width: 100%;
+    border-collapse: collapse
+}
+
+.contact-info table td{
+    padding: 10px 0;
+    border-bottom: 1px solid #f0f0f0
+}
+
+#profile-pic-form {
+    margin-top: 10px; /* Add space above the form */
+}
+
+#profile-pic-form input[type="file"] {
+    padding: 5px;
+    border-radius: 5px;
+    margin-bottom: 10px; /* Add space below the file input */
+}
+
+#profile-pic-form button {
     background-color: #007BFF;
     color: white;
     padding: 10px 20px;
     border: none;
     border-radius: 5px;
     cursor: pointer;
-} */
+}
 
-.patient-info table {
+#profile-pic-form button:hover {
+    background-color: #0056b3;
+}
+
+.initiate-visit {
+    margin-top: 20px; /* Add space between buttons and text */
+}
+
+.initiate-visit button {
+    background-color: #007BFF;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-right: 10px; /* Add space between buttons */
+}
+
+.initiate-visit button:hover {
+    background-color: #0056b3;
+}
+
+.table-container {
+    max-height: 300px;
+    overflow-y: auto; /* Enable vertical scrolling */
+}
+
+.doctor-info table {
     width: 100%;
     border-collapse: collapse;
 }
 
-.patient-info table td {
-    padding: 10px 0;
+.doctor-info th, .doctor-info td {
+    padding: 10px;
     border-bottom: 1px solid #f0f0f0;
+    text-align: center; /* Center-align table content */
+    white-space: nowrap; /* Ensure text doesn't wrap */
+    overflow: hidden; /* Ensure text doesn't overflow */
+    text-overflow: ellipsis; /* Add ellipsis for overflowed text */
+}
+
+/* Specific column widths */
+.doctor-info th:nth-child(1),
+.doctor-info td:nth-child(1) {
+    width: 25%; /* doctor Name */
+}
+
+.doctor-info th:nth-child(2),
+.doctor-info td:nth-child(2) {
+    width: 25%; /* doctor speciality */
+}
+
+.doctor-info th:nth-child(3),
+.doctor-info td:nth-child(3) {
+    width: 25%; /* doctor availabilit*/
+}
+
+.doctor-info th:nth-child(4),
+.doctor-info td:nth-child(4) {
+    width: 25%; /* doctor calendat */
+}
+
+
+.edit-button {
+    float:right;
+    padding: 10px 20px;
+    cursor: pointer;
+    background-color: #007BFF;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.edit-button:hover {
+    background-color: #0056b3;
+}
+
+.popup {
+    display: none;
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.popup-content {
+    position: relative;
+    background-color: #fff;
+    padding: 30px;
+    border-radius: 10px;
+    width: 80%;
+    max-width: 400px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    animation: fadeIn 0.3s ease-in-out;
+}
+
+.popup-content h2 {
+    margin-top: 0;
+    font-size: 1.5em;
+    color: #333;
+}
+
+.popup-content form {
+    display: flex;
+    flex-direction: column;
+}
+
+.popup-content label {
+    font-size: 1em;
+    color: #555;
+}
+
+.popup-content input[type="text"] {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 1em;
+}
+
+.popup-content button {
+    padding: 10px 20px;
+    background-color: #007BFF;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    font-size: 1em;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.popup-content button:hover {
+    background-color: #0056b3;
+}
+
+.close {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 1.5em;
+    color: #aaa;
+    cursor: pointer;
+}
+
+.close:hover {
+    color: #000;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
 }
 
 .dashboard {
     display: flex;
     gap: 20px;
+    align-items: stretch; /* Ensure all children have equal height */
 }
 
-.health-summary, .medical-img, .add-info {
-    flex: 1;
+.physical-exam, .imaging, .medical-history {
+    flex: 1; /* Ensure these sections take equal space */
     background-color: #fff;
     padding: 20px;
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+    border-left: 5px solid #007BFF;
+    position: relative;
 }
 
-.health-summary table {
+/* Health summary */
+.physical-exam table {
     width: 100%;
     border-collapse: collapse;
 }
 
-.health-summary table td {
+.physical-exam table td {
     padding: 10px 0;
     border-bottom: 1px solid #f0f0f0;
 }
 
-.medical-img .no-img {
-    text-align: center;
-}
-
-.medical-img .no-img button {
+.update-button {
+    position: absolute;
+    top: 30px;
+    right: 20px;
     background-color: #007BFF;
     color: white;
     padding: 10px 20px;
@@ -274,27 +409,200 @@ body {
     cursor: pointer;
 }
 
+.update-button:hover {
+    background-color: #0056b3;
+}
 
-.add-info table {
+/* Medical history */
+.medical-history {
     width: 100%;
     border-collapse: collapse;
 }
 
-.add-info table td {
-    padding: 10px 0;
-    border-bottom: 1px solid #f0f0f0;
+.medical-history h3 {
+    margin-top: 0;
 }
 
-/* Sidebar link styles */
-/* .sidebar .nav ul li a {
-    text-decoration: none;
-    color: inherit;
+.incident-form {
+    margin-bottom: 20px;
 }
 
-.sidebar .nav ul li a:visited {
-    color: inherit;
+.incident-form label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: bold;
 }
 
-.sidebar .nav ul li a:hover {
+.incident-form input[type="text"],
+.incident-form input[type="date"] {
+    width: calc(100% - 20px);
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.incident-form button {
+    padding: 10px 20px;
+    background-color: #007BFF;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.incident-form button:hover {
+    background-color: #0056b3;
+}
+
+#incident-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+#incident-table th,
+#incident-table td {
+    border: 1px solid #ccc;
+    padding: 10px;
+    text-align: left;
+}
+
+#incident-table th {
+    background-color: #007BFF;
+    color: #fff;
+}
+
+#no-history {
+    color: #555;
+    font-style: italic;
+}
+
+/* Image thing */
+.imaging .imaging-details p {
+    margin: 10px 0;
+}
+
+.imaging .imaging-details p span {
+    cursor: pointer;
     color: #007BFF;
-} */
+    text-decoration: underline;
+}
+
+.upload-imaging {
+    margin-top: 20px;
+}
+
+.upload-imaging h4 {
+    margin-bottom: 10px;
+}
+
+.upload-imaging button {
+    background-color: #007BFF;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.upload-imaging button:hover {
+    background-color: #0056b3;
+}
+
+.upload-imaging form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.upload-imaging form label {
+    font-weight: bold;
+}
+
+.upload-imaging form input[type="text"],
+.upload-imaging form input[type="file"],
+.upload-imaging form button {
+    padding: 5px;
+    border-radius: 5px;
+}
+
+.upload-imaging form button {
+    background-color: #007BFF;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+.upload-imaging form button:hover {
+    background-color: #0056b3;
+}
+
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.9); /* Black w/ opacity */
+}
+
+.modal-content {
+    margin: auto;
+    display: block;
+    width: 80%;
+    max-width: 700px;
+}
+
+.modal-content, #caption {
+    animation-name: zoom;
+    animation-duration: 0.6s;
+}
+
+@keyframes zoom {
+    from {transform:scale(0)}
+    to {transform:scale(1)}
+}
+
+.close {
+    position: absolute;
+    top: 15px;
+    right: 35px;
+    color: #fff;
+    font-size: 40px;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+.close:hover,
+.close:focus {
+    color: #bbb;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+#caption {
+    margin: auto;
+    display: block;
+    width: 80%;
+    max-width: 700px;
+    text-align: center;
+    color: #ccc;
+    padding: 10px 0;
+    height: 150px;
+}
+
+/* Hover effect for patient names */
+.patient-name {
+    cursor: pointer;
+    transition: color 0.3s, font-weight 0.3s;
+}
+
+.patient-name:hover {
+    color: #007BFF;
+    font-weight: bold;
+}

@@ -58,11 +58,13 @@ public class SessionDataAction extends ActionSupport implements SessionAware {
         JSONArray patients = new JSONArray();
         
         try (Connection conn = DriverManager.getConnection(DB_URL, DB_USER, DB_PASSWORD)) {
-            String query = "SELECT p.username, p.firstname, p.lastname, p.date_of_birth, a.status, p.id, p.insurance " +
+            String query = "SELECT p.username, p.firstname, p.lastname, p.date_of_birth, a.status, p.id, m.insurance " +
                         "FROM user d " +
                         "JOIN appointment a ON d.id = a.doctor_id " +
                         "JOIN user p ON a.patient_id = p.id " +
+                        "JOIN medical_info m ON p.id = m.user_id " +
                         "WHERE d.username = ?";
+
             try (PreparedStatement stmt = conn.prepareStatement(query)) {
                 stmt.setString(1, doctorUsername);
                 try (ResultSet rs = stmt.executeQuery()) {
@@ -73,7 +75,7 @@ public class SessionDataAction extends ActionSupport implements SessionAware {
                         patient.put("lastname", rs.getString("p.lastname"));
                         patient.put("status", rs.getString("a.status"));
                         patient.put("id", rs.getInt("p.id"));
-                        patient.put("insurance", rs.getString("p.insurance"));
+                        patient.put("insurance", rs.getString("m.insurance"));
                         patient.put("dateOfBirth", rs.getDate("p.date_of_birth"));
                         patients.put(patient);
                     }
@@ -93,6 +95,7 @@ public class SessionDataAction extends ActionSupport implements SessionAware {
                 stmt.setInt(1, patientId);
                 try (ResultSet rs = stmt.executeQuery()) {
                     rs.next();
+                    patient.put("username", rs.getString("username"));
                     patient.put("risk_factor", rs.getString("risk_factor"));
                     patient.put("allergies", rs.getString("allergies"));
                     patient.put("last_surgery", rs.getString("last_surgery"));

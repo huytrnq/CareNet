@@ -13,7 +13,7 @@ import java.text.ParseException;
 
 public class MedicalInfoDAO {
 
-    public static void updatedField(String patientId, String field, String value) {
+    public static boolean updatedField(String patientId, String field, String value) {
         String sql = "UPDATE medical_info SET " + field + " = ? WHERE user_id = ?";
         try {
             Connection conn = DBUtil.getConnection();
@@ -21,14 +21,19 @@ public class MedicalInfoDAO {
             stmt.setString(1, value);
             stmt.setString(2, patientId);
             stmt.executeUpdate();
+            return true;
         } catch (SQLException e) {
             e.printStackTrace();
+            return false;
         }
     }
 
-    public static void updateFields(String patientId, String[] fields, String[] values) {
+    public static boolean updateFields(String patientId, String[] fields, String[] values) {
         for (int i = 0; i < fields.length; i++) {
-            updatedField(patientId, fields[i], values[i]);
+            if (!updatedField(patientId, fields[i], values[i])) {
+                return false;
+            }
         }
+        return true;
     }
 }

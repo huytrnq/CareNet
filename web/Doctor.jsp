@@ -119,11 +119,9 @@
                 </div>
             </div>
             <div class="physical-exam">
-                <!-- <button id="update-physical-exam" class="update-button">Update</button>
-                <h3>Physical Exam</h3> -->
                 <div class="row">
                     <h3>Physical Exam</h3>
-                    <button id="update-physical-exam" class="update-button hidden">Update</button>
+                    <button id="update-physical-exam" class="update-button hidden" onclick=updatePatientData()>Update</button>
                 </div>
                 <table id="physical-exam-table">
                     <tr>

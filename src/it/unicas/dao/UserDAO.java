@@ -16,10 +16,8 @@ public class UserDAO {
     public static void addUser(User user) {
         String sql = """
                     INSERT INTO user (username, firstname, lastname, role, 
-                    gender, phone, email, address, password, weight, height, 
-                    occupation, allergies, current_medication, genetic_conditions, 
-                    last_surgery, emergency_contact, insurance, license_number, expiry_date, date_of_birth, affiliations, profile_path) 
-                    VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+                    gender, phone, email, address, password, occupation, license_number, expiry_date, date_of_birth, affiliations, profile_path) 
+                    VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
                     """;
 
         try (Connection conn = DBUtil.getConnection();
@@ -35,20 +33,12 @@ public class UserDAO {
             stmt.setString(7, user.getEmail());
             stmt.setString(8, user.getAddress());
             stmt.setString(9, user.getPassword());
-            stmt.setDouble(10, user.getWeight());
-            stmt.setDouble(11, user.getHeight());
-            stmt.setString(12, user.getOccupation());
-            stmt.setString(13, user.getAllergies());
-            stmt.setString(14, user.getCurrentMedication());
-            stmt.setString(15, user.getGeneticConditions());
-            stmt.setString(16, user.getLastSurgery());
-            stmt.setString(17, user.getEmergencyContact());
-            stmt.setString(18, user.getInsurance());
-            stmt.setString(19, user.getLicenseNumber());
-            stmt.setDate(20, user.getExpiryDate());
-            stmt.setString(21, user.getAffiliations());
-            stmt.setString(22, user.getProfilePath());
-            stmt.setDate(23, user.getDateOfBirth());
+            stmt.setString(10, user.getOccupation());
+            stmt.setString(11, user.getLicenseNumber());
+            stmt.setDate(12, user.getExpiryDate());
+            stmt.setString(13, user.getAffiliations());
+            stmt.setString(14, user.getProfilePath());
+            stmt.setDate(15, user.getDateOfBirth());
 
             stmt.executeUpdate();
 
@@ -78,15 +68,7 @@ public class UserDAO {
                 user.setPhone(rs.getString("phone"));
                 user.setEmail(rs.getString("email"));
                 user.setAddress(rs.getString("address"));
-                user.setWeight(rs.getDouble("weight"));
-                user.setHeight(rs.getDouble("height"));
                 user.setOccupation(rs.getString("occupation"));
-                user.setAllergies(rs.getString("allergies"));
-                user.setCurrentMedication(rs.getString("current_medication"));
-                user.setGeneticConditions(rs.getString("genetic_conditions"));
-                user.setLastSurgery(rs.getString("last_surgery"));
-                user.setEmergencyContact(rs.getString("emergency_contact"));
-                user.setInsurance(rs.getString("insurance"));
                 user.setLicenseNumber(rs.getString("license_number"));
                 user.setExpiryDate(rs.getDate("expiry_date"));
                 user.setAffiliations(rs.getString("affiliations"));
@@ -122,15 +104,7 @@ public class UserDAO {
                     user.setPhone(rs.getString("phone"));
                     user.setEmail(rs.getString("email"));
                     user.setAddress(rs.getString("address"));
-                    user.setWeight(rs.getDouble("weight"));
-                    user.setHeight(rs.getDouble("height"));
                     user.setOccupation(rs.getString("occupation"));
-                    user.setAllergies(rs.getString("allergies"));
-                    user.setCurrentMedication(rs.getString("current_medication"));
-                    user.setGeneticConditions(rs.getString("genetic_conditions"));
-                    user.setLastSurgery(rs.getString("last_surgery"));
-                    user.setEmergencyContact(rs.getString("emergency_contact"));
-                    user.setInsurance(rs.getString("insurance"));
                     user.setLicenseNumber(rs.getString("license_number"));
                     user.setExpiryDate(rs.getDate("expiry_date"));
                     user.setAffiliations(rs.getString("affiliations"));

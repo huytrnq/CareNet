@@ -81,6 +81,11 @@
             <interceptor-ref name="authStack"/>
             <result type="json"/>
         </action>
+        <!-- Update Medical Info Action -->
+        <action name="updateMedicalInfo" class="it.unicas.action.UpdateMedicalInfo">
+            <interceptor-ref name="authStack"/>
+            <result type="json"/>
+        </action>
         <!-- Session Data Action -->
         <action name="sessionData" class="it.unicas.action.SessionDataAction">
             <interceptor-ref name="authStack"/>

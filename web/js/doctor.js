@@ -50,6 +50,55 @@ function saveProfile(){
         .catch(error => console.error('Error saving profile:', error));
 }
 
+function parseTable(tableId) {
+    // Get the table element by ID
+    var table = document.getElementById(tableId);
+    // Get all rows from the table body
+    var rows = table.getElementsByTagName('tbody')[0].getElementsByTagName('tr');
+
+    // Initialize an array to hold the parsed data
+    var data = [];
+
+    // Loop through each row
+    for (var i = 0; i < rows.length; i++) {
+        // Get all cells in the current row
+        var cells = rows[i].getElementsByTagName('td');
+        // Extract the data from the cells
+        var key = cells[0].textContent.trim();
+        var value = cells[1].textContent.trim();
+        // Add the extracted data to the array
+        data.push({ key: key, value: value });
+    }
+
+    return data;
+}
+
+function updatePatientData(){
+    const updateButton = document.getElementById('update-physical-exam');
+    if (updateButton.textContent == 'Update'){
+        return;
+    }
+    var data = parseTable('physical-exam-table');
+    const patientId = data[0].value;
+    const abdomen = data[1].value;
+    const pulse = data[2].value;
+    const blood_pressure = data[3].value;
+    const heart = data[4].value;
+    const allergies = data[5].value;
+    const last_surgery = data[6].value;
+    fetch('updateMedicalInfo?patientId=' + patientId + '&abdomen=' + abdomen + '&pulse=' + pulse + '&blood_pressure=' + blood_pressure + '&heart=' + heart + '&allergies=' + allergies + '&last_surgery=' + last_surgery)
+        .then(response => response.json())
+        .then(data => {
+            status = data.status;
+            if (status == 'success'){
+                alert('Patient data updated');
+            }else{
+                alert('Error updating patient data');
+            }
+        })
+        .catch(error => console.error('Error updating patient data:', error));
+}
+
 // Function to handle row click
 function handleRowClick(patientId) {
     document.getElementById('upload-imaging').classList.remove('hidden');
@@ -82,6 +131,10 @@ function handleRowClick(patientId) {
 
             if (abdomen != null || pulse != null || blood_pressure != null || heart != null || allergies != null || last_surgery != null){
                 document.getElementById('physical-exam-table').innerHTML = `
+                    <tr class="hidden">
+                        <td>patientId</td>
+                        <td>${patientId}</td>
+                    </tr>
                     <tr>
                         <td>Abdomen</td>
                         <td>${abdomen}</td>
@@ -158,48 +211,6 @@ function getValue(field){
     return value;
 }
 
-// document.addEventListener('DOMContentLoaded', function() {
-//     const profilePic = document.getElementById('profile-pic');
-//     const profilePicMenu = document.getElementById('profile-pic-menu');
-//     const changePicButton = document.getElementById('change-pic-button');
-//     const profilePicForm = document.getElementById('profile-pic-form');
-//     const profilePicUpload = document.getElementById('profile-pic-upload');
-
-//     profilePic.addEventListener('click', (event) => {
-//         profilePicMenu.style.display = 'block';
-//         profilePicMenu.style.left = `${event.clientX}px`;
-//         profilePicMenu.style.top = `${event.clientY}px`;
-//     });
-
-//     changePicButton.addEventListener('click', () => {
-//         profilePicForm.style.display = 'block';
-//         profilePicMenu.style.display = 'none';
-//     });
-
-//     profilePicForm.addEventListener('submit', (event) => {
-//         event.preventDefault();
-//         const file = profilePicUpload.files[0];
-
-//         if (file) {
-//             const reader = new FileReader();
-//             reader.onload = function(e) {
-//                 profilePic.src = e.target.result;
-//             };
-//             reader.readAsDataURL(file);
-//         }
-
-//         // Hide the form after upload
-//         profilePicForm.style.display = 'none';
-//     });
-
-//     // Hide the menu and form if clicking outside
-//     window.addEventListener('click', (event) => {
-//         if (!profilePic.contains(event.target) && !profilePicMenu.contains(event.target) && !profilePicForm.contains(event.target)) {
-//             profilePicMenu.style.display = 'none';
-//             profilePicForm.style.display = 'none';
-//         }
-//     });
-// });
 
 function showProfilePicForm(){
     var imageUploadForm = document.getElementById('profile-pic-form');
