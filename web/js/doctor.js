@@ -52,11 +52,15 @@ function saveProfile(){
 
 // Function to handle row click
 function handleRowClick(patientId) {
+    document.getElementById('upload-imaging').classList.remove('hidden');
+    document.getElementById('update-physical-exam').classList.remove('hidden');
+    document.getElementById('imaging-upload-form_patientId').value = patientId;
     // Redirect to patient detail page or perform another action
     fetch('sessionData?patientId=' + patientId)
         .then(response => response.json())
         .then(data => {
             const patient = data.patient;
+            const patientName = patient.username;
             const allergies = patient.allergies;
             const abdomen = patient.abdomen;
             const pulse = patient.pulse;
@@ -111,14 +115,36 @@ function handleRowClick(patientId) {
                     </tr>
                 `;
             }
-            console.log(xray_path);
-            console.log(ultrasound_path);
 
             if (xray_path != null){
-                document.getElementById('xray-description').innerHTML = `<p id="xray-description">X-Ray: <a class="xray-description" href="${xray_path}">Description</a></p>`;
+                fetch('getImage?medicalImagePath=' + xray_path)
+                .then(response => {
+                    if (response.ok) {
+                        return response.blob();
+                    } else {
+                        throw new Error('Image not found');
+                    }
+                })
+                .then(blob => {
+                    const imgUrl = URL.createObjectURL(blob);
+                    document.getElementById('xray-description').innerHTML = `<p id="xray-description">X-Ray: <a class="xray-description" href="${imgUrl}">Description</a></p>`;
+                })
+                .catch(error => console.error('Error fetching image:', error));
             }
             if (ultrasound_path != null){
-                document.getElementById('ultrasound-description').innerHTML = `<p id="ultrasound-description">Ultrasonography: <a class="ultrasound-description" href="${ultrasound_path}">Description</a></p>`;
+                fetch('getImage?medicalImagePath=' + ultrasound_path)
+                .then(response => {
+                    if (response.ok) {
+                        return response.blob();
+                    } else {
+                        throw new Error('Image not found');
+                    }
+                })
+                .then(blob => {
+                    const imgUrl = URL.createObjectURL(blob);
+                    document.getElementById('ultrasound-description').innerHTML = `<p id="ultrasound-description">Ultrasonography: <a class="ultrasound-description" href="${imgUrl}">Description</a></p>`;
+                })
+                .catch(error => console.error('Error fetching image:', error));
             }
         })
         .catch(error => console.error('Error fetching session data:', error));

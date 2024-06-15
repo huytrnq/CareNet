@@ -449,13 +449,4 @@ body {
     height: 150px;
 }
 
-/* Hover effect for patient names */
-.patient-name {
-    cursor: pointer;
-    transition: color 0.3s, font-weight 0.3s;
-}
 
-.patient-name:hover {
-    color: #007BFF;
-    font-weight: bold;
-}

@@ -6,15 +6,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Doctor Dashboard</title>
     <link rel="stylesheet" href="css/Doctor.css">
-    <script>
-        // Embed Struts values into JavaScript variables
-        var userName = "<s:property value='%{#session.user.username}'/>";
-
-        document.addEventListener('DOMContentLoaded', function() {
-            console.log("User Name: " + userName);
-        });
-    </script>
     <style>
+        /* Hover effect for patient names */
+        .patient-row {
+            cursor: pointer;
+            transition: color 0.3s, font-weight 0.3s;
+        }
+
+        .patient-row:hover {
+            color: #007BFF;
+            font-weight: bold;
+        }
         #profile-pic-form {
             display: flex;
             align-items: center;
@@ -23,7 +25,28 @@
             display: inline-block;
             margin-right: 10px;
         }
+        .row {
+            display: flex;
+            align-items: center;
+        }
+        .row button{
+            margin-left: auto;
+            background-color: #007BFF;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
     </style>
+    <script>
+        // Embed Struts values into JavaScript variables
+        var userName = "<s:property value='%{#session.user.username}'/>";
+
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log("User Name: " + userName);
+        });
+    </script>
 
 </head>
 <body>
@@ -96,8 +119,12 @@
                 </div>
             </div>
             <div class="physical-exam">
-                <button id="update-physical-exam" class="update-button">Update</button>
-                <h3>Physical Exam</h3>
+                <!-- <button id="update-physical-exam" class="update-button">Update</button>
+                <h3>Physical Exam</h3> -->
+                <div class="row">
+                    <h3>Physical Exam</h3>
+                    <button id="update-physical-exam" class="update-button hidden">Update</button>
+                </div>
                 <table id="physical-exam-table">
                     <tr>
                         <td>Choose a patient to view physical exam</td>
@@ -110,18 +137,21 @@
                     <p id="xray-description">X-Ray: <a class="xray-description" href="">No Description</a></p>
                     <p id="ultrasound-description">Ultrasonography: <a class="ultrasound-description" href="">No Description</a></p>
                 </div>
-                <div class="upload-imaging">
+                <div id="upload-imaging" class="upload-imaging hidden">
                     <button id="show-upload-form">Upload New Imaging</button>
                     <div id="upload-form-container" style="display: none;">
                         <h4>Upload New Imaging</h4>
-                        <form id="imaging-upload-form" action="<s:url action='uploadImaging'/>" method="post" enctype="multipart/form-data">
+
+                        <form action="uploadImage" method="post" enctype="multipart/form-data">
                             <label for="imaging-type">Type:</label>
-                            <input type="text" id="imaging-type" name="imagingType" required>
-                            <label for="imaging-description">Description:</label>
-                            <input type="text" id="imaging-description" name="imagingDescription" required>
+                            <select id="imaging-type" name="imagingType" required>
+                                <option value="xray">X-ray</option>
+                                <option value="ultrasound">Ultrasound</option>
+                            </select>
                             <label for="imaging-file">Select Image:</label>
-                            <input type="file" id="imaging-file" name="imagingFile" accept="image/*" required>
-                            <button type="submit">Upload</button>
+                            <input type="hidden" name="patientId" id="imaging-upload-form_patientId">
+                            <input type="file" name="uploadFile" value="" id="imaging-upload-form_uploadFile">
+                            <input type="submit" value="Upload" id="imaging-upload-form_0">
                         </form>
                     </div>
                 </div>

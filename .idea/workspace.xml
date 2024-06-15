@@ -10,18 +10,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="1a181c00-df0d-4f39-bc08-2a51b23aff5a" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/lib.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/lib.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CareNet.iml" beforeDir="false" afterPath="$PROJECT_DIR$/CareNet.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/it/unicas/action/UpdateUserInfo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/it/unicas/action/UpdateUserInfo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/donovandouglas_profile_pic.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/it/unicas/action/ImageAction.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/it/unicas/action/ImageAction.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/it/unicas/action/UploadImageAction.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/it/unicas/action/UploadImageAction.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/it/unicas/dao/UserDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/it/unicas/dao/UserDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/it/unicas/model/Appointment.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/it/unicas/model/Appointment.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/struts.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/struts.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/web/Doctor.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/web/Doctor.jsp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/web/css/Doctor.css" beforeDir="false" afterPath="$PROJECT_DIR$/web/css/Doctor.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/web/js/doctor.js" beforeDir="false" afterPath="$PROJECT_DIR$/web/js/doctor.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/js/profileEdit.js" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -195,7 +190,7 @@
       <workItem from="1718099986248" duration="565000" />
       <workItem from="1718115181522" duration="5612000" />
       <workItem from="1718143122852" duration="31690000" />
-      <workItem from="1718458307845" duration="6368000" />
+      <workItem from="1718458307845" duration="12979000" />
     </task>
     <servers />
   </component>

@@ -8,12 +8,14 @@ import java.io.File;
 import java.io.IOException;
 import java.util.Map;
 import it.unicas.dao.UserDAO;
+import it.unicas.dao.MedicalInfoDAO;
 
 public class UploadImageAction extends ActionSupport implements SessionAware {
     private File uploadFile;
     private String uploadFileContentType;
     private String uploadFileFileName;
-    private String imagePath;
+    private String imagingType;
+    private String patientId;
     private Map<String, Object> session;
 
     public File getUploadFile() {
@@ -22,6 +24,14 @@ public class UploadImageAction extends ActionSupport implements SessionAware {
 
     public void setUploadFile(File uploadFile) {
         this.uploadFile = uploadFile;
+    }
+
+    public String getImagingType() {
+        return imagingType;
+    }
+
+    public void setImagingType(String imagingType) {
+        this.imagingType = imagingType;
     }
 
     public String getUploadFileContentType() {
@@ -40,6 +50,14 @@ public class UploadImageAction extends ActionSupport implements SessionAware {
         this.uploadFileFileName = uploadFileFileName;
     }
 
+    public String getPatientId() {
+        return patientId;
+    }
+
+    public void setPatientId(String patientId) {
+        this.patientId = patientId;
+    }
+
     @Override
     public String execute() {
         if (uploadFile == null) {
@@ -50,18 +68,33 @@ public class UploadImageAction extends ActionSupport implements SessionAware {
 
         String username = (String) session.get("username");
         String role = (String) session.get("role");
+        System.out.println("Image type: " + imagingType);
 
         // Define the path where the uploaded file will be saved
-        String filePath = "/Users/huytrq/Workspace/unicas/DistributedProgramming/CareNet/images/";
-        String new_file_name = username + "_profile_pic.png";
+        String filePath;
+        String new_file_name;
+        if(imagingType == null) {
+            filePath = "/Users/huytrq/Workspace/unicas/DistributedProgramming/CareNet/images/";
+            new_file_name = username + "_profile_pic.png";
+        } else {
+            filePath = "/Users/huytrq/Workspace/unicas/DistributedProgramming/CareNet/images/";
+            new_file_name = username + "_" + imagingType + ".png";
+        }
+        System.out.println("File path: " + filePath);
+        System.out.println("New file name: " + new_file_name);
+        System.out.println("Patient ID: " + patientId);
+
         File fileToCreate = new File(filePath, new_file_name);
 
         try {
             System.out.println("File to create: " + fileToCreate);
             // Copy the uploaded file to the specified location
             FileUtils.copyFile(this.uploadFile, fileToCreate);
-
-            UserDAO.updateFields(username, new String[] {"profile_path"}, new String[] {new_file_name});
+            if (imagingType == null) {
+                UserDAO.updateFields(username, new String[] {"profile_path"}, new String[] {new_file_name});
+            } else {
+                MedicalInfoDAO.updateFields(patientId, new String[] {imagingType + "_path"}, new String[] {new_file_name});
+            }
         } catch (IOException e) {
             e.printStackTrace();
             return ERROR;

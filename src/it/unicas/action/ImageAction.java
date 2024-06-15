@@ -16,18 +16,28 @@ import it.unicas.dao.UserDAO;
 
 public class ImageAction extends ActionSupport {
     private String username;
+    private String medicalImagePath;
 
     public void setUsername(String username) {
         this.username = username;
     }
+
+    public void setMedicalImagePath(String medicalImagePath) {
+        this.medicalImagePath = medicalImagePath;
+    }
+
 
     @Override
     public String execute() throws Exception {
         System.out.println(username);
         HttpServletResponse response = ServletActionContext.getResponse();
         
-        // Example for serving image from file system
-        String imagePath = UserDAO.getProfilePath(username);
+        String imagePath;
+        if (username != null) {
+            imagePath = UserDAO.getProfilePath(username);
+        } else {
+            imagePath = medicalImagePath;
+        }
         
         File imageFile = new File("/Users/huytrq/Workspace/unicas/DistributedProgramming/CareNet/images/" + imagePath);
 
