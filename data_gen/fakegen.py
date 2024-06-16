@@ -32,7 +32,7 @@ def create_fake_user(role):
     expiry_date = fake.date_this_century() if role == 'doctor' else None
     date_of_birth = fake.date_of_birth()
     affiliations = fake.company() if role == 'doctor' else None
-    profile_path = fake.file_path(depth=1, category='image')
+    profile_path = "default_user.png"
 
     return (username, firstname, lastname, role, gender, phone, email, address, password,
             occupation, license_number, expiry_date, date_of_birth, affiliations, profile_path)
@@ -63,8 +63,9 @@ def create_fake_appointment(doctor_id, patient_id):
     date = fake.date_this_year()
     time = fake.time()
     status = random.choice(['scheduled', 'completed', 'cancelled'])
+    title = random.choice(['Check-up', 'Follow-up', 'Consultation', 'Treatment', 'Operation', 'Survey', 'Other'])
 
-    return (doctor_id, patient_id, date, time, status)
+    return (doctor_id, patient_id, date, time, status, title)
 
 # Insert fake doctors and patients
 doctor_ids = []
@@ -114,8 +115,8 @@ for _ in range(300):  # Insert 100 appointments
     patient_id = random.choice(patient_ids)
     appointment_data = create_fake_appointment(doctor_id, patient_id)
     cursor.execute("""
-        INSERT INTO `appointment` (doctor_id, patient_id, date, time, status)
-        VALUES (%s, %s, %s, %s, %s)
+        INSERT INTO `appointment` (doctor_id, patient_id, date, time, status, title)
+        VALUES (%s, %s, %s, %s, %s, %s)
     """, appointment_data)
 
 # Commit the transaction
