@@ -32,7 +32,12 @@ public class SessionDataAction extends ActionSupport implements SessionAware {
                 // Fetch the patient data
                 JSONObject patient = getPatientById(Integer.parseInt(patientId));
                 json.put("patient", patient);
-            }else{
+            }else if(ServletActionContext.getRequest().getParameter("doctors") != null){
+                // Fetch all doctors
+                JSONArray doctors = getDoctors();
+                json.put("doctors", doctors);
+            }
+            else{
                 // Get the currently logged-in doctor from the session
                 String doctorUsername = (String) session.get("username");
                 
@@ -52,6 +57,29 @@ public class SessionDataAction extends ActionSupport implements SessionAware {
         }
 
         return NONE; // No result page needed
+    }
+
+    private JSONArray getDoctors() throws Exception {
+        JSONArray doctors = new JSONArray();
+        try (Connection conn = DriverManager.getConnection(DB_URL, DB_USER, DB_PASSWORD)) {
+            String query = "SELECT * FROM user WHERE role = 'doctor'";
+            try (PreparedStatement stmt = conn.prepareStatement(query)) {
+                try (ResultSet rs = stmt.executeQuery()) {
+                    while (rs.next()) {
+                        JSONObject doctor = new JSONObject();
+                        doctor.put("username", rs.getString("username"));
+                        doctor.put("firstname", rs.getString("firstname"));
+                        doctor.put("lastname", rs.getString("lastname"));
+                        doctor.put("id", rs.getInt("id"));
+                        doctor.put("specialization", rs.getString("occupation"));
+                        doctor.put("address", rs.getString("address"));
+                        doctor.put("phone", rs.getString("phone"));
+                        doctors.put(doctor);
+                    }
+                }
+            }
+        }
+        return doctors;
     }
 
     private JSONArray getPatientsByDoctor(String doctorUsername) throws Exception {
@@ -105,6 +133,14 @@ public class SessionDataAction extends ActionSupport implements SessionAware {
                     patient.put("abdomen", rs.getString("abdomen"));
                     patient.put("xray_path", rs.getString("xray_path"));
                     patient.put("ultrasound_path", rs.getString("ultrasound_path"));
+                    patient.put("date_of_birth", rs.getDate("date_of_birth"));
+                    patient.put("gender", rs.getString("gender"));
+                    patient.put("occupation", rs.getString("occupation"));
+                    patient.put("address", rs.getString("address"));
+                    patient.put("genetic_conditions", rs.getString("genetic_conditions"));
+                    patient.put("current_medication", rs.getString("current_medication"));
+                    patient.put("weight", rs.getString("weight"));
+                    patient.put("height", rs.getString("height"));
                 }
             }
         }

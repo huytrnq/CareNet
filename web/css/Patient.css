@@ -110,11 +110,11 @@ body {
 
 .profile {
     display: flex;
-    gap: 30px;
+    gap: 20px;
 }
 
 .patient-profile {
-    width: 20%; /* Increase width */
+    width: 25%; /* Increase width */
     background-color: #fff;
     padding: 20px;
     border-radius: 10px;
@@ -178,101 +178,28 @@ body {
     text-align: right;
 }
 
-.contact-info {
+/* .contact-info {
     margin-top: 20px;
 }
 
-.contact-info table{
-    width: 100%;
-    border-collapse: collapse
-}
-
-.contact-info table td{
-    padding: 10px 0;
-    border-bottom: 1px solid #f0f0f0
-}
-
-#profile-pic-form {
-    margin-top: 10px; /* Add space above the form */
-}
-
-#profile-pic-form input[type="file"] {
-    padding: 5px;
-    border-radius: 5px;
-    margin-bottom: 10px; /* Add space below the file input */
-}
-
-#profile-pic-form button {
-    background-color: #007BFF;
-    color: white;
-    padding: 10px 20px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-}
-
-#profile-pic-form button:hover {
-    background-color: #0056b3;
-}
-
-.initiate-visit {
-    margin-top: 20px; /* Add space between buttons and text */
-}
-
-.initiate-visit button {
-    background-color: #007BFF;
-    color: white;
-    padding: 10px 20px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    margin-right: 10px; /* Add space between buttons */
-}
-
-.initiate-visit button:hover {
-    background-color: #0056b3;
-}
-
-.table-container {
-    max-height: 300px;
-    overflow-y: auto; /* Enable vertical scrolling */
-}
-
-.doctor-info table {
+.contact-info table {
     width: 100%;
     border-collapse: collapse;
 }
 
-.doctor-info th, .doctor-info td {
-    padding: 10px;
+.contact-info table td {
+    padding: 10px 0;
     border-bottom: 1px solid #f0f0f0;
-    text-align: center; /* Center-align table content */
-    white-space: nowrap; /* Ensure text doesn't wrap */
-    overflow: hidden; /* Ensure text doesn't overflow */
-    text-overflow: ellipsis; /* Add ellipsis for overflowed text */
 }
 
-/* Specific column widths */
-.doctor-info th:nth-child(1),
-.doctor-info td:nth-child(1) {
-    width: 25%; /* doctor Name */
+.contact-info td.editable {
+    cursor: pointer;
 }
 
-.doctor-info th:nth-child(2),
-.doctor-info td:nth-child(2) {
-    width: 25%; /* doctor speciality */
-}
-
-.doctor-info th:nth-child(3),
-.doctor-info td:nth-child(3) {
-    width: 25%; /* doctor availabilit*/
-}
-
-.doctor-info th:nth-child(4),
-.doctor-info td:nth-child(4) {
-    width: 25%; /* doctor calendat */
-}
-
+.contact-info td.editable.editing {
+    border: 2px dashed #007BFF;
+    background-color: #e7f3ff;
+} */
 
 .edit-button {
     float:right;
@@ -369,13 +296,94 @@ body {
     to { opacity: 1; }
 }
 
+#profile-pic-form {
+    margin-top: 10px; /* Add space above the form */
+}
+
+#profile-pic-form input[type="file"] {
+    padding: 5px;
+    border-radius: 5px;
+    margin-bottom: 10px; /* Add space below the file input */
+}
+
+#profile-pic-form button {
+    background-color: #007BFF;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+#profile-pic-form button:hover {
+    background-color: #0056b3;
+}
+
+.initiate-visit {
+    margin-top: 20px; /* Add space between buttons and text */
+}
+
+.initiate-visit button {
+    background-color: #007BFF;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-right: 10px; /* Add space between buttons */
+}
+
+.initiate-visit button:hover {
+    background-color: #0056b3;
+}
+
+.table-container {
+    max-height: 300px;
+    overflow-y: auto; /* Enable vertical scrolling */
+}
+
+.doctor-info table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.doctor-info th, .doctor-info td {
+    padding: 10px;
+    border-bottom: 1px solid #f0f0f0;
+    text-align: center; /* Center-align table content */
+    white-space: nowrap; /* Ensure text doesn't wrap */
+    overflow: hidden; /* Ensure text doesn't overflow */
+    text-overflow: ellipsis; /* Add ellipsis for overflowed text */
+}
+
+/* Specific column widths */
+.doctor-info th:nth-child(1),
+.doctor-info td:nth-child(1) {
+    width: 25%; /* doctor Name */
+}
+
+.doctor-info th:nth-child(2),
+.doctor-info td:nth-child(2) {
+    width: 25%; /* doctor speciality */
+}
+
+.doctor-info th:nth-child(3),
+.doctor-info td:nth-child(3) {
+    width: 25%; /* doctor availabilit*/
+}
+
+.doctor-info th:nth-child(4),
+.doctor-info td:nth-child(4) {
+    width: 25%; /* doctor calendat */
+}
+
 .dashboard {
     display: flex;
     gap: 20px;
     align-items: stretch; /* Ensure all children have equal height */
 }
 
-.physical-exam, .imaging, .medical-history {
+.health-summary, .imaging, .medical-history {
     flex: 1; /* Ensure these sections take equal space */
     background-color: #fff;
     padding: 20px;
@@ -386,32 +394,45 @@ body {
     position: relative;
 }
 
-/* Health summary */
-.physical-exam table {
+
+.contact-info h3, .health-summary h3 {
+    margin-top: 0;
+}
+
+table {
     width: 100%;
     border-collapse: collapse;
 }
 
-.physical-exam table td {
-    padding: 10px 0;
+td {
     border-bottom: 1px solid #f0f0f0;
+    padding: 10px;
 }
 
-.update-button {
-    position: absolute;
-    top: 30px;
-    right: 20px;
-    background-color: #007BFF;
-    color: white;
-    padding: 10px 20px;
-    border: none;
-    border-radius: 5px;
+td.editable-contact, td.editable-health {
     cursor: pointer;
 }
 
-.update-button:hover {
+td.editable-contact.editing, td.editable-health.editing {
+    border: 2px dashed #007BFF;
+    background-color: #e7f3ff;
+}
+
+button {
+    margin-top: 10px;
+    padding: 10px 20px;
+    background-color: #007BFF;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
     background-color: #0056b3;
 }
+
 
 /* Medical history */
 .medical-history {

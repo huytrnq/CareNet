@@ -1,12 +1,17 @@
 package it.unicas.action;
 
 import it.unicas.dao.UserDAO;
+import it.unicas.model.User;
 
 import java.util.Map;
+import java.util.Optional;
 
 import org.apache.struts2.interceptor.SessionAware;
 import org.apache.struts2.ServletActionContext;
 import javax.servlet.http.HttpServletResponse;
+import java.text.SimpleDateFormat;
+import java.util.Date; 
+import java.text.ParseException;
 import java.io.IOException;
 
 import com.opensymphony.xwork2.ActionSupport;
@@ -21,16 +26,30 @@ public class UpdateUserInfo extends ActionSupport implements SessionAware {
     @Override
     public String execute() {
         String username = (String) session.get("username");
-        String licenseNumber = ServletActionContext.getRequest().getParameter("license_number");
-        String expiryDateString = ServletActionContext.getRequest().getParameter("expiry_date");
-        String address = ServletActionContext.getRequest().getParameter("address");
-        String affiliations = ServletActionContext.getRequest().getParameter("affiliations");
-        if (UserDAO.updateFields(username, new String[] {"address", "affiliations", "expiry_date", "license_number"}, new String[] {address, affiliations, expiryDateString, licenseNumber})) {
-            status = "success";
-        } else {
-            status = "error";
+        Optional<User> user = UserDAO.findByUsername(username);
+        if (user.get().getRole().equals("patient")) {
+            String birthday = ServletActionContext.getRequest().getParameter("birthday");
+            String gender = ServletActionContext.getRequest().getParameter("gender");
+            String occupation = ServletActionContext.getRequest().getParameter("occupation");
+            String address = ServletActionContext.getRequest().getParameter("address");
+            if (UserDAO.updateFields(username, new String[] {"date_of_birth", "gender", "occupation", "address"}, new String[] {birthday, gender, occupation, address})) {
+                status = "success";
+            } else {
+                status = "error";
+            }
         }
-
+        else{
+            String address = ServletActionContext.getRequest().getParameter("address");
+            String affiliations = ServletActionContext.getRequest().getParameter("affiliations");
+            String expiryDateString = ServletActionContext.getRequest().getParameter("expiry_date");
+            String licenseNumber = ServletActionContext.getRequest().getParameter("license_number");
+            if (UserDAO.updateFields(username, new String[] {"address", "affiliations", "expiry_date", "license_number"}, new String[] {address, affiliations, expiryDateString, licenseNumber})) {
+                status = "success";
+            } else {
+                status = "error";
+            }
+        }
+        
         //Return status success or error
         HttpServletResponse response = ServletActionContext.getResponse();
         try {
@@ -43,6 +62,17 @@ public class UpdateUserInfo extends ActionSupport implements SessionAware {
             e.printStackTrace();
         }
         return NONE;
+    }
+
+    public static Date String2Date(String date) {
+        SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yy");
+        try {
+            Date parsedDate = formatter.parse(date);
+            return parsedDate;
+        } catch (ParseException e) {
+            e.printStackTrace();
+            return null; // or handle more appropriately depending on your use case
+        }
     }
 
     @Override

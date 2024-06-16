@@ -153,7 +153,7 @@ public class UserDAO {
         try (Connection conn = DBUtil.getConnection();
             PreparedStatement stmt = conn.prepareStatement(sql)) {
             
-            if (field.equals("expiry_date")) {
+            if (field.equals("expiry_date") || field.equals("date_of_birth")) {
                 java.util.Date expiryDate = convertStringToDate(value);
                 stmt.setDate(1, new java.sql.Date(expiryDate.getTime()));
             } else {

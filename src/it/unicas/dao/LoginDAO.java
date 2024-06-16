@@ -41,4 +41,20 @@ public class LoginDAO {
         }
         return role;
     }
+
+    public static Integer getUserId(String username) {
+        Integer userId = 0;
+        try {
+            Connection con = DBUtil.getConnection();
+            Statement stmt = con.createStatement();
+            ResultSet rs = stmt.executeQuery("select id from user where username = '" + username + "'");
+            if (rs.next()) {
+                userId = rs.getInt("id");
+            }
+            con.close();
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+        return userId;
+    }
 }
