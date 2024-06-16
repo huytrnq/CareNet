@@ -166,6 +166,6 @@
 </div>
 
 <script src="js/doctor.js"></script>
-<script src="js/imagingUpload.js"></script>
+<!-- <script src="js/imagingUpload.js"></script> -->
 </body>
 </html>

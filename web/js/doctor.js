@@ -50,6 +50,37 @@ function saveProfile(){
         .catch(error => console.error('Error saving profile:', error));
 }
 
+document.addEventListener('DOMContentLoaded', function() {
+    fetch('sessionData?doctor=' + userName)
+    .then(response => response.json())
+    .then(data => {
+        const doctor = data.doctor;
+        const doctorFirstname = doctor.firstname;
+        const doctorLastname = doctor.lastname;
+        const doctorLicenseNumber = doctor.license_number;
+        const doctorExpiryDate = doctor.expiry_date;
+        const doctorAffiliations = doctor.affiliations;
+        const doctorAddress = doctor.address;
+
+        if (doctorFirstname != null && doctorLastname != null){
+            document.getElementById('doctor-name').innerHTML = doctorFirstname + ' ' + doctorLastname;
+        }
+        if (doctorLicenseNumber != null){
+            document.getElementById('doctor-license').innerHTML = "Licence Number: " + doctorLicenseNumber;
+        }
+        if (doctorExpiryDate != null){
+            document.getElementById('doctor-expiry').innerHTML = "Expiry Date: " + doctorExpiryDate;
+        }
+        if (doctorAffiliations != null){
+            document.getElementById('doctor-affiliations').innerHTML = "Affiliations: " + doctorAffiliations;
+        }
+        if (doctorAddress != null){
+            document.getElementById('doctor-address').innerHTML = "Address: " + doctorAddress;
+        }
+    })
+    .catch(error => console.error('Error fetching session data:', error));
+});
+
 function parseTable(tableId) {
     // Get the table element by ID
     var table = document.getElementById(tableId);
@@ -309,3 +340,31 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 });
 
+
+
+
+
+
+document.addEventListener('DOMContentLoaded', () => {
+    const editButton = document.getElementById('edit-contact-info');
+    const saveButton = document.getElementById('save-contact-info');
+    const editableCells = document.querySelectorAll('.editable-contact');
+
+    editButton.addEventListener('click', () => {
+        editableCells.forEach(cell => {
+            cell.contentEditable = 'true';
+            cell.classList.add('editing');
+        });
+        editButton.style.display = 'none';
+        saveButton.style.display = 'inline';
+    });
+
+    saveButton.addEventListener('click', () => {
+        editableCells.forEach(cell => {
+            cell.contentEditable = 'false';
+            cell.classList.remove('editing');
+        });
+        saveButton.style.display = 'none';
+        editButton.style.display = 'inline';
+    });
+});

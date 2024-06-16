@@ -36,6 +36,11 @@ public class SessionDataAction extends ActionSupport implements SessionAware {
                 // Fetch all doctors
                 JSONArray doctors = getDoctors();
                 json.put("doctors", doctors);
+            }else if(ServletActionContext.getRequest().getParameter("doctor") != null){
+                // Fetch the doctor data
+                String doctorUsername = ServletActionContext.getRequest().getParameter("doctor");
+                JSONObject doctor = getDoctorByUserName(doctorUsername);
+                json.put("doctor", doctor);
             }
             else{
                 // Get the currently logged-in doctor from the session
@@ -80,6 +85,27 @@ public class SessionDataAction extends ActionSupport implements SessionAware {
             }
         }
         return doctors;
+    }
+
+    private JSONObject getDoctorByUserName(String username) throws Exception {
+        JSONObject doctor = new JSONObject();
+        try (Connection conn = DriverManager.getConnection(DB_URL, DB_USER, DB_PASSWORD)) {
+            String query = "SELECT * FROM user WHERE username = ?";
+            try (PreparedStatement stmt = conn.prepareStatement(query)) {
+                stmt.setString(1, username);
+                try (ResultSet rs = stmt.executeQuery()) {
+                    rs.next();
+                    doctor.put("username", rs.getString("username"));
+                    doctor.put("firstname", rs.getString("firstname"));
+                    doctor.put("lastname", rs.getString("lastname"));
+                    doctor.put("license_number", rs.getString("license_number"));
+                    doctor.put("address", rs.getString("address"));
+                    doctor.put("expiry_date", rs.getString("expiry_date"));
+                    doctor.put("affiliations", rs.getString("affiliations"));
+                }
+            }
+        }
+        return doctor;
     }
 
     private JSONArray getPatientsByDoctor(String doctorUsername) throws Exception {

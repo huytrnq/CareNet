@@ -11,15 +11,12 @@
   <component name="ChangeListManager">
     <list default="true" id="1a181c00-df0d-4f39-bc08-2a51b23aff5a" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/it/unicas/action/LoginAction.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/it/unicas/action/LoginAction.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/it/unicas/action/SessionDataAction.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/it/unicas/action/SessionDataAction.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/it/unicas/action/UpdateUserInfo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/it/unicas/action/UpdateUserInfo.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/it/unicas/dao/LoginDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/it/unicas/dao/LoginDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/it/unicas/dao/UserDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/it/unicas/dao/UserDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/Patient.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/web/Patient.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/css/Patient.css" beforeDir="false" afterPath="$PROJECT_DIR$/web/css/Patient.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/css/images/default_user.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/js/patient.js" beforeDir="false" afterPath="$PROJECT_DIR$/web/js/patient.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/Doctor.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/web/Doctor.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/Patient2.jsp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/js/PatientINFO.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/js/doctor.js" beforeDir="false" afterPath="$PROJECT_DIR$/web/js/doctor.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/js/imagingUpload.js" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -193,7 +190,7 @@
       <workItem from="1718099986248" duration="565000" />
       <workItem from="1718115181522" duration="5612000" />
       <workItem from="1718143122852" duration="31690000" />
-      <workItem from="1718458307845" duration="29214000" />
+      <workItem from="1718458307845" duration="31638000" />
     </task>
     <servers />
   </component>
