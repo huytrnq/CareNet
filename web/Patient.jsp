@@ -110,19 +110,19 @@
                 </div>
                 <table id="health-summary-table">
                     <tr>
-                        <td>Height</td>
+                        <td>Height (m)</td>
                         <td id="height" class="editable-health" contenteditable="false"></td>
                     </tr>
                     <tr>
-                        <td>Weight</td>
+                        <td>Weight (kg)</td>
                         <td id="weight" class="editable-health" contenteditable="false"></td>
                     </tr>
                     <tr>
-                        <td>Allergies</td>
+                        <td>Allergies (if applicable)</td>
                         <td id="allergies" class="editable-health" contenteditable="false"></td>
                     </tr>
                     <tr>
-                        <td>Blood Pressure</td>
+                        <td>Blood Pressure (mmHg)</td>
                         <td id="blood_pressure" class="editable-health" contenteditable="false"></td>
                     </tr>
                     <tr>
@@ -130,23 +130,23 @@
                         <td id="current_medication" class="editable-health" contenteditable="false"></td>
                     </tr>
                     <tr>
-                        <td>Genetic conditions</td>
+                        <td>Genetic conditions (if applicable)</td>
                         <td id="genetic_conditions" class="editable-health" contenteditable="false"></td>
                     </tr>
                     <tr>
-                        <td>Abdomen</td>
+                        <td>Abdomen (if applicable)</td>
                         <td id="abdomen" class="editable-health" contenteditable="false"></td>
                     </tr>
                     <tr>
-                        <td>Pulse</td>
+                        <td>Pulse (bpm)</td>
                         <td id="pulse" class="editable-health" contenteditable="false"></td>
                     </tr>
                     <tr>
-                        <td>Last surgery</td>
+                        <td>Last surgery (if applicable)</td>
                         <td id="last_surgery" class="editable-health" contenteditable="false"></td>
                     </tr>
                     <tr>
-                        <td>Insurance</td>
+                        <td>Insurance (if applicable)</td>
                         <td id="insurance" class="editable-health" contenteditable="false"></td>
                     </tr>
                 </table>

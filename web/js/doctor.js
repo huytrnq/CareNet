@@ -169,43 +169,43 @@ function handleRowClick(patientId) {
                         <td>${patientId}</td>
                     </tr>
                     <tr>
-                        <td>Height</td>
+                        <td>Height (m)</td>
                         <td>${height}</td>
                     </tr>
                     <tr>
-                        <td>Weight</td>
+                        <td>Weight (kg)</td>
                         <td>${weight}</td>
                     </tr>
                     <tr>
-                        <td>Allergies</td>
+                        <td>Allergies (if applicable)</td>
                         <td>${allergies}</td>
                     </tr>
                     <tr>
-                        <td>Blood Pressure</td>
+                        <td>Blood Pressure (mmHg)</td>
                         <td>${blood_pressure}</td>
                     </tr>
                     <tr>
-                        <td>Current Medication</td>
+                        <td>Current Medication (if applicable)</td>
                         <td>${current_medication}</td>
                     </tr>
                     <tr>
-                        <td>Genetic Conditions</td>
+                        <td>Genetic Conditions (if applicable)</td>
                         <td>${genetic_conditions}</td>
                     </tr>
                     <tr>
-                        <td>Abdomen</td>
+                        <td>Abdomen (if applicable)</td>
                         <td>${abdomen}</td>
                     </tr>
                     <tr>
-                        <td>Pulse</td>
+                        <td>Pulse (bpm)</td>
                         <td>${pulse}</td>
                     </tr>
                     <tr>
-                        <td>Last Surgery</td>
+                        <td>Last Surgery (if applicable)</td>
                         <td>${last_surgery}</td>
                     </tr>
                     <tr>
-                        <td>Insurance</td>
+                        <td>Insurance (if applicable)</td>
                         <td>${insurance}</td>
                     </tr>
                 `;
