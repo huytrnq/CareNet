@@ -79,23 +79,22 @@ function login() {
 
 function checkUsername() {
     let username = document.getElementsByName('username')[0].value;
-    // Implement your username check functionality here
     if (username.length > 0) {
-        $.ajax({
-            url: 'checkUserExists',
-            type: 'GET',
-            dataType: 'json',
-            data: { username: username },
-            success: function(response) {
-                console.log(response);
-                if (response.userExists) {
+        fetch('checkUserExists?username=' + encodeURIComponent(username))
+            .then(response => response.json())
+            .then(data => {
+                console.log(data);
+                if (data.userExists) {
                     console.log("User already exists!");
-                    $('#username-error').text('Username is already taken');
+                    document.getElementById('username-error').textContent = 'Username is already taken';
                 } else {
-                    $('#username-error').text('');
+                    console.log("User does not exist!");
+                    document.getElementById('username-error').textContent = '';
                 }
-            }
-        });
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                document.getElementById('username-error').textContent = '';
+            });
     }
-
 }
