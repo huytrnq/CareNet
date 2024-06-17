@@ -36,9 +36,9 @@ public class UserDAO {
             stmt.setString(10, user.getOccupation());
             stmt.setString(11, user.getLicenseNumber());
             stmt.setDate(12, user.getExpiryDate());
-            stmt.setString(13, user.getAffiliations());
-            stmt.setString(14, "default_user.png");
-            stmt.setDate(15, user.getDateOfBirth());
+            stmt.setDate(13, user.getDateOfBirth());
+            stmt.setString(14, user.getAffiliations());
+            stmt.setString(15,  "default_user.png");
 
             stmt.executeUpdate();
 

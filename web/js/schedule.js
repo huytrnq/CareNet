@@ -48,15 +48,11 @@ document.addEventListener('DOMContentLoaded', function() {
                             start: date + 'T' + time
                         });
                         occupiedTime.push(date + 'T' + time);
-                    }else{
-                        console.log('Appointment is not available.');
+                        // Clear the form
+                        form.reset();
+                        // Hide the modal
+                        modal.style.display = 'none';
                     }
-
-                    // Clear the form
-                    form.reset();
-
-                    // Hide the modal
-                    modal.style.display = 'none';
                 } else {
                     alert('Please fill out the required fields.');
                 }
@@ -84,8 +80,16 @@ function addEvent() {
     var title = document.getElementById('eventTitle').value;
     var date = document.getElementById('eventDate').value;
     var time = document.getElementById('eventTime').value;
-
-    window.location.href = `/CareNet/appointment?doctorId=${doctorId}&eventTitle=${title}&eventDate=${date}&eventTime=${time}`;
+    if (isAppointmentAvailable(date, time)){
+        fetch(`/CareNet/appointment?doctorId=${doctorId}&eventTitle=${title}&eventDate=${date}&eventTime=${time}`)
+            .then(response => response.json())
+            .then(data => {
+                console.log(data);
+            });
+        window.location.reload();
+    }else{
+        alert('Appointment is not available.');
+    }
 }
 
 function isAppointmentAvailable(date, time){
@@ -102,5 +106,6 @@ function isAppointmentAvailable(date, time){
 function timeDiff(time1, time2){
     var time1 = new Date(time1);
     var time2 = new Date(time2);
-    return time1.getTime() - time2.getTime();
+    var diff = time1.getTime() - time2.getTime();
+    return Math.abs(diff);
 }

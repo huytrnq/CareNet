@@ -11,17 +11,7 @@
   <component name="ChangeListManager">
     <list default="true" id="1a181c00-df0d-4f39-bc08-2a51b23aff5a" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CareNet.sql" beforeDir="false" afterPath="$PROJECT_DIR$/CareNet.sql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/it/unicas/action/AppointmentAction.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/it/unicas/action/AppointmentAction.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/it/unicas/action/ImageAction.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/it/unicas/action/ImageAction.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/it/unicas/action/SessionDataAction.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/it/unicas/action/SessionDataAction.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/it/unicas/action/UpdateMedicalInfo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/it/unicas/action/UpdateMedicalInfo.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/it/unicas/dao/AppointmentDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/it/unicas/dao/AppointmentDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/it/unicas/dao/MedicalInfoDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/it/unicas/dao/MedicalInfoDAO.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/it/unicas/dao/UserDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/it/unicas/dao/UserDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/Patient.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/web/Patient.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/js/doctor.js" beforeDir="false" afterPath="$PROJECT_DIR$/web/js/doctor.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/js/patient.js" beforeDir="false" afterPath="$PROJECT_DIR$/web/js/patient.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/web/js/schedule.js" beforeDir="false" afterPath="$PROJECT_DIR$/web/js/schedule.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -196,7 +186,7 @@
       <workItem from="1718099986248" duration="565000" />
       <workItem from="1718115181522" duration="5612000" />
       <workItem from="1718143122852" duration="31690000" />
-      <workItem from="1718458307845" duration="68897000" />
+      <workItem from="1718458307845" duration="71221000" />
     </task>
     <servers />
   </component>
