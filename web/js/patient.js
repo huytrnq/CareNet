@@ -138,9 +138,13 @@ document.addEventListener('DOMContentLoaded', function() {
             })
             .then(blob => {
                 const imgUrl = URL.createObjectURL(blob);
-                document.getElementById('xray-description').innerHTML = `<p id="xray-description">X-Ray: <a class="xray-description" href="${imgUrl}">Description</a></p>`;
+                document.getElementById('image-display-xray').src = imgUrl;
             })
-            .catch(error => console.error('Error fetching image:', error));
+            .catch(error => {
+                console.error('Error fetching image:', error);
+                document.getElementById('xray-description').innerHTML = `<p id="xray-description">X-Ray: <a class="xray-description" href="">No Description</a></p>`;
+                document.getElementById('image-display-xray').src = '';
+            });
         }
         if (ultrasound_path != null){
             fetch('getImage?medicalImagePath=' + ultrasound_path)
@@ -153,10 +157,15 @@ document.addEventListener('DOMContentLoaded', function() {
             })
             .then(blob => {
                 const imgUrl = URL.createObjectURL(blob);
-                document.getElementById('ultrasound-description').innerHTML = `<p id="ultrasound-description">Ultrasonography: <a class="ultrasound-description" href="${imgUrl}">Description</a></p>`;
+                document.getElementById('image-display-ultrasound').src = imgUrl;
             })
-            .catch(error => console.error('Error fetching image:', error));
+            .catch(error => {
+                console.error('Error fetching image:', error);
+                document.getElementById('ultrasound-description').innerHTML = `<p id="ultrasound-description">Ultrasonography: <a class="ultrasound-description" href="">No Description</a></p>`;
+                document.getElementById('image-display-ultrasound').src = '';
+            });
         }
+        showImageModal();
     })
     .catch(error => console.error('Error fetching session data:', error));
 });
@@ -179,7 +188,7 @@ document.addEventListener('DOMContentLoaded', function() {
             const doctorFirstname = doctor.firstname;
             const doctorLastname = doctor.lastname;
             const doctorTable = document.getElementById('doctors-table');
-            doctorTable.innerHTML += `<tr><td>${doctorFirstname} ${doctorLastname}</td><td>${doctorSpecialization}</td><td><a href="calendarPage.jsp?doctorId=${doctorId}">Click Here</a></td></tr>`;
+            doctorTable.innerHTML += `<tr><td>${doctorFirstname} ${doctorLastname}</td><td>${doctorSpecialization}</td><td><a href="appointment?doctorId=${doctorId}">Click Here</a></td></tr>`;
         });
     }).catch(error => console.error('Error fetching session data:', error));
 });
@@ -241,3 +250,60 @@ document.addEventListener('DOMContentLoaded', () => {
         editButton.style.display = 'inline';
     });
 });
+
+
+
+document.addEventListener('DOMContentLoaded', function() {
+
+    fetch('getImage?username=' + userName)
+        .then(response => {
+            if (response.ok) {
+                return response.blob();
+            } else {
+                throw new Error('Image not found');
+            }
+        })
+        .then(blob => {
+            const imgUrl = URL.createObjectURL(blob);
+            document.getElementById('profile-pic').src = imgUrl;
+        })
+        .catch(error => console.error('Error fetching image:', error));
+});
+
+
+function showImageModal(){
+    var showImageBtnXray = document.getElementById('showImageBtnXray');
+    var showImageBtnUltrasound = document.getElementById('showImageBtnUltrasound');
+    var modal = document.getElementById('image-modal');
+    var span = modal.getElementsByClassName('close')[0];
+    var imgDisplay = document.getElementById('image-display');
+    
+
+    if (showImageBtnXray != null){
+        showImageBtnXray.onclick = function() {
+            imgDisplay.src = document.getElementById('image-display-xray').src;
+            // Show the modal
+            modal.style.display = 'block';
+        };
+    }
+
+    if (showImageBtnUltrasound != null){
+        showImageBtnUltrasound.onclick = function() {
+            imgDisplay.src = document.getElementById('image-display-ultrasound').src;
+        // Show the modal
+            modal.style.display = 'block';
+        };
+    }
+
+    // Close the modal when the close button is clicked
+    span.onclick = function() {
+        modal.style.display = 'none';
+    };
+
+    // Close the modal when the user clicks outside of the modal
+    window.onclick = function(event) {
+        if (event.target == modal) {
+            modal.style.display = 'none';
+        }
+    };
+}

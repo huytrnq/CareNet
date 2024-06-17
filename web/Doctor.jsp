@@ -111,13 +111,6 @@
             </div>
         </section>
         <section class="dashboard">
-            <div class="risk-factor">
-                <h3>Risk Factor</h3>
-                <div id="risk-factor">
-                    Choose a patient to view risk factor
-                    <!-- <button id="add-risk-factor-btn">Add risk factor</button> -->
-                </div>
-            </div>
             <div class="physical-exam">
                 <div class="row">
                     <h3>Physical Exam</h3>
@@ -132,13 +125,15 @@
             <div class="imaging">
                 <h3>Imaging</h3>
                 <div class="imaging-details" id="imaging-details">
-                    <p id="xray-description">X-Ray: <a class="xray-description" href="">No Description</a></p>
-                    <p id="ultrasound-description">Ultrasonography: <a class="ultrasound-description" href="">No Description</a></p>
+                    <p id="xray-description-text">X-Ray: <a class="xray-description">No Description</a></p>
+                    <p id="ultrasound-description-text">Ultrasonography: <a class="ultrasound-description">No Description</a></p>
+                    <p id="xray-description" class="hidden">X-Ray: <button id="showImageBtnXray">Show Image</button></p>
+                    <p id="ultrasound-description" class="hidden">Ultrasonography: <button id="showImageBtnUltrasound">Show Image</button></p>
                 </div>
                 <div id="upload-imaging" class="upload-imaging hidden">
-                    <button id="show-upload-form">Upload New Imaging</button>
+                    <button id="show-upload-form" onclick="showUploadForm()">Upload New Image</button>
                     <div id="upload-form-container" style="display: none;">
-                        <h4>Upload New Imaging</h4>
+                        <h4>Upload New Image</h4>
 
                         <form action="uploadImage" method="post" enctype="multipart/form-data">
                             <label for="imaging-type">Type:</label>
@@ -153,17 +148,24 @@
                         </form>
                     </div>
                 </div>
+                <!-- Button to trigger the modal -->
+                <!-- <button id="showImageBtn">Show Image</button> -->
+
+                <!-- Image Modal -->
+                <img id="image-display-xray" src="" alt="Image" class="hidden" />
+                <img id="image-display-ultrasound" src="" alt="Image" class="hidden" />
+                <div id="image-modal" class="modal">
+                    <div class="modal-content">
+                        <span class="close">&times;</span>
+                        <img id="image-display" src="" alt="Image" />
+                    </div>
+                </div>
             </div>
         </section>
     </main>
 </div>
 
-<!-- Image Modal -->
-<div id="image-modal" class="modal">
-    <span class="close">&times;</span>
-    <img class="modal-content" id="modal-image">
-    <div id="caption"></div>
-</div>
+
 
 <script src="js/doctor.js"></script>
 <!-- <script src="js/imagingUpload.js"></script> -->

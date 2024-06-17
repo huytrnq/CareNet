@@ -1,4 +1,5 @@
 package it.unicas.action;
+import it.unicas.dao.AppointmentDAO;
 
 import com.opensymphony.xwork2.ActionSupport;
 import org.apache.struts2.interceptor.SessionAware;
@@ -41,8 +42,13 @@ public class SessionDataAction extends ActionSupport implements SessionAware {
                 String doctorUsername = ServletActionContext.getRequest().getParameter("doctor");
                 JSONObject doctor = getDoctorByUserName(doctorUsername);
                 json.put("doctor", doctor);
-            }
-            else{
+            }else if(ServletActionContext.getRequest().getParameter("appointment") != null){
+                // Fetch the appointment data
+                String appointment = ServletActionContext.getRequest().getParameter("appointment");
+                String doctorId = ServletActionContext.getRequest().getParameter("doctorId");
+                JSONArray appointments = getAppointmentsByDoctor(doctorId);
+                json.put("appointments", appointments);
+            }else{
                 // Get the currently logged-in doctor from the session
                 String doctorUsername = (String) session.get("username");
                 
@@ -136,7 +142,6 @@ public class SessionDataAction extends ActionSupport implements SessionAware {
                 }
             }
         }
-
         return patients;
     }
 
@@ -171,6 +176,30 @@ public class SessionDataAction extends ActionSupport implements SessionAware {
             }
         }
         return patient;
+    }
+
+    private JSONArray getAppointmentsByDoctor(String doctorId) throws Exception {
+        JSONArray appointments = new JSONArray();
+        try (Connection conn = DriverManager.getConnection(DB_URL, DB_USER, DB_PASSWORD)) {
+            String query = "SELECT * FROM appointment WHERE doctor_id = ?";
+            try (PreparedStatement stmt = conn.prepareStatement(query)) {
+                stmt.setString(1, doctorId);
+                try (ResultSet rs = stmt.executeQuery()) {
+                    while (rs.next()) {
+                        JSONObject appointment = new JSONObject();
+                        appointment.put("id", rs.getString("id"));
+                        appointment.put("patient_id", rs.getString("patient_id"));
+                        appointment.put("doctor_id", rs.getString("doctor_id"));
+                        appointment.put("event_date", rs.getString("date"));
+                        appointment.put("event_time", rs.getString("time"));
+                        appointment.put("status", rs.getString("status"));
+                        appointment.put("event_title", rs.getString("title"));
+                        appointments.put(appointment);
+                    }
+                }
+            }
+        }
+        return appointments;
     }
 
     @Override

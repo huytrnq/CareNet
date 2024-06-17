@@ -107,5 +107,12 @@
             </result>
         </action>
 
+        <!-- Appointment Action -->
+        <action name="appointment" class="it.unicas.action.AppointmentAction">
+            <interceptor-ref name="authStack"/>
+            <result name="success">appointment.jsp</result>
+            <result name="login" type="redirect">login</result>
+        </action>
+
     </package>
 </struts>

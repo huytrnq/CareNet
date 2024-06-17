@@ -33,7 +33,6 @@ public class RegisterAction extends ActionSupport implements SessionAware{
         System.out.println("Gender: " + gender);
         System.out.println("Email: " + email);
         System.out.println("Address: " + address); 
-
         
         Optional<User> existingUser = UserDAO.findByUsername(username);
         if (existingUser.isPresent()) {

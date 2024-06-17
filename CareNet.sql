@@ -53,6 +53,7 @@ CREATE TABLE `appointment` (
     `patient_id` INT NOT NULL,
     `date` DATE,
     `time` TIME,
+    `title` VARCHAR(255),
     `status` ENUM('scheduled', 'completed', 'cancelled'),
     PRIMARY KEY (`id`),
     INDEX (`doctor_id`),

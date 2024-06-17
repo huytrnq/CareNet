@@ -40,7 +40,7 @@ public class LoginAction extends ActionSupport implements SessionAware{
             String role = LoginDAO.getRole(username);
             session.put("role", role);
             Integer userId = LoginDAO.getUserId(username);
-            session.put("userId", userId);
+            session.put("userId", String.valueOf(userId));
             if (role == null) {
                 return "error";
             }

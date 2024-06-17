@@ -1,26 +1,35 @@
 document.addEventListener('DOMContentLoaded', function() {
     var calendarEl = document.getElementById('calendar');
-
     var calendar = new FullCalendar.Calendar(calendarEl, {
         initialView: 'dayGridMonth',
+        selectable: true,
         events: [
-            {
-                title: 'Patient 1 - Consultation',
-                start: '2024-06-01T10:00:00',
-                end: '2024-06-01T11:00:00'
-            },
-            {
-                title: 'Patient 2 - Follow-up',
-                start: '2024-06-02T12:00:00',
-                end: '2024-06-02T13:00:00'
-            },
-            {
-                title: 'Patient 3 - Surgery',
-                start: '2024-06-03T09:00:00',
-                end: '2024-06-03T12:00:00'
-            }
-        ]
+            // Add more events here
+        ],
     });
+    fetch(`sessionData?appointment=true&doctorId=${userId}`)
+        .then(response => response.json())
+        .then(data => {
+            var appointments = data.appointments;
+            appointments.forEach(appointment => {
+                console.log(appointment, appointment.event_date, appointment.event_time);
+                calendar.addEvent({
+                    title: appointment.status,
+                    start: appointment.event_date + 'T' + appointment.event_time
+                });
+            });
+            calendar.render();
+        });
+    })
 
-    calendar.render();
-});
+
+    var event_time = document.getElementsByClassName('fc-event-time');
+
+    event_time.forEach(event => {
+        event.addEventListener('click', function() {
+            console.log('Event clicked:', event);
+        });
+    });
+;
+
+

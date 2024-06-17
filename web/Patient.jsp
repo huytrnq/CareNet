@@ -6,17 +6,26 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Patient Profile</title>
     <link rel="stylesheet" href="css/Patient.css">
-
     <script>
-        // Embed Struts values into JavaScript variables
-        var userName = "<s:property value='%{#session.user.username}'/>";
         var patientId = "<s:property value='%{#session.userId}'/>";
-
-        document.addEventListener('DOMContentLoaded', function() {
-            console.log("User Name: " + userName);
-            console.log("Patient Id: " + patientId);
-        });
+        var userName = "<s:property value='%{#session.user.username}'/>";
     </script>
+
+    <style>
+        .row {
+            display: flex;
+            align-items: center;
+        }
+        .row button{
+            margin-left: auto;
+            background-color: #007BFF;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+    </style>
 </head>
 
 <body>
@@ -25,11 +34,10 @@
         <header class="header">
             <div class="logo">CareNet</div>
             <div class="list-items">
-                <div class="overview"><a href="testPage.jsp">Profile</a></div>
-                <div class="overview"><a href="qaPage.jsp">Q&A</a></div>
-                <div class="calendar"><a href="calendarPage.jsp">Schedule Appointment</a></div>
+                <div class="overview"><a href="<s:url action='patient'/>">Profile</a></div>
+                <div class="overview"><a href="qaPage.html">Q&A</a></div>
                 <div class="user-name-container">
-                    <div class="user-name">Options</div>
+                    <div class="user-name"><s:property value="#session.user.firstname"/> <s:property value="#session.user.lastname"/></div>
                     <div class="dropdown-content">
                         <a class="log" href="<s:url action='logout'/>">Log Out</a>
                     </div>
@@ -95,9 +103,11 @@
         </section>
         <section class="dashboard">
             <div class="health-summary">
-                <h3>Health Summary</h3>
-                <!-- <button class="edit-button" id="edit-health-summary">Edit</button>
-                <button class="edit-button" id="save-health-summary" style="display: none;">Save</button> -->
+                <div class="row">
+                    <h3>Health Summary</h3>
+                    <button class="edit-button" id="edit-health-summary">Edit</button>
+                    <button class="edit-button" id="save-health-summary" style="display: none;">Save</button>
+                </div>
                 <table>
                     <tr>
                         <td>Height</td>
@@ -141,48 +151,26 @@
             <div class="imaging">
                 <h3>Imaging</h3>
                 <div class="imaging-details" id="imaging-details">
-                    <p>X-Ray: <span class="xray-description" data-image="">Description</span></p>
-                    <p>Ultrasonography: <span class="ultrasound-description" data-image="">Description</span></p>
+                    <p id="xray-description">X-Ray: <button id="showImageBtnXray">Show Image</button></p>
+                    <p id="ultrasound-description">Ultrasonography: <button id="showImageBtnUltrasound">Show Image</button></p>
+                </div>
+
+                <!-- Image Modal -->
+                <img id="image-display-xray" src="" alt="Image" class="hidden" />
+                <img id="image-display-ultrasound" src="" alt="Image" class="hidden" />
+                <div id="image-modal" class="modal">
+                    <div class="modal-content">
+                        <span class="close">&times;</span>
+                        <img id="image-display" src="" alt="Image" />
+                    </div>
                 </div>
             </div>
         </section>
     </main>
 </div>
 
-<!-- Image Modal -->
-<div id="image-modal" class="modal">
-    <span class="close">&times;</span>
-    <img class="modal-content" id="modal-image">
-    <div id="caption"></div>
-</div>
 
-<!-- Pop up window-->
-<div id="popup" class="popup">
-    <div class="popup-content">
-        <span class="close" onclick="closePopup()">&times;</span>
-        <h2>Edit Information</h2>
-        <form id="edit-form">
-            <label for="age">Age:</label>
-            <input type="text" id="age" name="age"><br><br>
-            <label for="birth">Birth:</label>
-            <input type="text" id="birth" name="birth"><br><br>
-            <label for="nationality">Nationality:</label>
-            <input type="text" id="nationality" name="nationality"><br><br>
-            <label for="occupation">Occupation:</label>
-            <input type="text" id="occupation" name="occupation"><br><br>
-            <label for="marital-status">Marital Status:</label>
-            <input type="text" id="marital-status" name="marital-status"><br><br>
-            <button type="button" onclick="saveEdit()">Save</button>
-        </form>
-    </div>
-</div>
 
-<!-- <script src="js/profileEdit.js"></script> -->
-<!-- <script src="js/imagingUpload.js"></script> -->
-<!-- <script src="js/profilePicUpload.js"></script> -->
-<!-- <script src="js/physicalExamUpdate.js"></script> -->
-<!-- <script src="js/PatientINFO.js"></script> -->
-<!-- <script src="js/healthhistory.js"></script> -->
 <script src="js/patient.js"></script>
 
 </body>

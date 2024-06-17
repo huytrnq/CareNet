@@ -1,6 +1,7 @@
 package it.unicas.model;
 
 public class User {
+    private int id;
     private String username;
     private String firstname;
     private String lastname;
@@ -54,6 +55,14 @@ public class User {
         this.affiliations = affiliations;
         this.profilePath = profilePath;
 
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public int getId() {
+        return id;
     }
 
     public String getUsername() {

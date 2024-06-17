@@ -9,6 +9,14 @@
     <link rel="stylesheet" href="css/calendar.css">
     <link href='https://cdn.jsdelivr.net/npm/fullcalendar@5.9.0/main.min.css' rel='stylesheet' />
     <script src='https://cdn.jsdelivr.net/npm/fullcalendar@5.9.0/main.min.js'></script>
+    <script>
+        // Embed Struts values into JavaScript variables
+        var userId = "<s:property value='%{#session.userId}'/>";
+
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log("User Id: " + userId);
+        });
+    </script>
 </head>
 <body>
 <div class="container">

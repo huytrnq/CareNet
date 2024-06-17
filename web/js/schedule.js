@@ -1,85 +1,106 @@
+var occupiedTime = [];
+
 document.addEventListener('DOMContentLoaded', function() {
-    const currentMonth = new Date().getMonth();
-    const currentYear = new Date().getFullYear();
+    var doctorId = urlParams.get('doctorId');
+    var calendarEl = document.getElementById('calendar');
+    var calendar = new FullCalendar.Calendar(calendarEl, {
+        initialView: 'dayGridMonth',
+        selectable: true,
+        events: [
+            // Add more events here
+        ],
+        dateClick: function(info) {
+            var modal = document.getElementById('event-modal');
+            var span = document.getElementsByClassName('close')[0];
+            var dateInput = document.getElementById('eventDate');
+            var form = document.getElementById('event-form');
 
-    let selectedDate = null;
+            // Pre-fill the date input
+            dateInput.value = info.dateStr;
 
-    const calendarDays = document.getElementById('days');
-    const monthYearDisplay = document.getElementById('month-year');
-    const prevMonthButton = document.getElementById('prev-month');
-    const nextMonthButton = document.getElementById('next-month');
-    const modal = document.getElementById('appointment-modal');
-    const closeModalButton = document.querySelector('.modal .close');
-    const appointmentForm = document.getElementById('appointment-form');
-    const appointmentDateInput = document.getElementById('appointment-date');
-    const cancelButton = document.getElementById('cancel-button');
+            // Show the modal
+            modal.style.display = 'block';
 
-    let month = currentMonth;
-    let year = currentYear;
+            // Close the modal when the close button is clicked
+            span.onclick = function() {
+                modal.style.display = 'none';
+            };
 
-    function generateCalendar(month, year) {
-        calendarDays.innerHTML = '';
-        monthYearDisplay.textContent = new Date(year, month).toLocaleDateString('en-US', { month: 'long', year: 'numeric' });
+            // Close the modal when the user clicks outside of the modal
+            window.onclick = function(event) {
+                if (event.target == modal) {
+                    modal.style.display = 'none';
+                }
+            };
 
-        const firstDay = new Date(year, month, 1).getDay();
-        const daysInMonth = new Date(year, month + 1, 0).getDate();
+            // Handle form submission
+            form.onsubmit = function(event) {
+                event.preventDefault();
+                
+                var title = document.getElementById('eventTitle').value;
+                var date = document.getElementById('eventDate').value;
+                var time = document.getElementById('eventTime').value;
 
-        for (let i = 0; i < firstDay; i++) {
-            const emptyCell = document.createElement('div');
-            emptyCell.classList.add('day');
-            calendarDays.appendChild(emptyCell);
+                if (title && date && time) {
+                    if (isAppointmentAvailable(date, time)){
+                        calendar.addEvent({
+                            title: title,
+                            start: date + 'T' + time
+                        });
+                        occupiedTime.push(date + 'T' + time);
+                    }else{
+                        alert('Appointment is not available.');
+                    }
+
+                    // Clear the form
+                    form.reset();
+
+                    // Hide the modal
+                    modal.style.display = 'none';
+                } else {
+                    alert('Please fill out the required fields.');
+                }
+            };
         }
-
-        for (let i = 1; i <= daysInMonth; i++) {
-            const dayCell = document.createElement('div');
-            dayCell.classList.add('day');
-            dayCell.textContent = i;
-            dayCell.addEventListener('click', () => openModal(i));
-            calendarDays.appendChild(dayCell);
-        }
-    }
-
-    function openModal(day) {
-        selectedDate = new Date(year, month, day);
-        appointmentDateInput.value = selectedDate.toDateString();
-        modal.style.display = 'flex';
-    }
-
-    function closeModal() {
-        modal.style.display = 'none';
-    }
-
-    function saveAppointment(event) {
-        event.preventDefault();
-        const time = document.getElementById('appointment-time').value;
-        const description = document.getElementById('appointment-description').value;
-        console.log(`Appointment saved: ${selectedDate.toDateString()} at ${time}, ${description}`);
-        closeModal();
-    }
-
-    prevMonthButton.addEventListener('click', () => {
-        if (month === 0) {
-            month = 11;
-            year--;
-        } else {
-            month--;
-        }
-        generateCalendar(month, year);
     });
-
-    nextMonthButton.addEventListener('click', () => {
-        if (month === 11) {
-            month = 0;
-            year++;
-        } else {
-            month++;
-        }
-        generateCalendar(month, year);
-    });
-
-    closeModalButton.addEventListener('click', closeModal);
-    cancelButton.addEventListener('click', closeModal);
-    appointmentForm.addEventListener('submit', saveAppointment);
-
-    generateCalendar(month, year);
+    fetch(`sessionData?appointment=true&doctorId=${doctorId}`)
+        .then(response => response.json())
+        .then(data => {
+            var appointments = data.appointments;
+            appointments.forEach(appointment => {
+                calendar.addEvent({
+                    title: appointment.status,
+                    start: appointment.event_date + 'T' + appointment.event_time
+                });
+                occupiedTime.push(appointment.event_date + 'T' + appointment.event_time);
+            });
+            calendar.render();
+        });
 });
+
+
+function addEvent() {
+    var doctorId = urlParams.get('doctorId');
+    var title = document.getElementById('eventTitle').value;
+    var date = document.getElementById('eventDate').value;
+    var time = document.getElementById('eventTime').value;
+
+    // window.location.href = `/CareNet/appointment?doctorId=${doctorId}&eventTitle=${title}&eventDate=${date}&eventTime=${time}`;
+}
+
+function isAppointmentAvailable(date, time){
+    var appointmentTime = date + 'T' + time;
+    for (let i = 0; i < occupiedTime.length; i++) {
+        let scheduledTime = occupiedTime[i];
+        if (parseInt(timeDiff(appointmentTime, scheduledTime)) < 1000*60*30){
+            return false;
+        }
+    }
+    return true;
+}
+
+function timeDiff(time1, time2){
+    var time1 = new Date(time1);
+    var time2 = new Date(time2);
+    return time1.getTime() - time2.getTime();
+}

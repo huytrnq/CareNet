@@ -111,13 +111,16 @@ function updatePatientData(){
     }
     var data = parseTable('physical-exam-table');
     const patientId = data[0].value;
-    const abdomen = data[1].value;
-    const pulse = data[2].value;
-    const blood_pressure = data[3].value;
-    const heart = data[4].value;
-    const allergies = data[5].value;
-    const last_surgery = data[6].value;
-    fetch('updateMedicalInfo?patientId=' + patientId + '&abdomen=' + abdomen + '&pulse=' + pulse + '&blood_pressure=' + blood_pressure + '&heart=' + heart + '&allergies=' + allergies + '&last_surgery=' + last_surgery)
+    const height = data[1].value;
+    const weight = data[2].value;
+    const allergies = data[3].value;
+    const blood_pressure = data[4].value;
+    const current_medication = data[5].value;
+    const genetic_conditions = data[6].value;
+    const abdomen = data[7].value;
+    const pulse = data[8].value;
+    const last_surgery = data[9].value;
+    fetch('updateMedicalInfo?patientId=' + patientId + '&height=' + height + '&weight=' + weight + '&allergies=' + allergies + '&blood_pressure=' + blood_pressure + '&current_medication=' + current_medication + '&genetic_conditions=' + genetic_conditions + '&abdomen=' + abdomen + '&pulse=' + pulse + '&last_surgery=' + last_surgery)
         .then(response => response.json())
         .then(data => {
             status = data.status;
@@ -144,27 +147,50 @@ function handleRowClick(patientId) {
             const allergies = patient.allergies;
             const abdomen = patient.abdomen;
             const pulse = patient.pulse;
-            const risk_factor = patient.risk_factor;
             const blood_pressure = patient.blood_pressure;
             const xray_path = patient.xray_path;
             const heart = patient.heart;
             const ultrasound_path = patient.ultrasound_path;
             const last_surgery = patient.last_surgery;
+            const weight = patient.weight;
+            const height = patient.height;
+            const current_medication = patient.current_medication;
+            const genetic_conditions = patient.genetic_conditions;
+            const date_of_birth = patient.date_of_birth;
+            const gender = patient.gender;
+            const occupation = patient.occupation;
+            const address = patient.address;
 
-            if(risk_factor != null){
-                document.getElementById('risk-factor').innerHTML = risk_factor;
-            }else{
-                document.getElementById('risk-factor').innerHTML = `<div class='update-risk-factor'>
-                    <input type="text" id="risk-factor-input">
-                    <button id="add-risk-factor-btn">Add risk factor</button>
-                </div>`;
-            }
 
-            if (abdomen != null || pulse != null || blood_pressure != null || heart != null || allergies != null || last_surgery != null){
+            if (abdomen != null || pulse != null || blood_pressure != null || heart != null || allergies != null || last_surgery != null || weight != null || height != null || current_medication != null || genetic_conditions != null || date_of_birth != null || gender != null || occupation != null || address != null){
                 document.getElementById('physical-exam-table').innerHTML = `
                     <tr class="hidden">
                         <td>patientId</td>
                         <td>${patientId}</td>
+                    </tr>
+                    <tr>
+                        <td>Height</td>
+                        <td>${height}</td>
+                    </tr>
+                    <tr>
+                        <td>Weight</td>
+                        <td>${weight}</td>
+                    </tr>
+                    <tr>
+                        <td>Allergies</td>
+                        <td>${allergies}</td>
+                    </tr>
+                    <tr>
+                        <td>Blood Pressure</td>
+                        <td>${blood_pressure}</td>
+                    </tr>
+                    <tr>
+                        <td>Current Medication</td>
+                        <td>${current_medication}</td>
+                    </tr>
+                    <tr>
+                        <td>Genetic Conditions</td>
+                        <td>${genetic_conditions}</td>
                     </tr>
                     <tr>
                         <td>Abdomen</td>
@@ -173,18 +199,6 @@ function handleRowClick(patientId) {
                     <tr>
                         <td>Pulse</td>
                         <td>${pulse}</td>
-                    </tr>
-                    <tr>
-                        <td>Blood Pressure</td>
-                        <td>${blood_pressure}</td>
-                    </tr>
-                    <tr>
-                        <td>Heart</td>
-                        <td>${heart}</td>
-                    </tr>
-                    <tr>
-                        <td>Allergies</td>
-                        <td>${allergies}</td>
                     </tr>
                     <tr>
                         <td>Last Surgery</td>
@@ -211,9 +225,25 @@ function handleRowClick(patientId) {
                 })
                 .then(blob => {
                     const imgUrl = URL.createObjectURL(blob);
-                    document.getElementById('xray-description').innerHTML = `<p id="xray-description">X-Ray: <a class="xray-description" href="${imgUrl}">Description</a></p>`;
+                    document.getElementById('image-display-xray').src = imgUrl;
+                    if(!document.getElementById('xray-description-text').classList.contains('hidden')){
+                        document.getElementById('xray-description-text').classList.add('hidden');
+                    }
+                    if(document.getElementById('xray-description').classList.contains('hidden')){
+                        document.getElementById('xray-description').classList.remove('hidden');
+                    }
+
                 })
-                .catch(error => console.error('Error fetching image:', error));
+                .catch(error => {
+                    console.error('Error fetching image:', error);
+                    if(document.getElementById('xray-description-text').classList.contains('hidden')){
+                        document.getElementById('xray-description-text').classList.remove('hidden');
+                    }
+                    if(!document.getElementById('xray-description').classList.contains('hidden')){
+                        document.getElementById('xray-description').classList.add('hidden');
+                    }
+                    document.getElementById('image-display-xray').src = '';
+                });
             }
             if (ultrasound_path != null){
                 fetch('getImage?medicalImagePath=' + ultrasound_path)
@@ -226,12 +256,33 @@ function handleRowClick(patientId) {
                 })
                 .then(blob => {
                     const imgUrl = URL.createObjectURL(blob);
-                    document.getElementById('ultrasound-description').innerHTML = `<p id="ultrasound-description">Ultrasonography: <a class="ultrasound-description" href="${imgUrl}">Description</a></p>`;
+                    document.getElementById('image-display-ultrasound').src = imgUrl;
+                    if(!document.getElementById('ultrasound-description-text').classList.contains('hidden')){
+                        document.getElementById('ultrasound-description-text').classList.add('hidden');
+                    }
+                    if(document.getElementById('ultrasound-description').classList.contains('hidden')){
+                        document.getElementById('ultrasound-description').classList.remove('hidden');
+                    }
                 })
-                .catch(error => console.error('Error fetching image:', error));
+                .catch(error => {
+                    console.error('Error fetching image:', error);
+                    if(document.getElementById('ultrasound-description-text').classList.contains('hidden')){
+                        document.getElementById('ultrasound-description-text').classList.remove('hidden');
+                    }
+                    if(!document.getElementById('ultrasound-description').classList.contains('hidden')){
+                        document.getElementById('ultrasound-description').classList.add('hidden');
+                    }
+                    document.getElementById('image-display-ultrasound').src = '';
+                });
             }
+            
+            showImageModal();
         })
         .catch(error => console.error('Error fetching session data:', error));
+}
+
+function wait(ms) {
+    return new Promise(resolve => setTimeout(resolve, ms));
 }
 
 function getValue(field){
@@ -345,26 +396,74 @@ document.addEventListener('DOMContentLoaded', function() {
 
 
 
-document.addEventListener('DOMContentLoaded', () => {
-    const editButton = document.getElementById('edit-contact-info');
-    const saveButton = document.getElementById('save-contact-info');
-    const editableCells = document.querySelectorAll('.editable-contact');
+// document.addEventListener('DOMContentLoaded', () => {
+//     const editButton = document.getElementById('edit-contact-info');
+//     const saveButton = document.getElementById('save-contact-info');
+//     const editableCells = document.querySelectorAll('.editable-contact');
 
-    editButton.addEventListener('click', () => {
-        editableCells.forEach(cell => {
-            cell.contentEditable = 'true';
-            cell.classList.add('editing');
-        });
-        editButton.style.display = 'none';
-        saveButton.style.display = 'inline';
-    });
+//     editButton.addEventListener('click', () => {
+//         editableCells.forEach(cell => {
+//             cell.contentEditable = 'true';
+//             cell.classList.add('editing');
+//         });
+//         editButton.style.display = 'none';
+//         saveButton.style.display = 'inline';
+//     });
 
-    saveButton.addEventListener('click', () => {
-        editableCells.forEach(cell => {
-            cell.contentEditable = 'false';
-            cell.classList.remove('editing');
-        });
-        saveButton.style.display = 'none';
-        editButton.style.display = 'inline';
-    });
-});
+//     saveButton.addEventListener('click', () => {
+//         editableCells.forEach(cell => {
+//             cell.contentEditable = 'false';
+//             cell.classList.remove('editing');
+//         });
+//         saveButton.style.display = 'none';
+//         editButton.style.display = 'inline';
+//     });
+// });
+
+
+function showUploadForm(){
+    var imageUploadForm = document.getElementById('upload-form-container');
+    if(imageUploadForm.style.display === 'none'){
+        imageUploadForm.style.display = 'block';
+    }else{
+        imageUploadForm.style.display = 'none';
+    }
+}
+
+
+function showImageModal(){
+    var showImageBtnXray = document.getElementById('showImageBtnXray');
+    var showImageBtnUltrasound = document.getElementById('showImageBtnUltrasound');
+    var modal = document.getElementById('image-modal');
+    var span = modal.getElementsByClassName('close')[0];
+    var imgDisplay = document.getElementById('image-display');
+    
+
+    if (showImageBtnXray != null){
+        showImageBtnXray.onclick = function() {
+            imgDisplay.src = document.getElementById('image-display-xray').src;
+            // Show the modal
+            modal.style.display = 'block';
+        };
+    }
+
+    if (showImageBtnUltrasound != null){
+        showImageBtnUltrasound.onclick = function() {
+            imgDisplay.src = document.getElementById('image-display-ultrasound').src;
+        // Show the modal
+            modal.style.display = 'block';
+        };
+    }
+
+    // Close the modal when the close button is clicked
+    span.onclick = function() {
+        modal.style.display = 'none';
+    };
+
+    // Close the modal when the user clicks outside of the modal
+    window.onclick = function(event) {
+        if (event.target == modal) {
+            modal.style.display = 'none';
+        }
+    };
+}

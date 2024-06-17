@@ -7,9 +7,9 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Optional;
-import java.text.ParseException;
 
 public class UserDAO {
 
@@ -60,6 +60,7 @@ public class UserDAO {
 
             if (rs.next()) {
                 User user = new User();
+                user.setId(rs.getInt("id"));
                 user.setUsername(rs.getString("username"));
                 user.setFirstname(rs.getString("firstname"));
                 user.setLastname(rs.getString("lastname"));
@@ -182,15 +183,19 @@ public class UserDAO {
     }
     
 
-    public static java.util.Date convertStringToDate(String date) {
-        SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yy");
-        try {
-            java.util.Date formattedDate = formatter.parse(date);
-            return formattedDate;
-        } catch (ParseException e) {
-            e.printStackTrace();
-            return null; // or handle differently based on your application's requirements
+    public static java.util.Date convertStringToDate(String dateStr) {
+        String[] dateFormats = {"dd/MM/yy", "yyyy-MM-dd", "MM/dd/yyyy"};
+        for (String format : dateFormats) {
+            SimpleDateFormat formatter = new SimpleDateFormat(format);
+            try {
+                return formatter.parse(dateStr);
+            } catch (ParseException e) {
+                // Log the exception or handle it if necessary
+                // Continue to the next format
+            }
         }
+        System.out.println("Date format not supported: " + dateStr);
+        return null; // or throw an exception if no format matched
     }
 
     public static String getProfilePath(String username){
