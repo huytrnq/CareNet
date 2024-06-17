@@ -22,6 +22,10 @@ public class AppointmentAction extends ActionSupport implements SessionAware {
         String patientId = (String) session.get("userId");
 
         if(doctorId != null && eventTitle != null && eventDate != null && eventTime != null) {
+            if (AppointmentDAO.findAppointment(patientId, doctorId, eventDate, eventTime)) {
+                System.out.println("Appointment already exists: " + doctorId + " " + eventTitle + " " + eventDate + " " + eventTime);
+                return ERROR;
+            }
             boolean result = AppointmentDAO.createAppointment(patientId, doctorId, eventTitle, eventDate, eventTime);
             if(result) {
                 System.out.println("Appointment created successfully: " + doctorId + " " + eventTitle + " " + eventDate + " " + eventTime);

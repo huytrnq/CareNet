@@ -32,13 +32,10 @@ CREATE TABLE `medical_info` (
     `current_medication` TEXT,        -- Current medication
     `genetic_conditions` TEXT,        -- Genetic conditions
     `last_surgery` TEXT,              -- Last surgery
-    `emergency_contact` VARCHAR(255), -- Emergency contact
     `insurance` VARCHAR(255),         -- Insurance
-    `heart` VARCHAR(255),             -- Heart information
     `blood_pressure` VARCHAR(255),    -- Blood pressure
     `pulse` VARCHAR(255),             -- Pulse
     `abdomen` VARCHAR(255),           -- Abdomen information
-    `risk_factor` INT,                -- Risk factor
     `xray_path` VARCHAR(255),         -- Path to X-ray image
     `ultrasound_path` VARCHAR(255),   -- Path to ultrasound image
     PRIMARY KEY (`id`),

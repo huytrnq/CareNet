@@ -149,7 +149,6 @@ function handleRowClick(patientId) {
             const pulse = patient.pulse;
             const blood_pressure = patient.blood_pressure;
             const xray_path = patient.xray_path;
-            const heart = patient.heart;
             const ultrasound_path = patient.ultrasound_path;
             const last_surgery = patient.last_surgery;
             const weight = patient.weight;
@@ -160,9 +159,10 @@ function handleRowClick(patientId) {
             const gender = patient.gender;
             const occupation = patient.occupation;
             const address = patient.address;
+            const insurance = patient.insurance;
 
 
-            if (abdomen != null || pulse != null || blood_pressure != null || heart != null || allergies != null || last_surgery != null || weight != null || height != null || current_medication != null || genetic_conditions != null || date_of_birth != null || gender != null || occupation != null || address != null){
+            if (abdomen != null || pulse != null || blood_pressure != null || allergies != null || last_surgery != null || weight != null || height != null || current_medication != null || genetic_conditions != null || date_of_birth != null || gender != null || occupation != null || address != null){
                 document.getElementById('physical-exam-table').innerHTML = `
                     <tr class="hidden">
                         <td>patientId</td>
@@ -203,6 +203,10 @@ function handleRowClick(patientId) {
                     <tr>
                         <td>Last Surgery</td>
                         <td>${last_surgery}</td>
+                    </tr>
+                    <tr>
+                        <td>Insurance</td>
+                        <td>${insurance}</td>
                     </tr>
                 `;
             }

@@ -24,6 +24,7 @@ function saveProfile(){
         .catch(error => console.error('Error saving profile:', error));
 }
 
+
 function showProfilePicForm(){
     var imageUploadForm = document.getElementById('profile-pic-form');
     
@@ -72,10 +73,8 @@ document.addEventListener('DOMContentLoaded', function() {
         const allergies = patient.allergies;
         const abdomen = patient.abdomen;
         const pulse = patient.pulse;
-        const risk_factor = patient.risk_factor;
         const blood_pressure = patient.blood_pressure;
         const xray_path = patient.xray_path;
-        const heart = patient.heart;
         const ultrasound_path = patient.ultrasound_path;
         const last_surgery = patient.last_surgery;
         const weight = patient.weight;
@@ -86,6 +85,7 @@ document.addEventListener('DOMContentLoaded', function() {
         const gender = patient.gender;
         const occupation = patient.occupation;
         const address = patient.address;
+        const insurance = patient.insurance;
         
         if (date_of_birth != null){
             document.getElementById('birthday').innerHTML = date_of_birth;
@@ -125,6 +125,9 @@ document.addEventListener('DOMContentLoaded', function() {
         }
         if (last_surgery != null){
             document.getElementById('last_surgery').innerHTML = last_surgery;
+        }
+        if (insurance != null){
+            document.getElementById('insurance').innerHTML = insurance;
         }
 
         if (xray_path != null){
@@ -194,10 +197,53 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 
+function updateMedicalInfo(){
+    var data = parseTable('health-summary-table');
+    var height = data[0].value;
+    var weight = data[1].value;
+    var allergies = data[2].value;
+    var blood_pressure = data[3].value;
+    var current_medication = data[4].value;
+    var genetic_conditions = data[5].value;
+    var abdomen = data[6].value;
+    var pulse = data[7].value;
+    var last_surgery = data[8].value;
+    var insurance = data[9].value;
+    fetch('updateMedicalInfo?patientId=' + patientId + '&height=' + height + '&weight=' + weight + '&allergies=' + allergies + '&blood_pressure=' + blood_pressure + '&current_medication=' + current_medication + '&genetic_conditions=' + genetic_conditions + '&abdomen=' + abdomen + '&pulse=' + pulse + '&last_surgery=' + last_surgery + '&insurance=' + insurance)
+        .then(response => response.json())
+        .then(data => {
+            status = data.status;
+            if (status == 'success'){
+                alert('Patient data updated');
+            }else{
+                alert('Error updating patient data');
+            }
+        })
+        .catch(error => console.error('Error updating patient data:', error));
+}
 
+function parseTable(tableId) {
+    // Get the table element by ID
+    var table = document.getElementById(tableId);
+    // Get all rows from the table body
+    var rows = table.getElementsByTagName('tbody')[0].getElementsByTagName('tr');
 
+    // Initialize an array to hold the parsed data
+    var data = [];
 
+    // Loop through each row
+    for (var i = 0; i < rows.length; i++) {
+        // Get all cells in the current row
+        var cells = rows[i].getElementsByTagName('td');
+        // Extract the data from the cells
+        var key = cells[0].textContent.trim();
+        var value = cells[1].textContent.trim();
+        // Add the extracted data to the array
+        data.push({ key: key, value: value });
+    }
 
+    return data;
+}
 
 
 

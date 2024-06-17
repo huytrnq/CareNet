@@ -43,6 +43,25 @@ public class AppointmentDAO {
         }
     }
 
+    public static boolean findAppointment(String patientId, String doctorId, String date, String time) {
+        String sql = "SELECT * FROM appointment WHERE patient_id = ? AND doctor_id = ? AND date = ? AND time = ?";
+        try {
+            Connection conn = DBUtil.getConnection();
+            PreparedStatement stmt = conn.prepareStatement(sql);
+            stmt.setString(1, patientId);
+            stmt.setString(2, doctorId);
+            java.util.Date parsedDate = convertStringToDate(date);
+            java.util.Date parsedTime = convertStringToTime(time);
+            stmt.setDate(3, new java.sql.Date(parsedDate.getTime()));
+            stmt.setTime(4, new java.sql.Time(parsedTime.getTime()));
+            ResultSet rs = stmt.executeQuery();
+            return rs.next();
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+
     public static java.util.Date convertStringToDate(String dateStr) {
         String[] dateFormats = {"dd/MM/yy", "yyyy-MM-dd", "MM/dd/yyyy"};
         for (String format : dateFormats) {

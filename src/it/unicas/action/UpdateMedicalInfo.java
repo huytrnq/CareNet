@@ -26,15 +26,40 @@ public class UpdateMedicalInfo extends ActionSupport implements SessionAware {
         String abdomen = ServletActionContext.getRequest().getParameter("abdomen");
         String pulse = ServletActionContext.getRequest().getParameter("pulse");
         String blood_pressure = ServletActionContext.getRequest().getParameter("blood_pressure");
-        String heart = ServletActionContext.getRequest().getParameter("heart");
         String allergies = ServletActionContext.getRequest().getParameter("allergies");
         String last_surgery = ServletActionContext.getRequest().getParameter("last_surgery");
         String current_medication = ServletActionContext.getRequest().getParameter("current_medication");
         String genetic_conditions = ServletActionContext.getRequest().getParameter("genetic_conditions");
-        if (MedicalInfoDAO.updateFields(patientId, new String[] {"height", "weight", "abdomen", "pulse", "blood_pressure", "heart", "allergies", "last_surgery", "current_medication", "genetic_conditions"}, new String[] {height, weight, abdomen, pulse, blood_pressure, heart, allergies, last_surgery, current_medication, genetic_conditions})) {
-            status = "success";
-        } else {
-            status = "error";
+        String insurance = ServletActionContext.getRequest().getParameter("insurance");
+        String xray_path = "";
+        String ultrasound_path = "";
+
+        if (MedicalInfoDAO.findMedicalInfo(patientId)) {
+            if (MedicalInfoDAO.updateFields(patientId, new String[] {"height", "weight", "abdomen", "pulse", "blood_pressure", "allergies", "last_surgery", "current_medication", "genetic_conditions", "insurance"}, new String[] {height, weight, abdomen, pulse, blood_pressure, allergies, last_surgery, current_medication, genetic_conditions, insurance})) {
+                status = "success";
+            } else {
+                status = "error";
+            }
+        }else{
+            System.out.println("Creating medical info");
+            System.out.println(patientId);
+            System.out.println(height);
+            System.out.println(weight);
+            System.out.println(abdomen);
+            System.out.println(pulse);
+            System.out.println(blood_pressure);
+            System.out.println(allergies);
+            System.out.println(last_surgery);
+            System.out.println(current_medication);
+            System.out.println(genetic_conditions);
+            System.out.println(insurance);
+            System.out.println(xray_path);
+            System.out.println(ultrasound_path);
+            if (MedicalInfoDAO.createMedicalInfo(patientId, height, weight, abdomen, pulse, blood_pressure, allergies, last_surgery, current_medication, genetic_conditions, insurance, xray_path, ultrasound_path)) {
+                status = "success";
+            } else {
+                status = "error";
+            }
         }
 
         //Return status success or error

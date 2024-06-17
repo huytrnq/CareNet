@@ -49,7 +49,7 @@ document.addEventListener('DOMContentLoaded', function() {
                         });
                         occupiedTime.push(date + 'T' + time);
                     }else{
-                        alert('Appointment is not available.');
+                        console.log('Appointment is not available.');
                     }
 
                     // Clear the form
@@ -85,7 +85,7 @@ function addEvent() {
     var date = document.getElementById('eventDate').value;
     var time = document.getElementById('eventTime').value;
 
-    // window.location.href = `/CareNet/appointment?doctorId=${doctorId}&eventTitle=${title}&eventDate=${date}&eventTime=${time}`;
+    window.location.href = `/CareNet/appointment?doctorId=${doctorId}&eventTitle=${title}&eventDate=${date}&eventTime=${time}`;
 }
 
 function isAppointmentAvailable(date, time){

@@ -1,5 +1,6 @@
 package it.unicas.action;
 import it.unicas.dao.AppointmentDAO;
+import it.unicas.dao.MedicalInfoDAO;
 
 import com.opensymphony.xwork2.ActionSupport;
 import org.apache.struts2.interceptor.SessionAware;
@@ -14,6 +15,7 @@ import java.util.Map;
 import java.io.IOException;
 import org.json.JSONArray;
 import org.json.JSONObject;
+import java.sql.SQLException;
 
 public class SessionDataAction extends ActionSupport implements SessionAware {
     private Map<String, Object> session;
@@ -88,6 +90,8 @@ public class SessionDataAction extends ActionSupport implements SessionAware {
                         doctors.put(doctor);
                     }
                 }
+            } catch (SQLException e) {
+                e.printStackTrace();
             }
         }
         return doctors;
@@ -109,6 +113,8 @@ public class SessionDataAction extends ActionSupport implements SessionAware {
                     doctor.put("expiry_date", rs.getString("expiry_date"));
                     doctor.put("affiliations", rs.getString("affiliations"));
                 }
+            } catch (SQLException e) {
+                e.printStackTrace();
             }
         }
         return doctor;
@@ -140,6 +146,8 @@ public class SessionDataAction extends ActionSupport implements SessionAware {
                         patients.put(patient);
                     }
                 }
+            } catch (SQLException e) {
+                e.printStackTrace();
             }
         }
         return patients;
@@ -147,31 +155,56 @@ public class SessionDataAction extends ActionSupport implements SessionAware {
 
     private JSONObject getPatientById(int patientId) throws Exception {
         JSONObject patient = new JSONObject();
-        // Implement logic to fetch patient data
         try (Connection conn = DriverManager.getConnection(DB_URL, DB_USER, DB_PASSWORD)) {
-            String query = "SELECT * FROM user JOIN medical_info m ON user.id = m.user_id WHERE user.id = ?";
-            try (PreparedStatement stmt = conn.prepareStatement(query)) {
+            // Check if the patient has a medical info
+            if (MedicalInfoDAO.findMedicalInfo(String.valueOf(patientId))) {
+                String query = "SELECT * FROM user JOIN medical_info m ON user.id = m.user_id WHERE user.id = ?";
+                try (PreparedStatement stmt = conn.prepareStatement(query)) {
                 stmt.setInt(1, patientId);
                 try (ResultSet rs = stmt.executeQuery()) {
-                    rs.next();
-                    patient.put("username", rs.getString("username"));
-                    patient.put("risk_factor", rs.getString("risk_factor"));
-                    patient.put("allergies", rs.getString("allergies"));
-                    patient.put("last_surgery", rs.getString("last_surgery"));
-                    patient.put("heart", rs.getString("heart"));
-                    patient.put("blood_pressure", rs.getString("blood_pressure"));
-                    patient.put("pulse", rs.getString("pulse"));
-                    patient.put("abdomen", rs.getString("abdomen"));
-                    patient.put("xray_path", rs.getString("xray_path"));
-                    patient.put("ultrasound_path", rs.getString("ultrasound_path"));
-                    patient.put("date_of_birth", rs.getDate("date_of_birth"));
-                    patient.put("gender", rs.getString("gender"));
-                    patient.put("occupation", rs.getString("occupation"));
-                    patient.put("address", rs.getString("address"));
-                    patient.put("genetic_conditions", rs.getString("genetic_conditions"));
-                    patient.put("current_medication", rs.getString("current_medication"));
-                    patient.put("weight", rs.getString("weight"));
-                    patient.put("height", rs.getString("height"));
+                    if (rs.next()) { // Check if ResultSet has at least one row
+                        patient.put("username", rs.getString("username"));
+                        patient.put("allergies", rs.getString("allergies"));
+                        patient.put("last_surgery", rs.getString("last_surgery"));
+                        patient.put("blood_pressure", rs.getString("blood_pressure"));
+                        patient.put("pulse", rs.getString("pulse"));
+                        patient.put("abdomen", rs.getString("abdomen"));
+                        patient.put("xray_path", rs.getString("xray_path"));
+                        patient.put("ultrasound_path", rs.getString("ultrasound_path"));
+                        patient.put("date_of_birth", rs.getDate("date_of_birth"));
+                        patient.put("gender", rs.getString("gender"));
+                        patient.put("occupation", rs.getString("occupation"));
+                        patient.put("address", rs.getString("address"));
+                        patient.put("genetic_conditions", rs.getString("genetic_conditions"));
+                        patient.put("current_medication", rs.getString("current_medication"));
+                        patient.put("weight", rs.getString("weight"));
+                        patient.put("height", rs.getString("height"));
+                        patient.put("insurance", rs.getString("insurance"));
+                    } else {
+                    // Handle case where no data is found
+                        patient.put("error", "No patient found with the specified ID.");
+                        }
+                    }
+                }
+            } else {
+                String query = "SELECT * FROM user WHERE id = ?";
+                try (PreparedStatement stmt = conn.prepareStatement(query)) {
+                    stmt.setInt(1, patientId);
+                    try (ResultSet rs = stmt.executeQuery()) {
+                        if (rs.next()) {
+                            patient.put("username", rs.getString("username"));
+                            patient.put("firstname", rs.getString("firstname"));
+                            patient.put("lastname", rs.getString("lastname"));
+                            patient.put("date_of_birth", rs.getDate("date_of_birth"));
+                            patient.put("gender", rs.getString("gender"));
+                            patient.put("occupation", rs.getString("occupation"));
+                            patient.put("address", rs.getString("address"));
+                        } else {
+                            patient.put("error", "No patient found with the specified ID.");
+                        }
+                    }
+                } catch (SQLException e) {
+                    e.printStackTrace();
                 }
             }
         }

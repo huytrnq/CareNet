@@ -38,8 +38,16 @@ public class ImageAction extends ActionSupport {
         } else {
             imagePath = medicalImagePath;
         }
+        if (imagePath == null) {
+            return ERROR;
+        }
+        if (imagePath.equals("")) {
+            return ERROR;
+        }
         
         File imageFile = new File("/Users/huytrq/Workspace/unicas/DistributedProgramming/CareNet/images/" + imagePath);
+
+
 
         if (imageFile.exists()) {
             System.out.println("Image found: " + imageFile.getPath());

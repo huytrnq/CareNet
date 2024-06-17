@@ -106,44 +106,48 @@
                 <div class="row">
                     <h3>Health Summary</h3>
                     <button class="edit-button" id="edit-health-summary">Edit</button>
-                    <button class="edit-button" id="save-health-summary" style="display: none;">Save</button>
+                    <button class="edit-button" id="save-health-summary" style="display: none;" onclick="updateMedicalInfo()">Save</button>
                 </div>
-                <table>
+                <table id="health-summary-table">
                     <tr>
                         <td>Height</td>
-                        <td id="height" class="editable-health" contenteditable="false">1.72 m</td>
+                        <td id="height" class="editable-health" contenteditable="false"></td>
                     </tr>
                     <tr>
                         <td>Weight</td>
-                        <td id="weight" class="editable-health" contenteditable="false">70 kg</td>
+                        <td id="weight" class="editable-health" contenteditable="false"></td>
                     </tr>
                     <tr>
                         <td>Allergies</td>
-                        <td id="allergies" class="editable-health" contenteditable="false">Pollen</td>
+                        <td id="allergies" class="editable-health" contenteditable="false"></td>
                     </tr>
                     <tr>
                         <td>Blood Pressure</td>
-                        <td id="blood_pressure" class="editable-health" contenteditable="false">O+</td>
+                        <td id="blood_pressure" class="editable-health" contenteditable="false"></td>
                     </tr>
                     <tr>
                         <td>Current medication (if applicable)</td>
-                        <td id="current_medication" class="editable-health" contenteditable="false">None</td>
+                        <td id="current_medication" class="editable-health" contenteditable="false"></td>
                     </tr>
                     <tr>
                         <td>Genetic conditions</td>
-                        <td id="genetic_conditions" class="editable-health" contenteditable="false">Asthma</td>
+                        <td id="genetic_conditions" class="editable-health" contenteditable="false"></td>
                     </tr>
                     <tr>
                         <td>Abdomen</td>
-                        <td id="abdomen" class="editable-health" contenteditable="false">None</td>
+                        <td id="abdomen" class="editable-health" contenteditable="false"></td>
                     </tr>
                     <tr>
                         <td>Pulse</td>
-                        <td id="pulse" class="editable-health" contenteditable="false">None</td>
+                        <td id="pulse" class="editable-health" contenteditable="false"></td>
                     </tr>
                     <tr>
                         <td>Last surgery</td>
-                        <td id="last_surgery" class="editable-health" contenteditable="false">None</td>
+                        <td id="last_surgery" class="editable-health" contenteditable="false"></td>
+                    </tr>
+                    <tr>
+                        <td>Insurance</td>
+                        <td id="insurance" class="editable-health" contenteditable="false"></td>
                     </tr>
                 </table>
             </div>
