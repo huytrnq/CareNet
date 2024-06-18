@@ -82,24 +82,10 @@
                     </div>
                 </form>
                 <div class="contact-info">
-                    <table>
-                        <tr>
-                            <td>Licence Number</td>
-                            <td contenteditable="false" id="doctor-license"><s:property value="#session.user.licenseNumber"/></td>
-                        </tr>
-                        <tr>
-                            <td>Expiry Date</td>
-                            <td contenteditable="false" id="doctor-expiry"><s:property value="#session.user.expiryDate"/></td>
-                        </tr>
-                        <tr>
-                            <td>Address</td>
-                            <td contenteditable="false" id="doctor-address"><s:property value="#session.user.address"/></td>
-                        </tr>
-                        <tr>
-                            <td>Affiliations</td>
-                            <td contenteditable="false" id="doctor-affiliations"><s:property value="#session.user.affiliations"/></td>
-                        </tr>
-                    </table>
+                    <p contenteditable="false" id="doctor-license">Licence Number: <s:property value="#session.user.licenseNumber"/></p>
+                    <p contenteditable="false" id="doctor-expiry">Expiry Date: <s:property value="#session.user.expiryDate"/></p>
+                    <p contenteditable="false" id="doctor-address">Address: <s:property value="#session.user.address"/></p>
+                    <p contenteditable="false" id="doctor-affiliations">Affiliations: <s:property value="#session.user.affiliations"/></p>
                 </div>
                 <div class="initiate-visit">
                     <button id="edit-button">Edit</button>

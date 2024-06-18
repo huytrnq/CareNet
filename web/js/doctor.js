@@ -33,10 +33,10 @@ function DateToAge(date) {
 }
 
 function saveProfile(){
-    const address = getValue(document.getElementById('doctor-address').textContent);
-    const affiliations = getValue(document.getElementById('doctor-affiliations').textContent);
-    const expiry_date = getValue(document.getElementById('doctor-expiry').textContent);
-    const license_number = getValue(document.getElementById('doctor-license').textContent);
+    const address = document.getElementById('doctor-address').textContent;
+    const affiliations = document.getElementById('doctor-affiliations').textContent;
+    const expiry_date = document.getElementById('doctor-expiry').textContent;
+    const license_number = document.getElementById('doctor-license').textContent;
     fetch('updateUserInfo?address=' + address + '&affiliations=' + affiliations + '&expiry_date=' + expiry_date + '&license_number=' + license_number)
         .then(response => response.json())
         .then(data => {
@@ -66,16 +66,16 @@ document.addEventListener('DOMContentLoaded', function() {
             document.getElementById('doctor-name').innerHTML = doctorFirstname + ' ' + doctorLastname;
         }
         if (doctorLicenseNumber != null){
-            document.getElementById('doctor-license').innerHTML = "Licence Number: " + doctorLicenseNumber;
+            document.getElementById('doctor-license').innerHTML = doctorLicenseNumber;
         }
         if (doctorExpiryDate != null){
-            document.getElementById('doctor-expiry').innerHTML = "Expiry Date: " + doctorExpiryDate;
+            document.getElementById('doctor-expiry').innerHTML = doctorExpiryDate;
         }
         if (doctorAffiliations != null){
-            document.getElementById('doctor-affiliations').innerHTML = "Affiliations: " + doctorAffiliations;
+            document.getElementById('doctor-affiliations').innerHTML = doctorAffiliations;
         }
         if (doctorAddress != null){
-            document.getElementById('doctor-address').innerHTML = "Address: " + doctorAddress;
+            document.getElementById('doctor-address').innerHTML = doctorAddress;
         }
     })
     .catch(error => console.error('Error fetching session data:', error));
@@ -120,7 +120,8 @@ function updatePatientData(){
     const abdomen = data[7].value;
     const pulse = data[8].value;
     const last_surgery = data[9].value;
-    fetch('updateMedicalInfo?patientId=' + patientId + '&height=' + height + '&weight=' + weight + '&allergies=' + allergies + '&blood_pressure=' + blood_pressure + '&current_medication=' + current_medication + '&genetic_conditions=' + genetic_conditions + '&abdomen=' + abdomen + '&pulse=' + pulse + '&last_surgery=' + last_surgery)
+    const insurance = data[10].value;
+    fetch('updateMedicalInfo?patientId=' + patientId + '&height=' + height + '&weight=' + weight + '&allergies=' + allergies + '&blood_pressure=' + blood_pressure + '&current_medication=' + current_medication + '&genetic_conditions=' + genetic_conditions + '&abdomen=' + abdomen + '&pulse=' + pulse + '&last_surgery=' + last_surgery + '&insurance=' + insurance)
         .then(response => response.json())
         .then(data => {
             status = data.status;
