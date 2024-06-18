@@ -87,7 +87,7 @@ function addEvent() {
                 console.log(data);
             });
         window.location.reload();
-    }else if (inThePast(date, time)){
+    } else if (inThePast(date, time)){
         alert('Appointment is in the past. Please select appropriate time slot.');
     }
     else{
@@ -99,7 +99,10 @@ function isAppointmentAvailable(date, time){
     var appointmentTime = date + 'T' + time;
     for (let i = 0; i < occupiedTime.length; i++) {
         let scheduledTime = occupiedTime[i];
-        if (parseInt(timeDiff(appointmentTime, scheduledTime)) < 1000*60*30){
+        if (inThePast(appointmentTime, scheduledTime)){
+            return false;
+        }
+        if (Math.abs(parseInt(timeDiff(appointmentTime, scheduledTime))) < 1000*60*30){
             return false;
         }
     }
@@ -113,8 +116,8 @@ function inThePast(date, time){
 }
 
 function timeDiff(time1, time2){
-    var time1 = new Date(time1);
-    var time2 = new Date(time2);
-    var diff = time1.getTime() - time2.getTime();
-    return Math.abs(diff);
+    var date1 = new Date(time1);
+    var date2 = new Date(time2);
+    var diff = date1.getTime() - date2.getTime();
+    return diff;
 }
