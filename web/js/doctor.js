@@ -37,7 +37,8 @@ function saveProfile(){
     const affiliations = document.getElementById('doctor-affiliations').textContent;
     const expiry_date = document.getElementById('doctor-expiry').textContent;
     const license_number = document.getElementById('doctor-license').textContent;
-    fetch('updateUserInfo?address=' + address + '&affiliations=' + affiliations + '&expiry_date=' + expiry_date + '&license_number=' + license_number)
+    const occupation = document.getElementById('doctor-specialization').textContent;
+    fetch('updateUserInfo?address=' + address + '&affiliations=' + affiliations + '&expiry_date=' + expiry_date + '&license_number=' + license_number + '&occupation=' + occupation)
         .then(response => response.json())
         .then(data => {
             status = data.status;
@@ -61,6 +62,7 @@ document.addEventListener('DOMContentLoaded', function() {
         const doctorExpiryDate = doctor.expiry_date;
         const doctorAffiliations = doctor.affiliations;
         const doctorAddress = doctor.address;
+        const doctorSpecialization = doctor.occupation;
 
         if (doctorFirstname != null && doctorLastname != null){
             document.getElementById('doctor-name').innerHTML = doctorFirstname + ' ' + doctorLastname;
@@ -76,6 +78,9 @@ document.addEventListener('DOMContentLoaded', function() {
         }
         if (doctorAddress != null){
             document.getElementById('doctor-address').innerHTML = doctorAddress;
+        }
+        if (doctorSpecialization != null){
+            document.getElementById('doctor-specialization').innerHTML = doctorSpecialization;
         }
     })
     .catch(error => console.error('Error fetching session data:', error));
@@ -347,7 +352,8 @@ document.addEventListener('DOMContentLoaded', function() {
         document.getElementById('doctor-license'),
         document.getElementById('doctor-expiry'),
         document.getElementById('doctor-address'),
-        document.getElementById('doctor-affiliations')
+        document.getElementById('doctor-affiliations'),
+        document.getElementById('doctor-specialization')
     ];
 
     editButton.addEventListener('click', () => {

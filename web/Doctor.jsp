@@ -53,10 +53,10 @@
 <div class="container">
     <main class="main-content">
         <header class="header">
-            <div class="logo">CareNet</div>
+            <a href="/CareNet" style="text-decoration: none;"><div class="logo"">CareNet</div></a>
             <div class="list-items">
-                <div class="overview"><a href="<s:url action='doctor'/>">OVERVIEW</a></div>
-                <div class="calendar"><a href="<s:url action='calendar'/>">CALENDAR</a></div>
+                <div class="overview"><a href="<s:url action='doctor'/>">Profile</a></div>
+                <div class="calendar"><a href="<s:url action='calendar'/>">Calendar</a></div>
                 <div class="user-name-container">
                     <div class="user-name"><s:property value="#session.user.firstname"/> <s:property value="#session.user.lastname"/></div>
                     <div class="dropdown-content">
@@ -98,6 +98,10 @@
                         <tr>
                             <td>Affiliations</td>
                             <td contenteditable="false" id="doctor-affiliations"><s:property value="#session.user.affiliations"/></td>
+                        </tr>
+                        <tr>
+                            <td>Specialization</td>
+                            <td contenteditable="false" id="doctor-specialization"><s:property value="#session.user.occupation"/></td>
                         </tr>
                     </table>
                 </div>

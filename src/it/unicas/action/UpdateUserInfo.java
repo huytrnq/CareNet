@@ -43,7 +43,8 @@ public class UpdateUserInfo extends ActionSupport implements SessionAware {
             String affiliations = ServletActionContext.getRequest().getParameter("affiliations");
             String expiryDateString = ServletActionContext.getRequest().getParameter("expiry_date");
             String licenseNumber = ServletActionContext.getRequest().getParameter("license_number");
-            if (UserDAO.updateFields(username, new String[] {"address", "affiliations", "expiry_date", "license_number"}, new String[] {address, affiliations, expiryDateString, licenseNumber})) {
+            String occupation = ServletActionContext.getRequest().getParameter("occupation");
+            if (UserDAO.updateFields(username, new String[] {"address", "affiliations", "expiry_date", "license_number", "occupation"}, new String[] {address, affiliations, expiryDateString, licenseNumber, occupation})) {
                 status = "success";
             } else {
                 status = "error";

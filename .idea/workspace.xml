@@ -10,7 +10,20 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="1a181c00-df0d-4f39-bc08-2a51b23aff5a" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/data_gen/fakegen.py" beforeDir="false" afterPath="$PROJECT_DIR$/data_gen/fakegen.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/it/unicas/action/SessionDataAction.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/it/unicas/action/SessionDataAction.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/it/unicas/action/UpdateUserInfo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/it/unicas/action/UpdateUserInfo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/it/unicas/action/WelcomeAction.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/it/unicas/action/WelcomeAction.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/struts.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/struts.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/Doctor copy.jsp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/Doctor.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/web/Doctor.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/Patient.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/web/Patient.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/aboutPage.html" beforeDir="false" afterPath="$PROJECT_DIR$/web/aboutPage.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/appointment.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/web/appointment.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/calendar.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/web/calendar.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/js/doctor.js" beforeDir="false" afterPath="$PROJECT_DIR$/web/js/doctor.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/js/schedule.js" beforeDir="false" afterPath="$PROJECT_DIR$/web/js/schedule.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/qaPage.html" beforeDir="false" afterPath="$PROJECT_DIR$/web/qaPage.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

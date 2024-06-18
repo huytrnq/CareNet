@@ -42,7 +42,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 var time = document.getElementById('eventTime').value;
 
                 if (title && date && time) {
-                    if (isAppointmentAvailable(date, time)){
+                    if (isAppointmentAvailable(date, time) && !inThePast(date, time)){
                         calendar.addEvent({
                             title: title,
                             start: date + 'T' + time
@@ -80,15 +80,18 @@ function addEvent() {
     var title = document.getElementById('eventTitle').value;
     var date = document.getElementById('eventDate').value;
     var time = document.getElementById('eventTime').value;
-    if (isAppointmentAvailable(date, time)){
+    if (isAppointmentAvailable(date, time) && !inThePast(date, time)){
         fetch(`/CareNet/appointment?doctorId=${doctorId}&eventTitle=${title}&eventDate=${date}&eventTime=${time}`)
             .then(response => response.json())
             .then(data => {
                 console.log(data);
             });
         window.location.reload();
-    }else{
-        alert('Appointment is not available.');
+    }else if (inThePast(date, time)){
+        alert('Appointment is in the past. Please select appropriate time slot.');
+    }
+    else{
+        alert('Appointment is not available. Please select a time slot that is divided into 30-minute intervals.');
     }
 }
 
@@ -101,6 +104,12 @@ function isAppointmentAvailable(date, time){
         }
     }
     return true;
+}
+
+function inThePast(date, time){
+    var appointmentTime = date + 'T' + time;
+    var currentTime = new Date().toISOString();
+    return parseInt(timeDiff(appointmentTime, currentTime)) < 0;
 }
 
 function timeDiff(time1, time2){

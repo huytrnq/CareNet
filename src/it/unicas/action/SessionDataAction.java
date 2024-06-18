@@ -112,6 +112,7 @@ public class SessionDataAction extends ActionSupport implements SessionAware {
                     doctor.put("address", rs.getString("address"));
                     doctor.put("expiry_date", rs.getString("expiry_date"));
                     doctor.put("affiliations", rs.getString("affiliations"));
+                    doctor.put("occupation", rs.getString("occupation"));
                 }
             } catch (SQLException e) {
                 e.printStackTrace();

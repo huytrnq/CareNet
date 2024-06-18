@@ -32,7 +32,7 @@
 <div class="container">
     <main class="main-content">
         <header class="header">
-            <div class="logo">CareNet</div>
+            <a href="/CareNet" style="text-decoration: none;"><div class="logo"">CareNet</div></a>
             <div class="list-items">
                 <div class="overview"><a href="<s:url action='patient'/>">Profile</a></div>
                 <div class="overview"><a href="qaPage.html">Q&A</a></div>
