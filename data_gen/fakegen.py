@@ -6,6 +6,13 @@ from datetime import datetime
 # Initialize Faker
 fake = Faker()
 
+# Function to generate a random date between two dates
+def random_date(start, end):
+    start_date = datetime.strptime(start, "%Y-%m-%d")
+    end_date = datetime.strptime(end, "%Y-%m-%d")
+    random_date = fake.date_between(start_date=start_date, end_date=end_date)
+    return random_date
+
 # Connect to the MySQL database
 conn = mysql.connector.connect(
     host='localhost',         # e.g., 'localhost'
@@ -27,7 +34,13 @@ def create_fake_user(role):
     email = fake.email()
     address = fake.address()
     password = fake.password()  # You should use a proper password hashing in a real scenario
-    occupation = fake.job()
+    if role == 'doctor':
+        occupation = random.choice(["Oncology Specialist","Pediatrician","ENT Specialist","Cardiologist",
+                                    "Dermatologist","Neurologist","Orthopedic Surgeon","Psychiatrist","Rheumatologist",
+                                "Gastroenterologist","Endocrinologist","Urologist","Nephrologist","Pulmonologist",
+                                "Radiologist","General Practitioner","Obstetrician","Gynecologist","Allergist","Immunologist"])
+    else:
+        occupation = fake.job()
     license_number = fake.bothify(text='??####') if role == 'doctor' else None
     expiry_date = fake.date_this_century() if role == 'doctor' else None
     date_of_birth = fake.date_of_birth()
@@ -41,22 +54,124 @@ def create_fake_user(role):
 def create_fake_medical_info(user_id):
     weight = round(random.uniform(50, 100), 2)
     height = round(random.uniform(1.5, 2.0), 2)
-    allergies = fake.word()
-    current_medication = fake.word()
-    genetic_conditions = fake.word()
-    last_surgery = fake.word()
-    emergency_contact = fake.phone_number()
-    insurance = fake.company()
-    heart = fake.word()
+    allergies = random.choice([
+        "Pollen Allergy",
+        "Dust Mite Allergy",
+        "Pet Allergy",
+        "Mold Allergy",
+        "Food Allergy",
+        "Insect Sting Allergy",
+        "Latex Allergy",
+        "Drug Allergy",
+        "Cockroach Allergy",
+        "Perfume Allergy",
+        "Nickel Allergy",
+        "Bee Sting Allergy",
+        "Peanut Allergy",
+        "Tree Nut Allergy",
+        "Milk Allergy",
+        "Egg Allergy",
+        "Wheat Allergy",
+        "Soy Allergy",
+        "Shellfish Allergy",
+        "Fish Allergy"
+    ])
+    current_medication = random.choice([
+        "Atorvastatin (Lipitor)",
+        "Levothyroxine (Synthroid)",
+        "Lisinopril (Prinivil)",
+        "Metformin (Glucophage)",
+        "Amlodipine (Norvasc)",
+        "Metoprolol (Lopressor)",
+        "Omeprazole (Prilosec)",
+        "Simvastatin (Zocor)",
+        "Losartan (Cozaar)",
+        "Albuterol (ProAir HFA)",
+        "Gabapentin (Neurontin)",
+        "Hydrochlorothiazide (Microzide)",
+        "Sertraline (Zoloft)",
+        "Furosemide (Lasix)",
+        "Acetaminophen/Hydrocodone (Vicodin)",
+        "Fluticasone (Flonase)",
+        "Amoxicillin (Amoxil)",
+        "Azithromycin (Zithromax)",
+        "Prednisone (Deltasone)",
+        "Ibuprofen (Advil, Motrin)"
+    ])
+    genetic_conditions = random.choice([
+        "Cystic Fibrosis",
+        "Down Syndrome",
+        "Huntington's Disease",
+        "Sickle Cell Anemia",
+        "Hemophilia",
+        "Marfan Syndrome",
+        "Duchenne Muscular Dystrophy",
+        "Tay-Sachs Disease",
+        "Phenylketonuria (PKU)",
+        "Fragile X Syndrome",
+        "Thalassemia",
+        "Turner Syndrome",
+        "Klinefelter Syndrome",
+        "Neurofibromatosis",
+        "Albinism",
+        "Achondroplasia",
+        "Angelman Syndrome",
+        "Prader-Willi Syndrome",
+        "Becker Muscular Dystrophy",
+        "Williams Syndrome"
+    ])
+    last_surgery = random_date("2020-01-01", "2024-01-01")
+    insurance = random.choice([
+        "Allianz Care",
+        "AXA PPP Healthcare",
+        "Bupa Global",
+        "Cigna Global",
+        "DKV Seguros",
+        "Generali Global Health",
+        "Aviva Health",
+        "Sanitas",
+        "Mapfre Health",
+        "Aetna International",
+        "PZU Health",
+        "Menzis",
+        "CZ Groep",
+        "Mediq",
+        "Achmea",
+        "Mutua Madrileña",
+        "Uniqa Health",
+        "La Mondiale Europartner",
+        "Adeslas",
+        "VitalityHealth"
+    ])
     blood_pressure = f"{random.randint(90, 140)}/{random.randint(60, 90)} mmHg"
     pulse = f"{random.randint(60, 100)} / min"
-    abdomen = fake.word()
-    risk_factor = random.randint(1, 10)
-    xray_path = fake.file_path(depth=1, category='image')
-    ultrasound_path = fake.file_path(depth=1, category='image')
+    abdomen = random.choice([
+            "Abdominal Pain",
+            "Bloating",
+            "Constipation",
+            "Diarrhea",
+            "Nausea",
+            "Vomiting",
+            "Heartburn",
+            "Indigestion",
+            "Cramping",
+            "Loss of Appetite",
+            "Gas",
+            "Swelling",
+            "Tenderness",
+            "Stomach Cramps",
+            "Blood in Stool",
+            "Unexplained Weight Loss",
+            "Frequent Urination",
+            "Abdominal Muscle Spasms",
+            "Belching",
+            "Feeling Full Quickly"
+    ])
+    xray_path = ""
+    ultrasound_path = ""
 
-    return (user_id, weight, height, allergies, current_medication, genetic_conditions, last_surgery, emergency_contact,
-            insurance, heart, blood_pressure, pulse, abdomen, risk_factor, xray_path, ultrasound_path)
+    return (user_id, weight, height, allergies, current_medication, genetic_conditions, last_surgery,
+            insurance, blood_pressure, pulse, abdomen, xray_path, ultrasound_path)
 
 # Function to create fake appointments
 def create_fake_appointment(doctor_id, patient_id):
@@ -102,8 +217,8 @@ for _ in range(500):  # Insert 300 patients
             medical_info_data = create_fake_medical_info(patient_id)
             cursor.execute("""
                 INSERT INTO `medical_info` (user_id, weight, height, allergies, current_medication, genetic_conditions,
-                last_surgery, emergency_contact, insurance, heart, blood_pressure, pulse, abdomen, risk_factor, xray_path, ultrasound_path)
-                VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)
+                last_surgery, insurance, blood_pressure, pulse, abdomen, xray_path, ultrasound_path)
+                VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)
             """, medical_info_data)
             break
         except mysql.connector.errors.IntegrityError:
