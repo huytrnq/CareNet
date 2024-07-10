@@ -74,32 +74,20 @@ CareNet
 
 ## Web Pages
 
-<figure>
-  <figcaption>Fig.1 - Index Page</figcaption>
-  <img src="./images/homepage.png" alt="Index page" style="width:100%">
-</figure>
+**Fig.1 - Index Page**  
+![Index page](./images/homepage.png)
 
-<figure>
-  <figcaption>Fig.2 - Registration Page</figcaption>
-  <img src="./images/signuppage.png" alt="Registration page" style="width:100%">
-</figure>
+**Fig.2 - Registration Page**  
+![Registration page](./images/signuppage.png)
 
-<figure>
-  <figcaption>Fig.3 - Login Page</figcaption>
-  <img src="./images/loginpage.png" alt="Login page" style="width:100%">
-</figure>
+**Fig.3 - Login Page**  
+![Login page](./images/loginpage.png)
 
-<figure>
-  <figcaption>Fig.4 - Doctor's Page</figcaption>
-  <img src="./images/doctorpage.png" alt="Doctor's page" style="width:100%">
-</figure>
+**Fig.4 - Doctor's Page**  
+![Doctor's page](./images/doctorpage.png)
 
-<figure>
-  <figcaption>Fig.5 - Patient's Page</figcaption>
-  <img src="./images/patientpage.png" alt="Patient's page" style="width:100%">
-</figure>
+**Fig.5 - Patient's Page**  
+![Patient's page](./images/patientpage.png)
 
-<figure>
-  <figcaption>Fig.6 - Appointment Page</figcaption>
-  <img src="./images/appointmentpage.png" alt="Appointment page" style="width:100%">
-</figure>
+**Fig.6 - Appointment Page**  
+![Appointment page](./images/appointmentpage.png)
