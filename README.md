@@ -52,7 +52,13 @@ CareNet
 - CSS
 - JavaScript
 
-## Features
+## How to Run
+- Clone the repository
+- Open the project in IntelliJ IDEA
+- Create a new database in MySQL
+- Update the database credentials in `DBUtil.java`
+- Download Tomcat and configure it in IntelliJ IDEA
+- Run the application
 
 ## TODO
 
