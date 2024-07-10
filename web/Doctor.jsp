@@ -159,7 +159,7 @@
                                 <option value="xray">X-ray</option>
                                 <option value="ultrasound">Ultrasound</option>
                             </select>
-                            <label for="imaging-file">Select Image:</label>
+                            <label for="imaging-type">Select Image:</label>
                             <input type="hidden" name="patientId" id="imaging-upload-form_patientId">
                             <input type="file" name="uploadFile" value="" id="imaging-upload-form_uploadFile">
                             <input type="submit" value="Upload" id="imaging-upload-form_0">

@@ -10,7 +10,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="1a181c00-df0d-4f39-bc08-2a51b23aff5a" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/web/js/schedule.js" beforeDir="false" afterPath="$PROJECT_DIR$/web/js/schedule.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/default_user.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/garrettmargaret_xray.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/hornybitch_xray.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/it/unicas/action/UpdateUserInfo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/it/unicas/action/UpdateUserInfo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/Doctor.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/web/Doctor.jsp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -165,8 +170,8 @@
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="bundled-jdk-9f38398b9061-18abd8497189-intellij.indexing.shared.core-IU-241.14494.240" />
-        <option value="bundled-js-predefined-1d06a55b98c1-74d2a5396914-JavaScript-IU-241.14494.240" />
+        <option value="bundled-jdk-9f38398b9061-39b83d9b5494-intellij.indexing.shared.core-IU-241.18034.62" />
+        <option value="bundled-js-predefined-1d06a55b98c1-0b3e54e931b4-JavaScript-IU-241.18034.62" />
       </set>
     </attachedChunks>
   </component>
@@ -185,6 +190,8 @@
       <workItem from="1718115181522" duration="5612000" />
       <workItem from="1718143122852" duration="31690000" />
       <workItem from="1718458307845" duration="71221000" />
+      <workItem from="1720626196266" duration="702000" />
+      <workItem from="1720627013456" duration="29000" />
     </task>
     <servers />
   </component>

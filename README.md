@@ -14,28 +14,31 @@ CareNet
 │   │   ├── java
 │   │   │   └── it
 │   │   │       └── unicas
-│   │   │           ├── action
+│   │   │           ├── action # Contains all the action classes
 │   │   │           │   └── UserAction.java
-│   │   │           ├── dao
+│   │   │           │   └── ...Action.java
+│   │   │           ├── dao # Contains all the DAO classes
 │   │   │           │   └── UserDAO.java
-│   │   │           ├── model
+│   │   │           │   └── ...DAO.java
+│   │   │           ├── model # Contains all the model classes
 │   │   │           │   ├── User.java
-│   │   │           │   └── Role.java
-│   │   │           |── utils
-│   │               |   ├── DBUtil.java
-│   │   │           └── struts.xml
-│   │   └── webapp
-│   │       ├── css
+│   │   │           │   └── ....java
+│   │   │           |── utils # Contains all the utility classes
+│   │   │           |   ├── DBUtil.java
+│   │   │           |   └── ...Util.java
+│   │   │           └── struts.xml # Contains all the action mappings
+│   │   └── webapp # Contains all the web resources
+│   │       ├── css # Contains all the CSS files
 │   │       |   ├── images
 │   │       │   |── style.css
-│   │       |   └── index.css
-│   │       ├── js
-│   │       ├── WEB-INF
+│   │       |   └── ....css
+│   │       ├── js # Contains all the JavaScript files
+│   │       |   └── ....js
+│   │       ├── WEB-INF # Contains all the web resources
 │   │       │   └── web.xml
 │   │       ├── index.jsp
-│   │       ├── register.jsp
-│   │       └── login.jsp
-|── CareNet.iml
+│   │       └── ....jsp
+|── CareNet.iml # IntelliJ IDEA project file
 └── README.md
 ```
 
@@ -54,10 +57,43 @@ CareNet
 ## TODO
 
 - [x] Basic functionalities - Need to implement the basic functionalities
-- [ ] Database - Need to add more tables and fields
-- [ ] Index page - Need to finalize the design: index.jsp
-- [ ] Registration page - Need to add more fields: register.jsp
-- [ ] Login page - Need to Finalize the design: login.jsp
-- [ ] Responsive Design - Need to make the application responsive
-- [ ] Doctor's page - Need to add a page for doctors
-- [ ] Patient's page - Need to add a page for patients
+- [x] Database - Need to add more tables and fields
+- [x] Index page - Need to finalize the design: index.jsp
+- [x] Registration page - Need to add more fields: register.jsp
+- [x] Login page - Need to Finalize the design: login.jsp
+- [x] Responsive Design - Need to make the application responsive
+- [x] Doctor's page - Need to add a page for doctors
+- [x] Patient's page - Need to add a page for patients
+- [x] Appointment page - Need to add a page for appointments
+
+## Web Pages
+
+<figure>
+  <img src="./images/homepage.png" alt="Index page" style="width:100%">
+  <center><figcaption>Fig.1 - Index Page.</figcaption></center>
+</figure>
+
+<figure>
+  <img src="./images/signuppage.png" alt="Registration page" style="width:100%">
+  <center><figcaption>Fig.2 - Registration Page.</figcaption></center>
+</figure>
+
+<figure>
+  <img src="./images/loginpage.png" alt="Login page" style="width:100%">
+  <center><figcaption>Fig.3 - Login Page.</figcaption></center>
+</figure>
+
+<figure>
+  <img src="./images/doctorpage.png" alt="Doctor's page" style="width:100%">
+  <center><figcaption>Fig.4 - Doctor's Page.</figcaption></center>
+</figure>
+
+<figure>
+  <img src="./images/patientpage.png" alt="Patient's page" style="width:100%">
+  <center><figcaption>Fig.5 - Patient's Page.</figcaption></center>
+</figure>
+
+<figure>
+  <img src="./images/appointmentpage.png" alt="Appointment page" style="width:100%">
+  <center><figcaption>Fig.6 - Appointment Page.</figcaption></center>
+</figure>
