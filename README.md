@@ -75,31 +75,31 @@ CareNet
 ## Web Pages
 
 <figure>
+  <figcaption>Fig.1 - Index Page</figcaption>
   <img src="./images/homepage.png" alt="Index page" style="width:100%">
-  <center><figcaption>Fig.1 - Index Page.</figcaption></center>
 </figure>
 
 <figure>
+  <figcaption>Fig.2 - Registration Page</figcaption>
   <img src="./images/signuppage.png" alt="Registration page" style="width:100%">
-  <center><figcaption>Fig.2 - Registration Page.</figcaption></center>
 </figure>
 
 <figure>
+  <figcaption>Fig.3 - Login Page</figcaption>
   <img src="./images/loginpage.png" alt="Login page" style="width:100%">
-  <center><figcaption>Fig.3 - Login Page.</figcaption></center>
 </figure>
 
 <figure>
+  <figcaption>Fig.4 - Doctor's Page</figcaption>
   <img src="./images/doctorpage.png" alt="Doctor's page" style="width:100%">
-  <center><figcaption>Fig.4 - Doctor's Page.</figcaption></center>
 </figure>
 
 <figure>
+  <figcaption>Fig.5 - Patient's Page</figcaption>
   <img src="./images/patientpage.png" alt="Patient's page" style="width:100%">
-  <center><figcaption>Fig.5 - Patient's Page.</figcaption></center>
 </figure>
 
 <figure>
+  <figcaption>Fig.6 - Appointment Page</figcaption>
   <img src="./images/appointmentpage.png" alt="Appointment page" style="width:100%">
-  <center><figcaption>Fig.6 - Appointment Page.</figcaption></center>
 </figure>
